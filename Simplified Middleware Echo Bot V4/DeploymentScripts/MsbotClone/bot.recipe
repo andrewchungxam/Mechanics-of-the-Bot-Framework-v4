@@ -16,17 +16,17 @@
     {
       "type": "abs",
       "id": "3",
-      "name": "BotBuilderSimplifiedEcho-abs"
+      "name": "Bot_Builder_Simplified_Echo_Bot_V4-abs"
     },
     {
       "type": "appInsights",
       "id": "4",
-      "name": "BotBuilderSimplifiedEcho-insights"
+      "name": "Bot_Builder_Simplified_Echo_Bot_V4-insights"
     },
     {
       "type": "blob",
       "id": "5",
-      "name": "BotBuilderSimplifiedEcho-blob",
+      "name": "Bot_Builder_Simplified_Echo_Bot_V4-blob",
       "container": "botstatestore"
     }
   ]

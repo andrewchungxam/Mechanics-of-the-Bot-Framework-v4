@@ -1,5 +1,5 @@
 ﻿{
-  "name": "BotBuilderSimplifiedEcho",
+  "name": "Bot_Builder_Simplified_Echo_Bot_V4",
   "services": [
     {
       "type": "endpoint",

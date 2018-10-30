@@ -5,7 +5,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace BotBuilderSimplifiedEcho
+namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
     public class Program
     {
