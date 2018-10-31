@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot Builder Simplified Echo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplified Middleware Echo Bot V4", "Simplified Middleware Echo Bot V4\Simplified Middleware Echo Bot V4.csproj", "{04F850EE-7A61-4714-B72C-DFE9EE78F569}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dialog Echo Bot V4", "Dialog Echo Bot V4\Dialog Echo Bot V4.csproj", "{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomeMessageMiddlewareEchoBotV4", "WelcomeMessageMiddlewareEchoBotV4\WelcomeMessageMiddlewareEchoBotV4.csproj", "{D70493B5-460C-493D-A707-D0C4F7814024}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D70493B5-460C-493D-A707-D0C4F7814024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70493B5-460C-493D-A707-D0C4F7814024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70493B5-460C-493D-A707-D0C4F7814024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70493B5-460C-493D-A707-D0C4F7814024}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
