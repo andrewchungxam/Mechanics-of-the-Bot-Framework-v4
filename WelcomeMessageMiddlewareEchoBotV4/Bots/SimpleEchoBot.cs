@@ -30,8 +30,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             if (DidBotWelcomeUser == false)
             {
                 await turnContext.SendActivityAsync($"{WelcomeMessageWithoutAccessors}", cancellationToken: cancellationToken);
-
-
+                
                 DidBotWelcomeUser = true;
             }
 
