@@ -30,41 +30,46 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             if (DidBotWelcomeUser == false)
             {
                 await turnContext.SendActivityAsync($"{WelcomeMessageWithoutAccessors}", cancellationToken: cancellationToken);
-                
                 DidBotWelcomeUser = true;
             }
+
 
             if (turnContext.Activity.Type == ActivityTypes.Message)
             {
                 var responseMessage1 = $"Welcome Message Middleware Echo Bot :: STEP 4: Thanks for typing: {turnContext.Activity.Text}.  This message was sent to you from the Bot. \n";
                 await turnContext.SendActivityAsync(responseMessage1, cancellationToken: cancellationToken);
             }
-            
+
             //YOU NEED AN ACCESSOR + KEEP TRACK OF CONVERSATION STATE AND BOT STATE
             //THEN THIS WILL BE TRIGGERED WHEN SOMEBODY NEW JOINS THE CONVERSATION
-            if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
+            else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
             {
                 if (turnContext.Activity.MembersAdded != null)
                 {
                     // Iterate over all new members added to the conversation
                     foreach (var member in turnContext.Activity.MembersAdded)
                     {
+                        string ConversationUpdateMessage = @"ActivityTypes.ConversationUpdate was triggered!";
+
                         // Greet anyone that was not the target (recipient) of this message
                         // the 'bot' is the recipient for events from the channel,
                         // turnContext.Activity.MembersAdded == turnContext.Activity.Recipient.Id indicates the
                         // bot was added to the conversation.
-                        if (member.Id != turnContext.Activity.Recipient.Id)
-                        {
-                            await turnContext.SendActivityAsync($"Hi there - {member.Name}. {WelcomeMessageWithoutAccessors}", cancellationToken: cancellationToken);
-                        }
+                        //if (member.Id != turnContext.Activity.Recipient.Id) //IE. DON'T SEND THIS TO THE BOT
+                        //{
+                            await turnContext.SendActivityAsync($"Hi there - {member.Name}. \n {ConversationUpdateMessage}", cancellationToken: cancellationToken);
+                        //}
                     }
                 }
             }
-            else
+            
+            else 
             {
                 // Default behavior for all other type of activities.
                 await turnContext.SendActivityAsync($"{turnContext.Activity.Type} activity detected");
             }
+
+
         }
     }
 }

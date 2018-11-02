@@ -9,10 +9,22 @@
             "endpoint": "http://localhost:3978/api/messages",
             "id": "757251f0-d944-11e8-bef2-ddc6cad17169",
             "name": "http://localhost:3978/api/messages"
+        },
+        {
+            "type": "endpoint",
+            "endpoint": "http://localhost:26526/api/messages",
+            "name": "http://localhost:26526/api/messages",
+            "id": "74"
+        },
+        {
+            "type": "endpoint",
+            "endpoint": "http://localhost:50002/api/messages",
+            "name": "http://localhost:50002/api/messages",
+            "id": "133"
         }
     ],
     "padlock": "",
     "version": "2.0",
-    "overrides": null,
-    "path": "C:\\Github\\Microsoft-Bot-Framework-v4\\Bot1Echo.bot"
+    "path": "C:\\Github\\Microsoft-Bot-Framework-v4\\Bot1Echo.bot",
+    "overrides": null
 }

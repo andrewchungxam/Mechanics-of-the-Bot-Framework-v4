@@ -6,20 +6,28 @@ using Microsoft.Bot.Schema;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
-    public class SimplifiedEchoBotMiddleware2 : IMiddleware
+    public class SimplifiedEchoBotMiddleware3 : IMiddleware
     {
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            await turnContext.SendActivityAsync($"STEP 2: MIDDLEWARE - BEFORE ");
-
-            //UNCOMMENT CODE WILL ADD A SKIP AVENUE THAT WILL STOP THE PIPELINE(IE.MIDDLEWARE 3 + BOT WILL NOT BE TRIGGERED)
             //if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text != "skip")
             //{
+            //    await turnContext.SendActivityAsync($"STEP 3: MIDDLEWARE - BEFORE ");
+
                 await next(cancellationToken);
+
+            //    await turnContext.SendActivityAsync($"STEP 5: MIDDLEWARE - AFTER ");
+
+            //}
+            //else
+            //{
+            //    await turnContext.SendActivityAsync($"STEP 3: MIDDLEWARE - BEFORE (skip was typed - notice no bot)");
+
+            //    await turnContext.SendActivityAsync($"STEP 5: MIDDLEWARE - AFTER (skip was typed - notice no bot)");
+
             //}
 
-        await turnContext.SendActivityAsync($"STEP 6: MIDDLEWARE - AFTER ");
-    }
+        }
     }
 }
