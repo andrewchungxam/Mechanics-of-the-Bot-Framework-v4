@@ -95,36 +95,37 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                             //await SendIntroCardAsync(turnContext, cancellationToken);
                             break;
                         default:
-                            await turnContext.SendActivityAsync(WelcomeMessage, cancellationToken: cancellationToken);
+                            await turnContext.SendActivityAsync($"You said {text}.", cancellationToken: cancellationToken);
+                            //await turnContext.SendActivityAsync(WelcomeMessage, cancellationToken: cancellationToken);
                             break;
                     }
                 }
 
-            //    // Run the DialogSet - let the framework identify the current state of the dialog from
-            //    // the dialog stack and figure out what (if any) is the active dialog.
-            //    var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
-            //    var results = await dialogContext.ContinueDialogAsync(cancellationToken);
+                //    // Run the DialogSet - let the framework identify the current state of the dialog from
+                //    // the dialog stack and figure out what (if any) is the active dialog.
+                var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
+                var results = await dialogContext.ContinueDialogAsync(cancellationToken);
 
-            //    // If the DialogTurnStatus is Empty we should start a new dialog.
-            //    if (results.Status == DialogTurnStatus.Empty)
-            //    {
-            //        // A prompt dialog can be started directly on the DialogContext. The prompt text is given in the PromptOptions.
-            //        await dialogContext.PromptAsync(
-            //            "name",
-            //            new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: PLEASE ENTER YOUR NAME.") },
-            //            cancellationToken);
-            //    }
+                // If the DialogTurnStatus is Empty we should start a new dialog.
+                if (results.Status == DialogTurnStatus.Empty)
+                {
+                    // A prompt dialog can be started directly on the DialogContext. The prompt text is given in the PromptOptions.
+                    await dialogContext.PromptAsync(
+                        "name",
+                        new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: PLEASE ENTER YOUR NAME.") },
+                        cancellationToken);
+                }
 
-            //    // We had a dialog run (it was the prompt). Now it is Complete.
-            //    else if (results.Status == DialogTurnStatus.Complete)
-            //    {
-            //        // Check for a result.
-            //        if (results.Result != null)
-            //        {
-            //            // Finish by sending a message to the user. Next time ContinueAsync is called it will return DialogTurnStatus.Empty.
-            //            await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{results.Result}'."));
-            //        }
-            //    }
+                // We had a dialog run (it was the prompt). Now it is Complete.
+                else if (results.Status == DialogTurnStatus.Complete)
+                {
+                    // Check for a result.
+                    if (results.Result != null)
+                    {
+                        // Finish by sending a message to the user. Next time ContinueAsync is called it will return DialogTurnStatus.Empty.
+                        await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{results.Result}'."));
+                    }
+                }
             }
 
             //Processes ConversationUpdate Activities to welcome the user.
@@ -153,6 +154,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     var reply = turnContext.Activity.CreateReply();
                     reply.Text = WelcomeMessageWithAccessors;
                     await turnContext.SendActivityAsync(reply, cancellationToken);
+                    string ConversationUpdateMessage = @"ActivityTypes.ConversationUpdate was triggered!";
+
+                    await turnContext.SendActivityAsync($"{ConversationUpdateMessage}", cancellationToken: cancellationToken);
                 }
             }
         }
