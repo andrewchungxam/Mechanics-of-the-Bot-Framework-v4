@@ -36,7 +36,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddBot<SimplifiedEchoBot>(options =>
+            services.AddBot<WelcomeMessageWithoutAccessorBot>(options =>
             {
                 var secretKey = Configuration.GetSection("botFileSecret")?.Value;
                 var botFilePath = Configuration.GetSection("botFilePath")?.Value;

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 { 
-    public class SimplifiedEchoBot : IBot
+    public class WelcomeMessageWithoutAccessorBot : IBot
     {
        
         private const string WelcomeMessageWithAccessors = @"Welcome to the Welcome bot.  This is the Welcome message!  

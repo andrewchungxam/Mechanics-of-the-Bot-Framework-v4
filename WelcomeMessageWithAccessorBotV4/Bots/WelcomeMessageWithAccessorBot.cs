@@ -12,7 +12,7 @@ using WelcomeMessageWithAccessorBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
-    public class DialogueBotWithAccessor : IBot
+    public class WelcomeMessageWithAccessorBot : IBot
     {
         private readonly DialogSet _dialogSet;
         private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
@@ -44,7 +44,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                                               to user, explaining what your bot can do. In this example, the bot
                                               handles 'hello', 'hi', 'help' and 'intro. Try it now, type 'hi'";
 
-        public DialogueBotWithAccessor(DialogBotConversationStateAndUserStateAccessor accessor)
+        public WelcomeMessageWithAccessorBot(DialogBotConversationStateAndUserStateAccessor accessor)
         {
             _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
@@ -133,7 +133,22 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             {
                 if (turnContext.Activity.MembersAdded != null)
                 {
-                    await SendWelcomeMessageAsync(turnContext, cancellationToken);
+                    //await SendWelcomeMessageAsync(turnContext, cancellationToken);
+
+                    // Iterate over all new members added to the conversation
+                    foreach (var member in turnContext.Activity.MembersAdded)
+                    {
+                        string ConversationUpdateMessage = @"ActivityTypes.ConversationUpdate was triggered!";
+
+                        // Greet anyone that was not the target (recipient) of this message
+                        // the 'bot' is the recipient for events from the channel,
+                        // turnContext.Activity.MembersAdded == turnContext.Activity.Recipient.Id indicates the
+                        // bot was added to the conversation.
+                        //if (member.Id != turnContext.Activity.Recipient.Id) //IE. DON'T SEND THIS TO THE BOT
+                        //{
+                        await turnContext.SendActivityAsync($"Hi there - {member.Name}. \n {ConversationUpdateMessage}", cancellationToken: cancellationToken);
+                        //}
+                    }
                 }
             }
             else
@@ -145,21 +160,21 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             await _dialogBotConversationStateAndUserStateAccessor.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
         }
 
-        private static async Task SendWelcomeMessageAsync(ITurnContext turnContext, CancellationToken cancellationToken)
-        {
-            foreach (var member in turnContext.Activity.MembersAdded)
-            {
-                if (member.Id != turnContext.Activity.Recipient.Id)
-                {
-                    var reply = turnContext.Activity.CreateReply();
-                    reply.Text = WelcomeMessageWithAccessors;
-                    await turnContext.SendActivityAsync(reply, cancellationToken);
-                    string ConversationUpdateMessage = @"ActivityTypes.ConversationUpdate was triggered!";
+        //private static async Task SendWelcomeMessageAsync(ITurnContext turnContext, CancellationToken cancellationToken)
+        //{
+        //    foreach (var member in turnContext.Activity.MembersAdded)
+        //    {
+        //        if (member.Id != turnContext.Activity.Recipient.Id)
+        //        {
+        //            var reply = turnContext.Activity.CreateReply();
+        //            reply.Text = WelcomeMessageWithAccessors;
+        //            await turnContext.SendActivityAsync(reply, cancellationToken);
+        //            string ConversationUpdateMessage = @"ActivityTypes.ConversationUpdate was triggered!";
 
-                    await turnContext.SendActivityAsync($"{ConversationUpdateMessage}", cancellationToken: cancellationToken);
-                }
-            }
-        }
+        //            await turnContext.SendActivityAsync($"{ConversationUpdateMessage}", cancellationToken: cancellationToken);
+        //        }
+        //    }
+        //}
     }
 }
 
