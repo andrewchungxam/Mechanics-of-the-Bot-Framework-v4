@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06 WelcomeMessageWithAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-WelcomeUser", "..\BotBuilder-Samples\samples\csharp_dotnetcore\03.welcome-user\remove-WelcomeUser.csproj", "{2379A217-6040-4F36-BD0C-75462724F581}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Future-PromptsAndHardcodedCases", "Future-PromptsAndHardcodedCases\Future-PromptsAndHardcodedCases.csproj", "{8DE82A9D-7731-454C-B4D3-68EFB374633A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{2379A217-6040-4F36-BD0C-75462724F581}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2379A217-6040-4F36-BD0C-75462724F581}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2379A217-6040-4F36-BD0C-75462724F581}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
