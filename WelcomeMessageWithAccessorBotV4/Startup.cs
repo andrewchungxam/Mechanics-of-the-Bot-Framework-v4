@@ -15,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WelcomeMessageWithAccessorBotV4.BotAccessor;
+using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {

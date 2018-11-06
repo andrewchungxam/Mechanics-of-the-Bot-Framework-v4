@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WelcomeMessageWithAccessorBotV4.BotAccessor
+namespace SimplifiedWaterfallDialogBotV4.BotAccessor
 {
     /// In Startup.cs, this class is created as a Singleton and passed into the Bot's constructor.
     public class DialogBotConversationStateAndUserStateAccessor

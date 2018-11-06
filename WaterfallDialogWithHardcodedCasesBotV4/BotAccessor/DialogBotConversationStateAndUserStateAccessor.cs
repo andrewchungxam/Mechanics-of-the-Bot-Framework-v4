@@ -23,14 +23,14 @@ namespace SimplifiedWaterfallDialogBotV4.BotAccessor
         /// <remarks>Accessors require a unique name.</remarks>
         /// <value>The accessor name for the WelcomeUser state.</value>
         public static string WelcomeUserName { get; } = $"{nameof(DialogBotConversationStateAndUserStateAccessor)}.WelcomeUserState";
-        
         // ConversationDialogState is a type of DialogState. Under the covers, Dialog State is a serialized dialog stack.
         public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
+        /// Gets or sets the IStatePropertyAccessor{T} for UserProfile
+        public IStatePropertyAccessor<UserProfile> TheUserProfile { get; set; }
+        public IStatePropertyAccessor<WelcomeUserState> WelcomeUserState { get; set; }
+
         // Gets the "ConversationState" for the conversation.
         public ConversationState ConversationState { get; }
-
-
-        public IStatePropertyAccessor<WelcomeUserState> WelcomeUserState { get; set; }
         public UserState UserState { get; }
     }
 }

@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-Bot Builder Echo Bot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-Bot Builder Basic Bot V4", "Bot1\Bot Builder Basic Bot V4\remove-Bot Builder Basic Bot V4.csproj", "{F38FB696-7D04-41DF-A17E-EE7376ACDCF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01 Bot Builder Simplified Echo Bot V4", "Bot Builder Simplified Echo Bot V4\01 Bot Builder Simplified Echo Bot V4.csproj", "{1A2BDADD-B4A1-4938-A154-1E744271746D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01 SimplifiedEchoBotV4", "Bot Builder Simplified Echo Bot V4\01 SimplifiedEchoBotV4.csproj", "{1A2BDADD-B4A1-4938-A154-1E744271746D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02 Simplified Middleware Echo Bot V4", "Simplified Middleware Echo Bot V4\02 Simplified Middleware Echo Bot V4.csproj", "{04F850EE-7A61-4714-B72C-DFE9EE78F569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02 SimplifiedMiddlewareEchoBotV4", "Simplified Middleware Echo Bot V4\02 SimplifiedMiddlewareEchoBotV4.csproj", "{04F850EE-7A61-4714-B72C-DFE9EE78F569}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-Dialog Echo Bot V4", "Dialog Echo Bot V4\remove-Dialog Echo Bot V4.csproj", "{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 WelcomeMessageMiddlewareEchoBotV4", "WelcomeMessageMiddlewareEchoBotV4\03 WelcomeMessageMiddlewareEchoBotV4.csproj", "{D70493B5-460C-493D-A707-D0C4F7814024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 WelcomeMessageWithoutAccessBotV4", "WelcomeMessageMiddlewareEchoBotV4\03 WelcomeMessageWithoutAccessBotV4.csproj", "{D70493B5-460C-493D-A707-D0C4F7814024}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04 DialogsWithoutAccessorBotV4", "DialogWithoutAccessorBotV4\04 DialogsWithoutAccessorBotV4.csproj", "{5F9784F2-DB31-434D-8C09-084F67AEF74C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04 DialogWithoutAccessorBotV4", "DialogWithoutAccessorBotV4\04 DialogWithoutAccessorBotV4.csproj", "{5F9784F2-DB31-434D-8C09-084F67AEF74C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05 DialogWithAccessorBotV4", "DialogWithAccessorBotV4\05 DialogWithAccessorBotV4.csproj", "{462A7E1C-439E-41E4-8E5E-A7B0AE1A15C4}"
 EndProject
@@ -24,6 +24,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-WelcomeUser", "..\BotBuilder-Samples\samples\csharp_dotnetcore\03.welcome-user\remove-WelcomeUser.csproj", "{2379A217-6040-4F36-BD0C-75462724F581}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Future-PromptsAndHardcodedCases", "Future-PromptsAndHardcodedCases\Future-PromptsAndHardcodedCases.csproj", "{8DE82A9D-7731-454C-B4D3-68EFB374633A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07 SimplifiedWaterfallDialogBotV4", "SimplifiedWaterfallDialogBotV4\07 SimplifiedWaterfallDialogBotV4.csproj", "{7966B8D5-6585-4D9D-A2F3-8C2C94B33CBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08 WaterfallDialogWithHardcodedCasesBotV4", "WaterfallDialogWithHardcodedCasesBotV4\08 WaterfallDialogWithHardcodedCasesBotV4.csproj", "{4AFAC17C-8015-41AD-A7D9-BA3BAF4A70F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09 DuelingDialogsBotV4", "DuelingDialogsBotV4\09 DuelingDialogsBotV4.csproj", "{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +81,18 @@ Global
 		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7966B8D5-6585-4D9D-A2F3-8C2C94B33CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7966B8D5-6585-4D9D-A2F3-8C2C94B33CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7966B8D5-6585-4D9D-A2F3-8C2C94B33CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7966B8D5-6585-4D9D-A2F3-8C2C94B33CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AFAC17C-8015-41AD-A7D9-BA3BAF4A70F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AFAC17C-8015-41AD-A7D9-BA3BAF4A70F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AFAC17C-8015-41AD-A7D9-BA3BAF4A70F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AFAC17C-8015-41AD-A7D9-BA3BAF4A70F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

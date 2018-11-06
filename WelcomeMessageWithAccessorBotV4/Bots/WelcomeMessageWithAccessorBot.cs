@@ -8,7 +8,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
-using WelcomeMessageWithAccessorBotV4.BotAccessor;
+using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
@@ -46,7 +46,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     var userName = turnContext.Activity.From.Name;
 
                     await turnContext.SendActivityAsync($"You are seeing this message because this was your first message ever to this bot. Notice you will not see this message again.", cancellationToken: cancellationToken);
-                    await turnContext.SendActivityAsync($"This is good place to welcome the user 'For example, welcome {userName}.' In your future bots -- this is also a good place to let them know what the bot can do.", cancellationToken: cancellationToken);
+                    await turnContext.SendActivityAsync($"This is good place to welcome the user. For example, 'Welcome {userName}.' In your future bots -- this is also a good place to let them know what the bot can do.", cancellationToken: cancellationToken);
                 }
 
                 //    // Run the DialogSet - let the framework identify the current state of the dialog from

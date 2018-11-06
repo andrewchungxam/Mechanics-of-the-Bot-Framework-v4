@@ -2,7 +2,6 @@
 
 using System;
 using System.Linq;
-using DialogWithAccessorBotV4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -15,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SimplifiedWaterfallDialogBotV4;
 using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
@@ -39,7 +39,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddBot<WelcomeMessageWithAccessorBot>(options =>
+            services.AddBot<DuelingDialogsBotDialog>(options =>
             {
                 var secretKey = Configuration.GetSection("botFileSecret")?.Value;
                 var botFilePath = Configuration.GetSection("botFilePath")?.Value;
@@ -99,6 +99,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 var accessors = new DialogBotConversationStateAndUserStateAccessor(conversationState, userState)
                 {
                     ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
+                    TheUserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
                     WelcomeUserState = userState.CreateProperty<WelcomeUserState>(DialogBotConversationStateAndUserStateAccessor.WelcomeUserName),
                 };
                 return accessors;

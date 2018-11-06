@@ -8,7 +8,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
-using WelcomeMessageWithAccessorBotV4.BotAccessor;
+using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {

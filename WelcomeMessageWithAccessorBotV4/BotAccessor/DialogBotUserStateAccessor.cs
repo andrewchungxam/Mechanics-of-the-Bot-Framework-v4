@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WelcomeMessageWithAccessorBotV4.BotAccessor
+namespace SimplifiedWaterfallDialogBotV4.BotAccessor
 {
     /// This class holds a set of accessors (to specific properties) that the bot uses to access
     /// specific data. These are created as singleton and available via Direct Injection.
