@@ -82,6 +82,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
         private async Task<DialogTurnResult> LoopDialogStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
+            await Task.Delay(3000);
             return await stepContext.ReplaceDialogAsync(RootWaterfallDialog.DialogId);
         }
 
