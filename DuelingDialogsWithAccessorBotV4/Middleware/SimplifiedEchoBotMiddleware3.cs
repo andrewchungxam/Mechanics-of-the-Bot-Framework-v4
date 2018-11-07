@@ -46,7 +46,11 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                         // Update user state flag to reflect bot handled first user interaction.
                         await _languageStateProperty.SetAsync(turnContext, didBotWelcomeUser);
                         turnContext.TurnState.Add("didWelcomeUser", didBotWelcomeUser);
-                
+
+
+                        //turnContext.TurnState.   // .ActiveDialog == null
+
+
                 //await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext);
                 await next(cancellationToken);
                 //await turnContext.SendActivityAsync($"STEP 5: MIDDLEWARE - AFTER ");

@@ -89,20 +89,21 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 //                if (dialogTurnResult.Status == DialogTurnStatus.Empty) // alternatively with same effect dialogTurnResult.ActiveDialog == null
 
 
-//                var welcomeState = "";
-//                if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
-//                {
-//                    welcomeState = turnContext.TurnState["didWelcomeUser"] as string;
-////                    int five = 5;
-//                    //if (welcomeState == "name")
-//                    //{
-//                    //    await dialogContext.BeginDialogAsync(NameWaterfallDialog.DialogId, null, cancellationToken);
-//                    //    //GOT TO SAVE THE STATE AGAIN
-//                    //}
-//                }
+                //                var welcomeState = "";
+                //                if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
+                //                {
+                //                    welcomeState = turnContext.TurnState["didWelcomeUser"] as string;
+                ////                    int five = 5;
+                //                    //if (welcomeState == "name")
+                //                    //{
+                //                    //    await dialogContext.BeginDialogAsync(NameWaterfallDialog.DialogId, null, cancellationToken);
+                //                    //    //GOT TO SAVE THE STATE AGAIN
+                //                    //}
+                //                }
 
+                string welcomeState = "";
 
-                if (dialogContext.ActiveDialog == null)
+                if (dialogContext.ActiveDialog == null) 
                 {
                     //if (turnContext.TurnState.ContainsKey("didWelcomeUser") && welcomeState == "name")
                     //{
@@ -111,7 +112,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     //}
                     if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
                     {
-                        var welcomeState = turnContext.TurnState["didWelcomeUser"] as string;
+                        welcomeState = turnContext.TurnState["didWelcomeUser"] as string;
                         int five = 5;
                         if (welcomeState == "name")
                         {
@@ -129,10 +130,25 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     //CHECK --> !NAME
 
                     //await dialogContext.BeginDialogAsync(RootWaterfallDialog.DialogId, null, cancellationToken);
-                } else
+                } else //if (welcomeState != "name")
                 //else if (dialogContext.ActiveDialog.Id != NameWaterfallDialog.DialogId && dialogContext.ActiveDialog.Id != "name")
                 {
-                    await dialogContext.ContinueDialogAsync(cancellationToken);
+                    if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
+                    {
+                        welcomeState = turnContext.TurnState["didWelcomeUser"] as string;
+                        int five = 5;
+                        if (welcomeState == "name")
+                        {
+                            await dialogContext.BeginDialogAsync(NameWaterfallDialog.DialogId, null, cancellationToken);
+                            //GOT TO SAVE THE STATE AGAIN
+                        }
+                    }
+                    else
+                    {
+                        await dialogContext.ContinueDialogAsync(cancellationToken);
+                    }
+                    //if 
+                    //await dialogContext.ContinueDialogAsync(cancellationToken);
                 }
 
                 await _dialogBotConversationStateAndUserStateAccessor.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
