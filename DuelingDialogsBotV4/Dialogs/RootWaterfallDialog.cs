@@ -1,5 +1,6 @@
 ﻿using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         public static string DialogId { get; } = "rootDialog";
 
         public static RootWaterfallDialog BotInstance { get; } = new RootWaterfallDialog(DialogId, null);
-
-
+        
         // YOU CAN DEFINE AS ARRAY AND THEN USE WHEN CALLING DIALOG-- BUT THIS ADDS SOME USAGE COMPLEXITY
         // ADDING 'ADD STEPS' IN CONSTRUCTOR LIMITS USAGE COMPLEXITY WHEN CALLING BOT
         //public WaterfallStep[] RootDialogWaterfallSteps { get; } = new WaterfallStep[]
@@ -27,8 +27,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             : base (dialogId, steps)
         {
             AddStep(FirstStepAsync);
-            AddStep(NameStepAsync);
-            AddStep(NameConfirmStepAsync);
+            AddStep(PromptDialogChoiceStepAsync);
+            AddStep(LaunchDialogStepAsync);
+            AddStep(LoopDialogStepAsync);
         }
 
         private static async Task<DialogTurnResult> FirstStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
@@ -40,34 +41,63 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             return await stepContext.NextAsync("Data from First Step", cancellationToken);
         }
 
-        private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private static async Task<DialogTurnResult> PromptDialogChoiceStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             string stringFromFirstStep = (string)stepContext.Result;
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 2: You can pass objects/strings step-to-step like this: {stringFromFirstStep}"), cancellationToken);
 
             // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
             // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-            return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
+            return await stepContext.PromptAsync("dialogChoice", 
+                new PromptOptions
+                {
+                    Prompt = MessageFactory.Text("What would you like to talk about today?"),
+                    Choices = new[]
+                    {
+                        new Choice { Value = "Favorite Food" },
+                        new Choice { Value = "Favorite Color" },
+                    },
+                }, cancellationToken);
+
             //return await stepContext.NextAsync(null, cancellationToken);
             //return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
 
-        private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> LaunchDialogStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            //// Get the current profile object from user state.
-            //var userProfile = await _dialogBotConversationStateAndUserStateAccessor.TheUserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
+            var chosenDialogResponse = (stepContext.Result as FoundChoice)?.Value;
 
-            //// Update the profile.
-            //userProfile.Name = (string)stepContext.Result;
+            if (chosenDialogResponse == "Favorite Food")
+            {
+                return await stepContext.BeginDialogAsync(FoodWaterfallDialog.DialogId);
+            }
 
-            // We can send messages to the user at any point in the WaterfallStep.
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 3: Thanks {stepContext.Result}."), cancellationToken);
-            //await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 3: Thanks {userProfile.Name }."), cancellationToken);
-            
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            //return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Would you like to give your age?") }, cancellationToken);
-            return await stepContext.EndDialogAsync(null, cancellationToken);
+            if (chosenDialogResponse == "Favorite Color")
+            {
+                return await stepContext.BeginDialogAsync(ColorWaterfallDialog.DialogId);
+            }
+
+            return await stepContext.NextAsync();
         }
 
+        private async Task<DialogTurnResult> LoopDialogStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        {
+            return await stepContext.ReplaceDialogAsync(RootWaterfallDialog.DialogId);
+        }
+
+        //// Get the current profile object from user state.
+        //var userProfile = await _dialogBotConversationStateAndUserStateAccessor.TheUserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
+
+        //// Update the profile.
+        //userProfile.Name = (string)stepContext.Result;
+
+        // We can send messages to the user at any point in the WaterfallStep.
+        //await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 3: Thanks {stepContext.Result}."), cancellationToken);
+        //    //await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 3: Thanks {userProfile.Name }."), cancellationToken);
+
+        //    // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
+        //    //return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Would you like to give your age?") }, cancellationToken);
+        //    return await stepContext.EndDialogAsync(null, cancellationToken);
+        //}
     }
 }

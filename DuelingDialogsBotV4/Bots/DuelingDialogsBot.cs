@@ -22,8 +22,11 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
             _dialogSet.Add(RootWaterfallDialog.BotInstance);
             _dialogSet.Add(new TextPrompt("name"));
+            _dialogSet.Add(new TextPrompt("colorName"));
+            _dialogSet.Add(new TextPrompt("foodName"));
             _dialogSet.Add(FoodWaterfallDialog.BotInstance);
             _dialogSet.Add(ColorWaterfallDialog.BotInstance);
+            _dialogSet.Add(new ChoicePrompt("dialogChoice"));
 
         }
 
@@ -39,10 +42,11 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 // Run the DialogSet - let the framework identify the current state of the dialog from
                 // the dialog stack and figure out what (if any) is the active dialog.
                 var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
-                var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
+                //var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
                 
                 // If the DialogTurnStatus is Empty we should start a new dialog.
-                if (dialogTurnResult.Status == DialogTurnStatus.Empty) // alternatively with same effect dialogTurnResult.ActiveDialog == null
+//                if (dialogTurnResult.Status == DialogTurnStatus.Empty) // alternatively with same effect dialogTurnResult.ActiveDialog == null
+                if (dialogContext.ActiveDialog == null)
                 {
                     await dialogContext.BeginDialogAsync(RootWaterfallDialog.DialogId, null, cancellationToken);
                 }

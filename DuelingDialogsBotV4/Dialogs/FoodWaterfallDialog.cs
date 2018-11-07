@@ -10,7 +10,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
     public class FoodWaterfallDialog : WaterfallDialog
     {
-        public static string DialogId { get; } = "rootDialog";
+        public static string DialogId { get; } = "foodDialog";
 
         public static FoodWaterfallDialog BotInstance { get; } = new FoodWaterfallDialog(DialogId, null);
 
@@ -38,7 +38,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
             // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
             // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-            return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
+            return await stepContext.PromptAsync("foodName", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
             //return await stepContext.NextAsync(null, cancellationToken);
             //return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
