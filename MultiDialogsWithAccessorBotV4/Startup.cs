@@ -56,7 +56,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 throw new InvalidOperationException($"The .bot file does not contain an endpoint with name '{environment}'.");
             }
             options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
-                
+
+
+
             IStorage dataStore = new MemoryStorage();
 
             var conversationState = new ConversationState(dataStore);
@@ -66,9 +68,11 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             var userState = new UserState(dataStore);
             options.State.Add(userState);
 
+            var middleware3WithParameters = new SimplifiedEchoBotMiddleware3(userState.CreateProperty<string>("LanguagePreference"));
+
             options.Middleware.Add(new SimplifiedEchoBotMiddleware1());
             options.Middleware.Add(new SimplifiedEchoBotMiddleware2());
-            options.Middleware.Add(new SimplifiedEchoBotMiddleware3());
+            options.Middleware.Add(middleware3WithParameters);
             });
 
             services.AddSingleton(sp =>
@@ -99,6 +103,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
                     TheUserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
                     WelcomeUserState = userState.CreateProperty<WelcomeUserState>(DialogBotConversationStateAndUserStateAccessor.WelcomeUserName),
+                    LanguagePreference = userState.CreateProperty<string>("LanguagePreference"),
                 };
                 return accessors;
             });

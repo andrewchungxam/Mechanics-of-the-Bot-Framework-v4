@@ -25,20 +25,26 @@
         {
             "type": "endpoint",
             "endpoint": "http://localhost:54433/api/message",
-            "name": "http://localhost:54433/api/message",
-            "id": "92"
+            "id": "92",
+            "name": "http://localhost:54433/api/message"
         },
         {
             "type": "endpoint",
             "endpoint": "http://http://localhost:17586/api/messages",
-            "name": "http://http://localhost:17586/api/messages",
-            "id": "23"
+            "id": "23",
+            "name": "http://http://localhost:17586/api/messages"
         },
         {
             "type": "endpoint",
             "endpoint": "http://localhost:17586/api/messages",
-            "name": "http://localhost:17586/api/messages",
-            "id": "114"
+            "id": "114",
+            "name": "http://localhost:17586/api/messages"
+        },
+        {
+            "type": "endpoint",
+            "endpoint": "http://localhost:62852/api/messages",
+            "name": "http://localhost:62852/api/messages",
+            "id": "82"
         }
     ],
     "padlock": "",

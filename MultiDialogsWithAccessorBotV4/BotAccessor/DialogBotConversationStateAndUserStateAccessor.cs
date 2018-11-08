@@ -29,6 +29,7 @@ namespace SimplifiedWaterfallDialogBotV4.BotAccessor
         public IStatePropertyAccessor<UserProfile> TheUserProfile { get; set; }
         public IStatePropertyAccessor<WelcomeUserState> WelcomeUserState { get; set; }
         public IStatePropertyAccessor<string> LanguagePreference { get; set; }
+
         // Gets the "ConversationState" for the conversation.
         public ConversationState ConversationState { get; }
         public UserState UserState { get; }
