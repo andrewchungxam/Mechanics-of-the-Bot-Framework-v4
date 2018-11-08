@@ -16,12 +16,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
     {
         private readonly DialogSet _dialogSet;
         private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
-
         public DialogBotConversationStateAndUserStateAccessor DialogBotConversationStateAndUserStateAccessor { get; set; }
-
         public DuelingDialogsWithAccessorsBot(DialogBotConversationStateAndUserStateAccessor accessor)
         {
-
             _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
             _dialogSet.Add(RootWaterfallDialog.BotInstance);
@@ -33,7 +30,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             _dialogSet.Add(NameWaterfallDialog.BotInstance);
             _dialogSet.Add(new ChoicePrompt("dialogChoice"));
             DialogBotConversationStateAndUserStateAccessor = accessor;
-
         }
 
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))

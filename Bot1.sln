@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-Bot Builder Echo Bot V4", "Bot1\Bot Builder Echo Bot V4\remove-Bot Builder Echo Bot V4.csproj", "{6891EBCA-5E94-42FC-B9D8-BCE38F91331B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reference-Bot Builder Echo Bot V4", "Bot1\Bot Builder Echo Bot V4\reference-Bot Builder Echo Bot V4.csproj", "{6891EBCA-5E94-42FC-B9D8-BCE38F91331B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-Bot Builder Basic Bot V4", "Bot1\Bot Builder Basic Bot V4\remove-Bot Builder Basic Bot V4.csproj", "{F38FB696-7D04-41DF-A17E-EE7376ACDCF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reference-Bot Builder Basic Bot V4", "Bot1\Bot Builder Basic Bot V4\reference-Bot Builder Basic Bot V4.csproj", "{F38FB696-7D04-41DF-A17E-EE7376ACDCF3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01 SimplifiedEchoBotV4", "Bot Builder Simplified Echo Bot V4\01 SimplifiedEchoBotV4.csproj", "{1A2BDADD-B4A1-4938-A154-1E744271746D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02 SimplifiedMiddlewareEchoBotV4", "Simplified Middleware Echo Bot V4\02 SimplifiedMiddlewareEchoBotV4.csproj", "{04F850EE-7A61-4714-B72C-DFE9EE78F569}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-Dialog Echo Bot V4", "Dialog Echo Bot V4\remove-Dialog Echo Bot V4.csproj", "{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 WelcomeMessageWithoutAccessBotV4", "WelcomeMessageMiddlewareEchoBotV4\03 WelcomeMessageWithoutAccessBotV4.csproj", "{D70493B5-460C-493D-A707-D0C4F7814024}"
 EndProject
@@ -20,8 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05 DialogWithAccessorBotV4", "DialogWithAccessorBotV4\05 DialogWithAccessorBotV4.csproj", "{462A7E1C-439E-41E4-8E5E-A7B0AE1A15C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06 WelcomeMessageWithAccessorBotV4", "WelcomeMessageWithAccessorBotV4\06 WelcomeMessageWithAccessorBotV4.csproj", "{2476E8DC-7680-4031-83F2-EE8199EBF75F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "remove-WelcomeUser", "..\BotBuilder-Samples\samples\csharp_dotnetcore\03.welcome-user\remove-WelcomeUser.csproj", "{2379A217-6040-4F36-BD0C-75462724F581}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Future-PromptsAndHardcodedCases", "Future-PromptsAndHardcodedCases\Future-PromptsAndHardcodedCases.csproj", "{8DE82A9D-7731-454C-B4D3-68EFB374633A}"
 EndProject
@@ -57,10 +53,6 @@ Global
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5F7CA0F-54C6-488E-8B83-B0E9675E9191}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D70493B5-460C-493D-A707-D0C4F7814024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D70493B5-460C-493D-A707-D0C4F7814024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D70493B5-460C-493D-A707-D0C4F7814024}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,10 +69,6 @@ Global
 		{2476E8DC-7680-4031-83F2-EE8199EBF75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2476E8DC-7680-4031-83F2-EE8199EBF75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2476E8DC-7680-4031-83F2-EE8199EBF75F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2379A217-6040-4F36-BD0C-75462724F581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2379A217-6040-4F36-BD0C-75462724F581}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2379A217-6040-4F36-BD0C-75462724F581}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2379A217-6040-4F36-BD0C-75462724F581}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DE82A9D-7731-454C-B4D3-68EFB374633A}.Release|Any CPU.ActiveCfg = Release|Any CPU
