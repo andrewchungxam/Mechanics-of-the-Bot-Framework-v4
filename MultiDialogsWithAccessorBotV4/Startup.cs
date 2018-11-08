@@ -68,6 +68,11 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             var userState = new UserState(dataStore);
             options.State.Add(userState);
 
+            //SETUP ACCORDING TO MULTI-LINGUAL BOT FROM OFFICIAL SAMPLE 
+            //TO SEE MORE OF HOW IT'S USED TAKE A LOOK AT THE OFFICIAL SAMPLES HERE: 
+            //https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore 
+            // Look for the sample Multilingual 
+
             var middleware3WithParameters = new SimplifiedEchoBotMiddleware3(userState.CreateProperty<string>("LanguagePreference"));
 
             options.Middleware.Add(new SimplifiedEchoBotMiddleware1());

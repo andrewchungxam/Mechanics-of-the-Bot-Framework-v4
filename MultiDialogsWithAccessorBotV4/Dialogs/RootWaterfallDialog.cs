@@ -34,13 +34,13 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         {
             // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
             // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 1: This is the first step.  You can put your code in each of these steps."), cancellationToken);
+            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"ROOT WATERFALL STEP 1: This is the first step.  You can put your code in each of these steps."), cancellationToken);
             return await stepContext.NextAsync("Data from First Step", cancellationToken);
         }
         private static async Task<DialogTurnResult> PromptDialogChoiceStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             string stringFromFirstStep = (string)stepContext.Result;
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 2: You can pass objects/strings step-to-step like this: {stringFromFirstStep}"), cancellationToken);
+            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"ROOT WATERFALL STEP 2: You can pass objects/strings step-to-step like this: {stringFromFirstStep}"), cancellationToken);
 
             return await stepContext.PromptAsync("dialogChoice", 
                 new PromptOptions
