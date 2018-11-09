@@ -57,8 +57,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             }
             options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
 
-
-
             IStorage dataStore = new MemoryStorage();
 
             var conversationState = new ConversationState(dataStore);
