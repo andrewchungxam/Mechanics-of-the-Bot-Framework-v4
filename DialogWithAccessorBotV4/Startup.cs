@@ -60,11 +60,17 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 options.Middleware.Add(new SimplifiedEchoBotMiddleware2());
                 options.Middleware.Add(new SimplifiedEchoBotMiddleware3());
 
+                // Memory Storage is for local bot debugging only. When the bot
+                // is restarted, everything stored in memory will be gone.  This is where you'd want to use Cosmos or Blob Storage to have persistance beyond application's life.
                 IStorage dataStore = new MemoryStorage();
+                
+                // Create and add conversation state.
                 var conversationState = new ConversationState(dataStore);
                 options.State.Add(conversationState);
             });
 
+            // Create and register state accessors.
+            // Accessors created here are passed into the IBot-derived class on every turn.
             services.AddSingleton(sp =>
             {
                 // We need to grab the conversationState we added on the options in the previous step.
@@ -82,6 +88,8 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
                 // The dialogs will need a state store accessor. Creating it here once (on-demand) allows the dependency injection
                 // to hand it to our IBot class that is create per-request.
+                // Create the custom state accessor.
+                // State accessors enable other components to read and write individual properties of state.
                 var accessors = new DialogueBotConversationStateAccessor(conversationState)
                 {
                     ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),

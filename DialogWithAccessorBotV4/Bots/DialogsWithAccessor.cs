@@ -40,10 +40,10 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 // Run the DialogSet - let the framework identify the current state of the dialog from
                 // the dialog stack and figure out what (if any) is the active dialog.
                 var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
-                var results = await dialogContext.ContinueDialogAsync(cancellationToken);
+                var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
 
                 // If the DialogTurnStatus is Empty we should start a new dialog.
-                if (results.Status == DialogTurnStatus.Empty)
+                if (dialogTurnResult.Status == DialogTurnStatus.Empty)
                 {
                     // A prompt dialog can be started directly on the DialogContext. The prompt text is given in the PromptOptions.
                     await dialogContext.PromptAsync(
@@ -53,17 +53,17 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 }
 
                 // We had a dialog run (it was the prompt). Now it is Complete.
-                else if (results.Status == DialogTurnStatus.Complete)
+                else if (dialogTurnResult.Status == DialogTurnStatus.Complete)
                 {
                     // Check for a result.
-                    if (results.Result != null)
+                    if (dialogTurnResult.Result != null)
                     {
                         // Finish by sending a message to the user. Next time ContinueAsync is called it will return DialogTurnStatus.Empty.
-                        await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{results.Result}'."));
+                        await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{dialogTurnResult.Result}'."));
                     }
                 }
 
-                // Save the new turn count into the conversation state.
+                // Save changes if any into the conversation state.
                 await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
             }
         }
