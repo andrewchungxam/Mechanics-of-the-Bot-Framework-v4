@@ -14,7 +14,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         // Conversation state is of type DialogState. Under the covers this is a serialized dialog stack.
         public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
 
-        //THIS IS THE DEFINITION OF THE DIALOG STATE --> NOTICE HOW IT HAS A LIST OF A DIALOGINSTANCE
+        // THIS IS THE DEFINITION OF THE DIALOG STATE --> NOTICE HOW IT HAS A LIST OF A DIALOGINSTANCE
         //public class DialogState
         //{
         //    public DialogState();
@@ -96,50 +96,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 }
             }
         }
-        //public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-        //{
-        //    if (DidBotWelcomeUser == false)
-        //    {
-        //        await turnContext.SendActivityAsync($"{WelcomeMessageWithoutAccessors}", cancellationToken: cancellationToken);
-
-
-        //        DidBotWelcomeUser = true;
-        //    }
-        //    if (turnContext.Activity.Type == ActivityTypes.Message)
-        //    {
-        //        var responseMessage1 = $"Welcome Message Middleware Echo Bot :: STEP 4: Thanks for typing: {turnContext.Activity.Text}.  This message was sent to you from the Bot. \n";
-        //        await turnContext.SendActivityAsync(responseMessage1, cancellationToken: cancellationToken);
-        //    }
-
-        //    //YOU NEED AN ACCESSOR + KEEP TRACK OF CONVERSATION STATE AND BOT STATE
-        //    //THEN THIS WILL BE TRIGGERED WHEN SOMEBODY NEW JOINS THE CONVERSATION
-        //    if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
-        //    {
-        //        if (turnContext.Activity.MembersAdded != null)
-        //        {
-        //            // Iterate over all new members added to the conversation
-        //            foreach (var member in turnContext.Activity.MembersAdded)
-        //            {
-        //                // Greet anyone that was not the target (recipient) of this message
-        //                // the 'bot' is the recipient for events from the channel,
-        //                // turnContext.Activity.MembersAdded == turnContext.Activity.Recipient.Id indicates the
-        //                // bot was added to the conversation.
-        //                if (member.Id != turnContext.Activity.Recipient.Id)
-        //                {
-        //                    await turnContext.SendActivityAsync($"Hi there - {member.Name}. {WelcomeMessageWithoutAccessors}", cancellationToken: cancellationToken);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // Default behavior for all other type of activities.
-        //        await turnContext.SendActivityAsync($"{turnContext.Activity.Type} activity detected");
-        //    }
-        //}
     }
 }
-
+ 
 // THE DIALOG IS REPEATING . . . EXPLANATION
 // NOTICE THAT IS REPEATING AT THIS POINT --> 
 //                 if (results.Status == DialogTurnStatus.Empty)
@@ -177,6 +136,5 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 //AND DISAPPEARS FROM TURN TO TURN MAKING THE DATA DISAPPEAR BETWEEN EACH TURN --> 
 // HENCE IT NEVER GETS PAST HERE --> if (results.Status == DialogTurnStatus.Empty)
 // IN OUR NEXT ITERATION, WE'LL PUT THE ABOVE CODE IN THE STARTUP.CS 
-
 // WE'LL ADD A SINGLETON THAT THE BOT CAN ACCESS THROUGH DEPENDENCY INJECTION
 // wE'LL CREATE IT THERE ONCE AND THE IBOT CLASS CAN ACCESS IT PER REQUEST

@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01 SimplifiedEchoBotV4", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02 SimplifiedMiddlewareEchoBotV4", "Simplified Middleware Echo Bot V4\02 SimplifiedMiddlewareEchoBotV4.csproj", "{04F850EE-7A61-4714-B72C-DFE9EE78F569}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 WelcomeMessageWithoutAccessBotV4", "WelcomeMessageMiddlewareEchoBotV4\03 WelcomeMessageWithoutAccessBotV4.csproj", "{D70493B5-460C-493D-A707-D0C4F7814024}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04 DialogWithoutAccessorBotV4", "DialogWithoutAccessorBotV4\04 DialogWithoutAccessorBotV4.csproj", "{5F9784F2-DB31-434D-8C09-084F67AEF74C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05 DialogWithAccessorBotV4", "DialogWithAccessorBotV4\05 DialogWithAccessorBotV4.csproj", "{462A7E1C-439E-41E4-8E5E-A7B0AE1A15C4}"
@@ -29,15 +27,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10 DuelingDialogsWithAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11 MultiDialogsWithAccessorBotV4", "MultiDialogsWithAccessorBotV4\11 MultiDialogsWithAccessorBotV4.csproj", "{937F69D6-4E15-4E02-B02C-117474B1731E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardsBot", "OfficialSample06.using-cards\CardsBot.csproj", "{0F1D1CA6-15F4-4DEB-933D-9DD31592D67D}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Reference03-ReferencesToImportantSamples", "Reference03-ReferencesToOfficialSamples\Reference03-ReferencesToImportantSamples.shproj", "{1F84DD90-3391-400D-9803-DB0C3CE06C98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QnABot", "OfficialSample11.qnamaker\QnABot.csproj", "{9C115A27-8834-4AA2-82C0-483E28EA3FB3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reference04-LuisBot", "OfficialSample12.nlp-with-luis\reference04-LuisBot.csproj", "{187C303C-8767-4EF6-BE65-9036071BC78B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reference05-NLP-With-Dispatch-Bot", "OfficialSample14.nlp-with-dispatch\reference05-NLP-With-Dispatch-Bot.csproj", "{843B09FE-42D6-4BC0-910F-30F9C3110FE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 WelcomeMessageWithoutAccessorBotV4", "WelcomeMessageWithoutAccessorBotV4\03 WelcomeMessageWithoutAccessorBotV4.csproj", "{F6A8B878-C54C-4789-BB12-EE96735B40E6}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Reference03-ReferencesToOfficialSamples\Reference03-ReferencesToOfficialSamples.projitems*{1f84dd90-3391-400d-9803-db0c3ce06c98}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -59,10 +56,6 @@ Global
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F850EE-7A61-4714-B72C-DFE9EE78F569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D70493B5-460C-493D-A707-D0C4F7814024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D70493B5-460C-493D-A707-D0C4F7814024}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D70493B5-460C-493D-A707-D0C4F7814024}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D70493B5-460C-493D-A707-D0C4F7814024}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F9784F2-DB31-434D-8C09-084F67AEF74C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F9784F2-DB31-434D-8C09-084F67AEF74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F9784F2-DB31-434D-8C09-084F67AEF74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -95,22 +88,10 @@ Global
 		{937F69D6-4E15-4E02-B02C-117474B1731E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{937F69D6-4E15-4E02-B02C-117474B1731E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{937F69D6-4E15-4E02-B02C-117474B1731E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F1D1CA6-15F4-4DEB-933D-9DD31592D67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F1D1CA6-15F4-4DEB-933D-9DD31592D67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F1D1CA6-15F4-4DEB-933D-9DD31592D67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F1D1CA6-15F4-4DEB-933D-9DD31592D67D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C115A27-8834-4AA2-82C0-483E28EA3FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C115A27-8834-4AA2-82C0-483E28EA3FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C115A27-8834-4AA2-82C0-483E28EA3FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C115A27-8834-4AA2-82C0-483E28EA3FB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{187C303C-8767-4EF6-BE65-9036071BC78B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{187C303C-8767-4EF6-BE65-9036071BC78B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{187C303C-8767-4EF6-BE65-9036071BC78B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{187C303C-8767-4EF6-BE65-9036071BC78B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{843B09FE-42D6-4BC0-910F-30F9C3110FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{843B09FE-42D6-4BC0-910F-30F9C3110FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{843B09FE-42D6-4BC0-910F-30F9C3110FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{843B09FE-42D6-4BC0-910F-30F9C3110FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

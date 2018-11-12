@@ -9,5 +9,6 @@
     <Import_RootNamespace>Reference03_ReferencesToOfficialSamples</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)References to Official Samples.cs" />
   </ItemGroup>
 </Project>
