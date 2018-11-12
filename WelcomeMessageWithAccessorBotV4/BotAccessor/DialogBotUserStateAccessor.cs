@@ -27,5 +27,4 @@ namespace SimplifiedWaterfallDialogBotV4.BotAccessor
         /// Gets the UserState object for the conversation.
         public UserState UserState { get; }
     }
-
 }
