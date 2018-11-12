@@ -1,0 +1,15 @@
+﻿{
+  "name": "reference03_References_to_Official_Projects",
+  "services": [
+    {
+      "type": "endpoint",
+      "name": "development",
+      "endpoint": "http://localhost:3978/api/messages",
+      "appId": "",
+      "appPassword": "",
+      "id": "1"
+    }
+  ],
+  "padlock": "",
+  "version": "2.0"
+}
