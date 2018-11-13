@@ -12,7 +12,7 @@ using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
-    public class DuelingDialogsWithAccessorsBot : IBot
+    public class DuelingDialogsUsingAccessorBot : IBot
     {
         private readonly DialogSet _dialogSet;
 
@@ -21,7 +21,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         //private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
         public DialogBotConversationStateAndUserStateAccessor DialogBotConversationStateAndUserStateAccessor { get; set; }
 
-        public DuelingDialogsWithAccessorsBot(DialogBotConversationStateAndUserStateAccessor accessor)
+        public DuelingDialogsUsingAccessorBot(DialogBotConversationStateAndUserStateAccessor accessor)
         {
             //_dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             //_dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);

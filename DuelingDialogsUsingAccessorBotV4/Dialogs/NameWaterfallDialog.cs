@@ -12,7 +12,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
     public class NameWaterfallDialog : WaterfallDialog
     {
         public static string DialogId { get; } = "nameDialog";
+
         public static NameWaterfallDialog BotInstance { get; } = new NameWaterfallDialog(DialogId, null);
+
         public NameWaterfallDialog(string dialogId, IEnumerable<WaterfallStep> steps)
             : base(dialogId, steps)
         {
@@ -23,8 +25,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
         private static async Task<DialogTurnResult> FirstStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            // Running a prompt here means the next WaterfallStep will be run when the users response is received.
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"NAME WATERFALL STEP 1: This is the first step.  You can put your code in each of these steps."), cancellationToken);
             return await stepContext.NextAsync("Data from First Step", cancellationToken);
         }
@@ -46,10 +46,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             //WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
             var botState = await (stepContext.Context.TurnState["DialogBotConversationStateAndUserStateAccessor"] as DialogBotConversationStateAndUserStateAccessor).TheUserProfile.GetAsync(stepContext.Context);
             botState.Name = stepContext.Result.ToString();
-
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"NAME WATERFALL STEP 3: Thank you {botState.Name}! "), cancellationToken);
-            //END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
 
+            //END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
             return await stepContext.EndDialogAsync(null, cancellationToken);
         }
     }

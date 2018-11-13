@@ -60,14 +60,14 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 {
                     //TRY ALL THESE OPTIONS (INCLUDING THE BEHAVIOR OF THE 2nd and 3RD BROKEN ONES - SEE IF/WHY THEY MISBEHAVE)    
                     //OPTION 1:
-                    await dialogContext.CancelAllDialogsAsync();
+                    //await dialogContext.CancelAllDialogsAsync();
 
                     //OPTION 2:
                     //NOTE-CALLING THIS HITS THE CONTINUE IN THE BELOW IF STATEMENT
                     //await dialogContext.ReplaceDialogAsync(NameWaterfallDialog.DialogId, null, cancellationToken);
 
                     //OPTION 3:
-                    //await dialogContext.EndDialogAsync();
+                    await dialogContext.EndDialogAsync();
                 }
 
                 if (dialogContext.ActiveDialog == null)

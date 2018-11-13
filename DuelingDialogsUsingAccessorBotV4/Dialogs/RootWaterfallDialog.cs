@@ -14,7 +14,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         public static string DialogId { get; } = "rootDialog";
 
         public static RootWaterfallDialog BotInstance { get; } = new RootWaterfallDialog(DialogId, null);
-        
+
         // YOU CAN DEFINE AS ARRAY AND THEN USE WHEN CALLING DIALOG-- BUT THIS ADDS SOME USAGE COMPLEXITY
         // ADDING 'ADD STEPS' IN CONSTRUCTOR LIMITS USAGE COMPLEXITY WHEN CALLING BOT
         //public WaterfallStep[] RootDialogWaterfallSteps { get; } = new WaterfallStep[]
@@ -77,20 +77,5 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             await Task.Delay(3000);
             return await stepContext.ReplaceDialogAsync(RootWaterfallDialog.DialogId);
         }
-
-        //// Get the current profile object from user state.
-        //var userProfile = await _dialogBotConversationStateAndUserStateAccessor.TheUserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-        //// Update the profile.
-        //userProfile.Name = (string)stepContext.Result;
-
-        // We can send messages to the user at any point in the WaterfallStep.
-        //await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 3: Thanks {stepContext.Result}."), cancellationToken);
-        //    //await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 3: Thanks {userProfile.Name }."), cancellationToken);
-
-        //    // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-        //    //return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Would you like to give your age?") }, cancellationToken);
-        //    return await stepContext.EndDialogAsync(null, cancellationToken);
-        //}
     }
 }

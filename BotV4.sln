@@ -23,13 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08 WaterfallDialogWithHardc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09 DuelingDialogsBotV4", "DuelingDialogsBotV4\09 DuelingDialogsBotV4.csproj", "{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10 DuelingDialogsWithAccessorBotV4", "DuelingDialogsWithAccessorBotV4\10 DuelingDialogsWithAccessorBotV4.csproj", "{5A1A2EFA-0E61-4712-B48D-D8C6067CCD95}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11 MultiDialogsWithAccessorBotV4", "MultiDialogsWithAccessorBotV4\11 MultiDialogsWithAccessorBotV4.csproj", "{937F69D6-4E15-4E02-B02C-117474B1731E}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Reference03-ReferencesToImportantSamples", "Reference03-ReferencesToOfficialSamples\Reference03-ReferencesToImportantSamples.shproj", "{1F84DD90-3391-400D-9803-DB0C3CE06C98}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03 WelcomeMessageWithoutAccessorBotV4", "WelcomeMessageWithoutAccessorBotV4\03 WelcomeMessageWithoutAccessorBotV4.csproj", "{F6A8B878-C54C-4789-BB12-EE96735B40E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10 DuelingDialogsUsingAccessorBotV4", "DuelingDialogsUsingAccessorBotV4\10 DuelingDialogsUsingAccessorBotV4.csproj", "{D36E1DBF-BA8A-4E11-AA06-4BA916FE754A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -80,10 +80,6 @@ Global
 		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{546ADBEA-3994-4CDD-9E78-A6E5573D12C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A1A2EFA-0E61-4712-B48D-D8C6067CCD95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A1A2EFA-0E61-4712-B48D-D8C6067CCD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A1A2EFA-0E61-4712-B48D-D8C6067CCD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A1A2EFA-0E61-4712-B48D-D8C6067CCD95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{937F69D6-4E15-4E02-B02C-117474B1731E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{937F69D6-4E15-4E02-B02C-117474B1731E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{937F69D6-4E15-4E02-B02C-117474B1731E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,6 +88,10 @@ Global
 		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6A8B878-C54C-4789-BB12-EE96735B40E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D36E1DBF-BA8A-4E11-AA06-4BA916FE754A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D36E1DBF-BA8A-4E11-AA06-4BA916FE754A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D36E1DBF-BA8A-4E11-AA06-4BA916FE754A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D36E1DBF-BA8A-4E11-AA06-4BA916FE754A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
