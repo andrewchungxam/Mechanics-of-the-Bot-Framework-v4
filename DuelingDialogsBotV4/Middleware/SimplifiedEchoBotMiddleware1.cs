@@ -14,7 +14,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
             await next(cancellationToken);
 
-           // await turnContext.SendActivityAsync($"STEP 7: MIDDLEWARE - AFTER ");
+            //await turnContext.SendActivityAsync($"STEP 7: MIDDLEWARE - AFTER ");
         }
     }
 }
