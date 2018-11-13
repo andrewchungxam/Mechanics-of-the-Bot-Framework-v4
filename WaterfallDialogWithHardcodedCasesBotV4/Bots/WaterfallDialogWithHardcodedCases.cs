@@ -12,12 +12,12 @@ using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
-    public class DuelingDialogsBotDialog : IBot
+    public class WaterfallDialogWithHardcodedCases : IBot
     {
         private readonly DialogSet _dialogSet;
         private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
 
-        public DuelingDialogsBotDialog(DialogBotConversationStateAndUserStateAccessor accessor)
+        public WaterfallDialogWithHardcodedCases(DialogBotConversationStateAndUserStateAccessor accessor)
         {
             _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
