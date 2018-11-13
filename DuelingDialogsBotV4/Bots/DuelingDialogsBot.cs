@@ -45,7 +45,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 //var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
                 
                 // If the DialogTurnStatus is Empty we should start a new dialog.
-//                if (dialogTurnResult.Status == DialogTurnStatus.Empty) // alternatively with same effect dialogTurnResult.ActiveDialog == null
                 if (dialogContext.ActiveDialog == null)
                 {
                     await dialogContext.BeginDialogAsync(RootWaterfallDialog.DialogId, null, cancellationToken);

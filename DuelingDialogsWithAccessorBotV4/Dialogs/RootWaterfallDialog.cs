@@ -34,9 +34,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
         private static async Task<DialogTurnResult> FirstStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-            //return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"ROOT WATERFALL STEP 1: This is the first step.  You can put your code in each of these steps."), cancellationToken);
             return await stepContext.NextAsync("Data from First Step", cancellationToken);
         }
@@ -46,8 +43,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             string stringFromFirstStep = (string)stepContext.Result;
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"ROOT WATERFALL STEP 2: You can pass objects/strings step-to-step like this: {stringFromFirstStep}"), cancellationToken);
 
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            // Running a prompt here means the next WaterfallStep will be run when the users response is received.
             return await stepContext.PromptAsync("dialogChoice", 
                 new PromptOptions
                 {
@@ -58,9 +53,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                         new Choice { Value = "Favorite Color" },
                     },
                 }, cancellationToken);
-
-            //return await stepContext.NextAsync(null, cancellationToken);
-            //return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
 
         private async Task<DialogTurnResult> LaunchDialogStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
