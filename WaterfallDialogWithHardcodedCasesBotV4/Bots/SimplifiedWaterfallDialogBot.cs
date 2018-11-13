@@ -72,7 +72,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 }
                 else
                 {
-                    // These are hardcoded phrases.  In future examples -- we'll show how to use AI to understand user's intent with various phrases.
+                    // These are hardcoded phrases.  In future examples - see how AI (LUIS + Dispatch) can be used to understand user's intent with various phrases.
                     var text = turnContext.Activity.Text.ToLowerInvariant();
                     switch (text)
                     {

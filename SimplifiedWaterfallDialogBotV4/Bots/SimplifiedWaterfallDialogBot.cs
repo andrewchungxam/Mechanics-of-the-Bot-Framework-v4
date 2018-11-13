@@ -126,7 +126,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
             await _dialogBotConversationStateAndUserStateAccessor.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
 
             //Determine if needed 
-            //await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
+            await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
         }
 
         private static async Task<DialogTurnResult> FirstStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
@@ -256,7 +256,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 //}
                 //else
                 //{
-                    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 6: I have your name as {userProfile.Name} and age as {userProfile.Age}.  \n Exercise: If your name didn't come out correctly, uncomment one line of code in the solution to fix problem."), cancellationToken);
+                    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"WATERFALL STEP 6: I have your name as {userProfile.Name} and age as {userProfile.Age}."), cancellationToken);
                 //}
             //}
             //else
