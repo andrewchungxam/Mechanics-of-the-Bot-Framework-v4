@@ -12,12 +12,14 @@ using SimplifiedWaterfallDialogBotV4.BotAccessor;
 
 namespace Bot_Builder_Simplified_Echo_Bot_V4
 {
-    public class DuelingDialogsWithAccessorsBot : IBot
+    public class MultiDialogWithAccessorBot : IBot
     {
         private readonly DialogSet _dialogSet;
         private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
+
         public DialogBotConversationStateAndUserStateAccessor DialogBotConversationStateAndUserStateAccessor { get; set; }
-        public DuelingDialogsWithAccessorsBot(DialogBotConversationStateAndUserStateAccessor accessor)
+
+        public MultiDialogWithAccessorBot(DialogBotConversationStateAndUserStateAccessor accessor)
         {
             _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
@@ -47,7 +49,6 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 // Run the DialogSet - let the framework identify the current state of the dialog from
                 // the dialog stack and figure out what (if any) is the active dialog.
                 var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
-                var results = await dialogContext.ContinueDialogAsync(cancellationToken);
 
                 //POP OFF ANY DIALOG IF THE "FLAG IS SWITCHED" 
                 string welcomeState = "";
@@ -58,20 +59,20 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
                 if (welcomeState == "name")
                 {
-                    //TRY THESE OPTIONS
-                    //OPTION 1:
-                    //await dialogContext.CancelAllDialogsAsync();
 
-                    //OPTION 2:
+                    //OPTION 1:
+                    await dialogContext.CancelAllDialogsAsync();
+
+                    //OPTION 2: //TRY BELOW OPTIONS - WHY DOES IT MISBEHAVE?
                     //NOTE-CALLING THIS HITS THE CONTINUE IN THE BELOW IF STATEMENT
                     //await dialogContext.ReplaceDialogAsync(NameWaterfallDialog.DialogId, null, cancellationToken);
 
                     //OPTION 3:
-                    await dialogContext.EndDialogAsync();
+                    //DOES NOT WORK WELL HERE - WHEN HAVE YOU SEEN IT WORK CORRECTLY IN PREVIOUS PROJECTS?
+                    //await dialogContext.EndDialogAsync();
                 }
                 
-                if (results.Status == DialogTurnStatus.Empty)
-                //if (dialogContext.ActiveDialog == null)
+                if (dialogContext.ActiveDialog == null)
                 {
                     if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
                     {

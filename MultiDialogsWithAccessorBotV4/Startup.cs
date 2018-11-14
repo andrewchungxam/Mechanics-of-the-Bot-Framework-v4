@@ -39,7 +39,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddBot<DuelingDialogsWithAccessorsBot>(options =>
+            services.AddBot<MultiDialogWithAccessorBot>(options =>
             {
             var secretKey = Configuration.GetSection("botFileSecret")?.Value;
             var botFilePath = Configuration.GetSection("botFilePath")?.Value;
