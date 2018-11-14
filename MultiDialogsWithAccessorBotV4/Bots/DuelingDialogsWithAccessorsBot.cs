@@ -47,10 +47,10 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 // Run the DialogSet - let the framework identify the current state of the dialog from
                 // the dialog stack and figure out what (if any) is the active dialog.
                 var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
-
+                var results = await dialogContext.ContinueDialogAsync(cancellationToken);
 
                 //POP OFF ANY DIALOG IF THE "FLAG IS SWITCHED" 
-                 string welcomeState = "";
+                string welcomeState = "";
                 if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
                 {
                     welcomeState = turnContext.TurnState["didWelcomeUser"] as string;
@@ -58,7 +58,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
                 if (welcomeState == "name")
                 {
-                    //TRY ALL THESE OPTIONS (INCLUDING THE BEHAVIOR OF THE 2nd and 3RD BROKEN ONES - SEE IF/WHY THEY MISBEHAVE)    
+                    //TRY THESE OPTIONS
                     //OPTION 1:
                     //await dialogContext.CancelAllDialogsAsync();
 
@@ -69,8 +69,9 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     //OPTION 3:
                     await dialogContext.EndDialogAsync();
                 }
-
-                if (dialogContext.ActiveDialog == null)
+                
+                if (results.Status == DialogTurnStatus.Empty)
+                //if (dialogContext.ActiveDialog == null)
                 {
                     if (turnContext.TurnState.ContainsKey("didWelcomeUser"))
                     {
