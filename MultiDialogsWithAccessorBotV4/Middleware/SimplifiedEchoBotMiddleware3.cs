@@ -24,7 +24,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 var didBotWelcomeUser = "name";
 
                 // Update user state flag to reflect bot was given a specific prompt
-                turnContext.TurnState.Add("didWelcomeUser", didBotWelcomeUser);
+                turnContext.TurnState.Add("didTypeName", didBotWelcomeUser);
                 await next(cancellationToken);
 
                 //
