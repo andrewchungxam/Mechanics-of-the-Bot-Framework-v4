@@ -51,13 +51,13 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
 
                 //POP OFF ANY DIALOG IF THE "FLAG IS SWITCHED" 
-                string welcomeState = "";
+                string didTypeNamestring = "";
                 if (turnContext.TurnState.ContainsKey("didTypeName"))
                 {
-                    welcomeState = turnContext.TurnState["didTypeName"] as string;
+                    didTypeNamestring = turnContext.TurnState["didTypeName"] as string;
                 }
 
-                if (welcomeState == "name")
+                if (didTypeNamestring == "name")
                 {
 
                     //OPTION 1:
@@ -76,8 +76,8 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 {
                     if (turnContext.TurnState.ContainsKey("didTypeName"))
                     {
-                        welcomeState = turnContext.TurnState["didTypeName"] as string;
-                        if (welcomeState == "name")
+                        didTypeNamestring = turnContext.TurnState["didTypeName"] as string;
+                        if (didTypeNamestring == "name")
                         {
                             await dialogContext.BeginDialogAsync(NameWaterfallDialog.DialogId, null, cancellationToken);
                         }

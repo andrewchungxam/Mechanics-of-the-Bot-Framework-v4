@@ -21,10 +21,10 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
             if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text == "name")
             {
-                var didBotWelcomeUser = "name";
+                var didTypeNameString = "name";
 
                 // Update user state flag to reflect bot was given a specific prompt
-                turnContext.TurnState.Add("didTypeName", didBotWelcomeUser);
+                turnContext.TurnState.Add("didTypeName", didTypeNameString);
                 await next(cancellationToken);
 
                 //
