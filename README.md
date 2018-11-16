@@ -38,7 +38,8 @@ PROJECTS:
 10) 10 DuelingDialogsWithAccessorBotV4
 11) 11 MultiDialogsWithAccessorBotV4
 
-REFERENCE:<br />
+REFERENCE:
+
 3) Reference03-ReferencesToImportantSamples
 
 ///////////////////////////////////////
