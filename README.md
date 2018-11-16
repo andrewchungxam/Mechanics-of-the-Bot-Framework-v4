@@ -98,8 +98,8 @@ listening for specific phrases, and running messages through APIs like sentiment
 
 Timing-wise when does the Middleware get triggered?  
 The below diagram shows you generally how turns function: <br/>
-(READ LEFT TO RIGHT) USER SENDS MESSAGE    --> MIDDLEWARE 1 --> MIDDLEWARE 2 --> MIDDLEWARE 3 --> ON TURN IS CALLED<br/>
-(READ RIGHT TO LEFT) USER RECIEVES MESSAGE <-- MIDDLEWARE 1 <-- MIDDLEWARE 2 <-- MIDDLEWARE 3 <-- ON TURN IS CALLED<br/>	
+(READ LEFT TO RIGHT) <br/>USER SENDS MESSAGE    --> MIDDLEWARE 1 --> MIDDLEWARE 2 --> MIDDLEWARE 3 --> ON TURN IS CALLED<br/>
+(READ RIGHT TO LEFT) <br/>USER RECIEVES MESSAGE <-- MIDDLEWARE 1 <-- MIDDLEWARE 2 <-- MIDDLEWARE 3 <-- ON TURN IS CALLED<br/>	
 		
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
