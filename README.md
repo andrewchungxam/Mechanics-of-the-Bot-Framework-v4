@@ -127,7 +127,7 @@ Exercises:
 Dialogs. So far we've talked about how the bot passes control from element to element (ie. middleware --> bot --> back to middleware etc.)
 Now we talk about dialogs which is where the main functionality of Bots live.
 
-DIALOG DEFINITION:
+DIALOG DEFINITION:<br />
 Dialogs are simply managed conversation flows in code. 
 
 They are "managed" meaning that you define via code the back and forth interaction with the user with things like text prompts, 
