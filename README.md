@@ -59,7 +59,7 @@ https://www.microsoft.com/net/download
 Once you've got the above prerequesites you can type in your command prompt: 
 npm install -g chatdown msbot ludown luis-apis qnamaker botdispatch luisgen
 (if you are having issues try opening your Powershell in Administrator Mode): 
-
+---
 ### REFERENCE:
 ### 1) reference01-Bot Builder Echo Bot V4 & 2) reference02-Bot Builder Basic Bot V4
 
