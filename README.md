@@ -1,12 +1,11 @@
 # The Mechanics of the Bot Framework v4
 The purposes of this project is to make clear what the different pieces of the Bot Framework v4 do -- how they operate and how they interact.
 
-/////////
-The Microsoft Bot Framework provides what you need to build and connect intelligent bots that interact naturally wherever your users are talking, from text/sms to Skype, Slack, Office 365 mail and other popular services. http://botframework.com
+//// The Microsoft Bot Framework provides what you need to build and connect intelligent bots that interact naturally wherever your users are talking, from text/sms to Skype, Slack, Office 365 mail and other popular services. http://botframework.com
 
 This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples 
 
-/////////The Bot Framework v4 changed significantly from the previous version, v3.
+//// The Bot Framework v4 changed significantly from the previous version, v3.
 
 Bot Framework v3 was great -- it was clear, easy to set up, and easy to use!
 However, it was pretty opinionated and trying to do custom things sometimes felt like "swimming upstream" or "fighting the framework".
@@ -98,9 +97,9 @@ What is Middleware?  Think of it as a place in your project where you can add cu
 listening for specific phrases, and running messages through APIs like sentiment using Azure's Text Analysis.
 
 Timing-wise when does the Middleware get triggered?  
-The below diagram shows you generally how turns function: 
-(READ LEFT TO RIGHT) USER SENDS MESSAGE    --> MIDDLEWARE 1 --> MIDDLEWARE 2 --> MIDDLEWARE 3 --> ON TURN IS CALLED
-(READ RIGHT TO LEFT) USER RECIEVES MESSAGE <-- MIDDLEWARE 1 <-- MIDDLEWARE 2 <-- MIDDLEWARE 3 <-- ON TURN IS CALLED		
+The below diagram shows you generally how turns function: <br/>
+(READ LEFT TO RIGHT) USER SENDS MESSAGE    --> MIDDLEWARE 1 --> MIDDLEWARE 2 --> MIDDLEWARE 3 --> ON TURN IS CALLED<br/>
+(READ RIGHT TO LEFT) USER RECIEVES MESSAGE <-- MIDDLEWARE 1 <-- MIDDLEWARE 2 <-- MIDDLEWARE 3 <-- ON TURN IS CALLED<br/>	
 		
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
