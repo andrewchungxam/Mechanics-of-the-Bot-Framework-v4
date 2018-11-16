@@ -4,8 +4,7 @@ The purposes of this project is to make clear what the different pieces of the B
 /////////
 The Microsoft Bot Framework provides what you need to build and connect intelligent bots that interact naturally wherever your users are talking, from text/sms to Skype, Slack, Office 365 mail and other popular services. http://botframework.com
 
-This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples
-/////////
+This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples /////////
 
 The Bot Framework v4 changed significantly from the previous version, v3.
 
@@ -80,11 +79,13 @@ PROJECTS:
 * This bot takes the Echo Bot template and removes all the extraneous parts and simplifies it to the most basic part - the Bot.
 For this project - we're only going to look at the SimplifiedEchoBot.cs -- this is where your Bot "lives".  
 
-This SimplifiedEchoBot subclasses IBot and has the important OnTurnAsync method which is what your Bot is going to do each time it receives an activity like a message from a user.
-OnTurn async is a transient object that gets created each time an activity is received (activity being a person or a bot joins the convo or the person sends a message.)
+This SimplifiedEchoBot subclasses IBot and has the important OnTurnAsync method which is what your Bot is going to do each time it receives an activity like a message from a user.  OnTurn async is a transient object that gets created each time an activity is received (activity being a person or a bot joins the convo or the person sends a message.)
 
 Take a quick look look at Startup.cs --> the only thing to notice for now is this line:
+   ```
             services.AddBot<SimplifiedEchoBot>(options =>
+	    
+   ```
 which is how you add the SimplifiedEchoBot to your project.
 
 Exercise:
