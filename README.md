@@ -43,8 +43,8 @@ REFERENCE:
 
 3) Reference03-ReferencesToImportantSamples
 
-#### -----
-
+####
+---
 PREREQUISITES:
 Prerequisite before we run through the above projects -- make sure you've done the installation, and downloaded the templates and emulator:
 https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart?view=azure-bot-service-4.0
