@@ -406,6 +406,7 @@ NEW:
 ```
 Using Accessor in Bot:
 For example, in ColorWaterfallDialog.cs
+```
         private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
 OLD: In the previous project - we simply pulled values from the step context without saving.
@@ -422,10 +423,12 @@ NEW: In the current project - we still pull values from the context -- but also 
             //END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
             return await stepContext.EndDialogAsync(null, cancellationToken);
         }
-
+```
 Exercise:
 * In the MultiDialogWithAccessorBot.cs file try commenting out this:
+```
 await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
+```
 What do you notice?
 
 11) MultiDialogsWithAccessorBotV4
@@ -438,6 +441,7 @@ If the user types that key phrase, then we'll want to see the bot kickoff a diff
 (regardless of what's happening in the bot a the time!)
 
 Take a look at the SimplifiedEchoBotMiddleware3.cs
+```
         if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text == "name")
         {
                 var didTypeNameString = "name";
@@ -446,7 +450,7 @@ Take a look at the SimplifiedEchoBotMiddleware3.cs
                 turnContext.TurnState.Add("didTypeName", didTypeNameString);
                 await next(cancellationToken);
 	} ...
-
+```
 In the TurnState, we'll add as a dictionary key pair "didTypeName" and didBotWelcomeUser which equals "name".
 We're going to access this in the Bot.
 
@@ -455,7 +459,7 @@ In the bot (MultiDialogWithAccessorBot.cs)
 We're checking the TurnState dictionary to see if it contains a key "didTypeName"
 
 Under the OnTurnAsync method:
-
+```
 ....
                 //POP OFF ANY DIALOG FROM THE STACK IF THE "FLAG" IS SWITCHED 
                 string didTypeNamestring = "";
@@ -470,6 +474,7 @@ Under the OnTurnAsync method:
                     await dialogContext.CancelAllDialogsAsync();
 		
 		}
+```
 Then you'll see later the following logic:
 If the dialogs are popped off the stack and the dictionary key/value pair exists "didTypeName"/"name" --> Start the NameWaterfallDialog.
 If the dialogs are popped off the stack or didn't exist in the first place and the dictionary key/value pair is not there --> Start the RootWaterfallDialog
@@ -547,14 +552,14 @@ https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-qna?view=az
 
 If you're doing it this way you'd be create a file called BotConfiguration.Bot and copy the template from the above.
 (It should start like this - you can copy it directly from the documentation page with spaces for your specific entries.)
- 
+``` 
 {
   "name": "QnABotSample",
   "services": [
     {
 .... 
 }
-
+```
 However, this is a bit of a "magic string" experience -- 
 the recommended approach is to use the CLI which will make all the necessary files for you.  
 
@@ -573,17 +578,19 @@ npm install -g chatdown msbot ludown luis-apis qnamaker botdispatch luisgen
 
 Here are the commands you should run 
 (it will take you through various steps - I've put my answers down as reference, you can change if needed including encryption options for the keys.):
+```
 msbot init 
 > BotConfiguration
 > http://localhost:3978/api/messages
 > no
 > no
-
+```
 (You've just created a file call BotConfiguration.Bot --> if you double click it, it will open up your Bot Emulator.  Instead,
 try right clicking it and open it up with Notepad or similar.) 
 IF YOU'RE LOOKING AT IT WITH NOTEPAD, CLOSE IT AFTER YOU LOOK AT IT...OTHERWISE CLI WON'T BE ABLE TO MODIFY IT AND WILL FAIL SILENTLY.
 
 Next run this command (again it will take you through various steps -- template numbers left there as an example but have been modified from original!)
+```
 qnamaker init
 >5dd1234234567891ebcasdf139asdf79b // access/subscription key - get this from Azure portal in your QnA Maker project, go to Keys, select either of the Keys (I used Key 1)  
 >1b4fasdf-asdf-asdf-asdf-asdf1234e3e7 //knowledgebase Id
@@ -596,26 +603,28 @@ qnamaker init
 	> the first line will be POST /knowledgebases/1b4fasdf-asdf-asdf-asdf-asdf1234e3e7/generateAnswer
 	> You'll want the string after knowledgebases/ and before /generateAnswer (ie. 1b4fasdf-asdf-asdf-asdf-asdf1234e3e7)
 >yes 
-
+```
 You've just created a file called .qnamakerrcc, you don't need to touch it but the CLI will use it to connect your service to your BotConfiguration.bot file.
 You can take a look by opening with Notepad.
 
 Final command:
+```
 qnamaker get kb --kbId "1b4fasdf-asdf-asdf-asdf-asdf1234e3e7 " --msbot | msbot connect qna --stdin
-
+```
 ^ again the string in quotes above is the knowledgeBase Id which we got in the previous step
 
 Take another look at your BotConfiguration.bot file - you'll notice that the QnA service has been added.
 The final step - *within* the text of the BotConfiguration.bot, under services, change value for "name" to "development".
 
 !!! You'll see "name" more than once, so make sure you're changing the one that looks like this (otherwise, you'll see errors pop up in the Startup.cs file):
+```
 "services": [
         {
             "type": "endpoint",
    "name": "development",
 // Save this "name" change step until the very end. If you've been following the above steps in order, you should be great!
 If you're looking at with Notepad, I recommend closing it after looking at it.
-
+```
 * Having trouble?  In the qnamaker.ai portal 
 > did you "Save and Train" your QnA Maker Bot? (reflects changes you made)
 > did you "Test" it? (make sure your utterances matches the intent you want)
@@ -655,33 +664,38 @@ ii) a BotConfiguration.bot file to tie that service to our Bot
 In the above steps, we've pointed out links to install the CLI - we'll go through the commands here:
 
 Here are the commands you should run (it will take you through various steps - I've put my answers down as reference, you can change if needed including encryption options for the keys.):
+```
 msbot init 
 > BotConfiguration
 > http://localhost:3978/api/messages
 > no
 > no
-
+```
+```
 luis init
 > 8c5basdfasdfasdfasdfasdfasdf6f95 // Authoring Endpoint --> Luis.ai / My apps / Click appropriate app > Manage > Application Information > Keys and Endpoints
 > westus // Authoring Endpoint --> Luis.ai / My apps / Click appropriate app > Manage > Application Information > Keys and Endpoints > Scroll down to Bottom > See Region field (also it should also be the subdomain of the Endpoint)
 > ef9fasdf-asdf-asdf-asdf-asdfasdf6a83 // Application Id --> Luis.ai / My apps / Click appropriate app > Manage > Application Information > Application Id
 > 0.1 version --> Luis.ai / My apps / Click appropriate app > Manage > Application Information > Versions
-
+```
 This will create a .luisrc file (you don't need to do anything to this but if you'd like to look, you can use Notepad)
-
+```
 luis get application --appId "ef9fasdf-asdf-asdf-asdf-asdfasdf6a83" --msbot | msbot connect luis --stdin
-
+```
 ^ this appId is the same as you entered in the CLI prompts
 
 iii) Configure the Sample to connect to your AI project
 
 On line ~#27 in LuisBot.cs
 Change this:    
+```
 //public static readonly string LuisKey = "LuisBot";
-        
-To the name of your Luis project -> Mine looks like this:
-public static readonly string LuisKey = "BotLuisBotMA7-a7b7";
+```
 
+To the name of your Luis project -> Mine looks like this:
+```
+public static readonly string LuisKey = "BotLuisBotMA7-a7b7";
+```
 You can get the name here: 
 Luis.ai / My apps / Click appropriate app > Manage > Application Information > Display Name
 
@@ -707,7 +721,6 @@ This is where Dispatch comes in.
 Behind the scenes - Dispatch will actually create a new LUIS application -- the CLI will take care of most of it for you,
 you simply need to type in a few values in the prompts.
 
-
 You'll need the following for the Dispatch service:
 i) an AI Service 
 ii) a BotConfiguration.bot file to tie that service to our Bot
@@ -724,26 +737,30 @@ my configuration -- including the dispatch init commands which are explained in 
 all the CLI commands are run before you do any "by hand" modifications to your BotConfiguration.bot file. ).
 
 So assuming you've run (these are the commands I've run in order):
-
+```
 qnamaker init
 msbot init
 qnamaker get kb --kbId "1b4fasdf-asdf-asdf-asdf-asdf1234e3e7 " --msbot | msbot connect qna --stdin
 luis init
 luis get application --appId "ef9fasdf-asdf-asdf-asdf-asdfasdf6a83" --msbot | msbot connect luis --stdin
-
+```
 ^ This you've seen before and again if you're looking at the BotConfiguration.bot file -- make sure to close it so the CLI
 can change it if necessary (CLI will fail silently if it cannot modify your file).
 
 New commands:
-//In this command - you'll point to the BotConfiguration.bot file
+In this command - you'll point to the BotConfiguration.bot file
+```
 dispatch init -bot C:\Github\Microsoft-Bot-Framework-v4-SupportingDocs\OfficialSample14.nlp-with-dispatch\BotConfiguration.bot --hierarchical false
 >>>BotConfigurationDispatch.dispatch created
+```
 
-//again point to the BotConfiguration.bot file
+Again point to the BotConfiguration.bot file
+```
 dispatch create -b C:\Github\Microsoft-Bot-Framework-v4-SupportingDocs\OfficialSample14.nlp-with-dispatch\BotConfig
 tion.bot | msbot connect dispatch --stdin
-
+```
 If you did it right -> there will be a bunch Export / Creating / Updating commands prompting and finally you'll see this:
+```
 [msbot] {
   "type": "dispatch",
   "name": "BotConfigurationDispatch",
@@ -754,13 +771,14 @@ If you did it right -> there will be a bunch Export / Creating / Updating comman
   "serviceIds": [],
   "id": "250"
 }
-
+```
 Now look at your BotConfiguration.bot file.
 
 You'll need to make the following changes:
 1) 
 
 OLD:
+```
 ....
 "services": [
         
@@ -771,8 +789,9 @@ OLD:
 	"name": "BotConfiguration",
             
 ....
-
+```
 NEW:
+```
 ....
 "services": [
         
@@ -782,13 +801,13 @@ NEW:
             
 	"name": "development",             
 ....
-
+```
 
 2) In your BotConfiguration.bot file - you'll want to make the following change.
 
-OLD:
 In my BotConfiguration.bot file - I have the app, the QnA service, the LUIS service with id as "151", "245", "217" respectively.  
 Simply add that to the serviceIds field in your dispatch service.
+```
 OLD:
 ...
 {
@@ -810,7 +829,8 @@ OLD:
 	"id": "250"
         }
 ...
-
+```
+```
 NEW: (You're looking at the values for "serviceIds" in this snippet:)
 {
             
@@ -833,44 +853,50 @@ NEW: (You're looking at the values for "serviceIds" in this snippet:)
             
 	"id": "250"
         }
-
+```
 
 iii) Configure the Sample to connect to your AI project
 
 1)
 In appsettings.json - make sure your botFilePath is set to the BotConfiguration.bot file:
+```
 {
   "botFilePath": "BotConfiguration.bot",
   "botFileSecret": ""
 }
-
+```
 In NlpDispatchBot.cs -  
 Near the top of the file, you're going to need to add the name of your Luis app, your Dispatch app, and your QnA app -- you can look
-at your BotConfiguration.bot file to see their names.  (You know how to find this, we covered this when you did the
- qnamaker init and the luis init in the CLI.)
+at your BotConfiguration.bot file to see their names.  (You know how to find this, we covered this when you did the qnamaker init and the luis init in the CLI.)
 
 REPLACE THIS WITH THE NAME OF YOUR LUIS APPLICATION NAME
 OLD:
+```
 private const string HomeAutomationLuisKey = "Home Automation";
-      
+```   
 NEW:
+```
 private const string HomeAutomationLuisKey = "BotLuisBotMA7-a7b7";
-
+```
 REPLACE THIS WITH THE NAME OF YOUR DISPATCH APPLICATION NAME
 OLD:
+```
 private const string DispatchKey = "nlp-with-dispatchDispatch";
-
+```
         
 NEW:      
+```
 private const string DispatchKey = "BotConfigurationDispatch";
-
+```
 REPLACE THIS WITH THE NAME OF YOUR QnA APPLICATION NAME
 OLD:
+```
 private const string QnAMakerKey = "sample-qna";
-       
+```
 NEW:
+```
 private const string QnAMakerKey = "RoyaltyInfo2018";
-
+```
 
 If you go into your Luis.ai portal you'll notice a new Luis application has been built for you for the Dispatch application.
 
@@ -886,34 +912,39 @@ created for you when you ran dispatch create in the CLI.  (ie. Look in the Luis.
 Go to Build > Intents and grab the names of two Intents you care about.)
 
 OLD:
+```
             const string homeAutomationDispatchKey = "l_Home_Automation";
             const string weatherDispatchKey = "l_Weather";
             const string noneDispatchKey = "None";
             const string qnaDispatchKey = "q_sample-qna";
+```
 NEW:
+```
             const string homeAutomationDispatchKey = "VideoGames";
             //const string weatherDispatchKey = "l_Weather"; // I've commented this out as I'm only focused on the Luis intent "VideoGames" and the QnA intent "q_RoyaltyInfo2018" 
             const string noneDispatchKey = "None";
             const string qnaDispatchKey = "q_RoyaltyInfo2018";
-
+```
 Finally - in the same file: NlpDispatchBot.cs - simply comment out references to the weatherDispatchKey as we will only be
 using two services.  So comment out these sets of lines:
 
 approximately line 73:
+```
             //if (!_services.LuisServices.ContainsKey(WeatherLuisKey))
             //{
             //    throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a Luis service named '{WeatherLuisKey}'.");
             //}
-
+```
 and 
 approximately line 164:
+```
                 //case weatherDispatchKey:
                 //    await DispatchToLuisModelAsync(context, WeatherLuisKey);
 
                 //    // Here, you can add code for calling the hypothetical weather service,
                 //    // passing in any entity information that you need
                 //    break;
-
+```
 As reference, the official doc for the Dispatch project is here: https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csharp
 (it does not take you through using your own Luis / Dispatch models which we've done above)
 
@@ -931,12 +962,6 @@ Exercise:
 THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:
 https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore
 - of special further note are the Authentication Bot.
-
-
-
-
-
-
 
 
 
