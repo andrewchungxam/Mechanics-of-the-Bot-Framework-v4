@@ -3,7 +3,7 @@ _The purposes of this project is to make clear what the different pieces of the 
 
 This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples 
 
-#### //// <br />
+#### //////////////////////////////////////////////////////// <br />
 The Bot Framework v4 changed significantly from the previous version, v3.
 
 Bot Framework v3 was great -- it was clear, easy to set up, and easy to use!
