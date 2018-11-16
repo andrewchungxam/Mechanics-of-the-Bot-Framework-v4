@@ -76,6 +76,7 @@ Also, take quick look at BotConfiguration.Bot which has details of the project i
 
 PROJECTS:
 1) 01 SimplifiedEchoBotV4
+
 * This bot takes the Echo Bot template and removes all the extraneous parts and simplifies it to the most basic part - the Bot.
 For this project - we're only going to look at the SimplifiedEchoBot.cs -- this is where your Bot "lives".  
 
@@ -83,8 +84,7 @@ This SimplifiedEchoBot subclasses IBot and has the important OnTurnAsync method 
 
 Take a quick look look at Startup.cs --> the only thing to notice for now is this line:
    ```
-            services.AddBot<SimplifiedEchoBot>(options =>
-	    
+            services.AddBot<SimplifiedEchoBot>(options =>    
    ```
 which is how you add the SimplifiedEchoBot to your project.
 
@@ -95,8 +95,7 @@ Exercise:
 
 This time - we've added Middleware to the bot.
 
-What is Middleware?  Think of it as a place in your project where you can add custom code before *and* after your bot processes a message. 
-It's custom - so it can be anything you'd need but example functionality can include logging messages, 
+What is Middleware?  Think of it as a place in your project where you can add custom code before *and* after your bot processes a message.  It's custom - so it can be anything you'd need but example functionality can include logging messages, 
 listening for specific phrases, and running messages through APIs like sentiment using Azure's Text Analysis.
 
 Timing-wise when does the Middleware get triggered?  
@@ -126,6 +125,7 @@ Exercises:
 * Notice the welcoming message + bool flag system is not functioning correctly - can you figure out why?  We'll see examples of how to do this correctly in subsequent projects.
 
 4) 04 DialogWithoutAccessorBotV4
+
 Dialogs. So far we've talked about how the bot passes control from element to element (ie. middleware --> bot --> back to middleware etc.)
 Now we talk about dialogs which is where the main functionality of Bots live.
 
@@ -174,11 +174,11 @@ ii.  new ConversationState(memoryStorage object) added to the options
 iii. Add Singleton --> conversation state from previous step is referenced and then added as a property to the accessor we created.
 iv. The accessor is called DialogBotConversationStateAccessor and if you look at the full definition of the class (DialogBotConversationStateAccessor.cs) 
 it has a property called Conversation Dialog State.
-
+```
 	public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
-
+```
 So what is the DialogState referring to?  This is defined in the BotFramework as a stack of dialogs.
-
+```
 //THIS IS THE DEFINITION OF THE DIALOG STATE --> NOTICE HOW IT HAS A LIST OF A DIALOG INSTANCES
 //public class DialogState
 //{
@@ -187,7 +187,7 @@ So what is the DialogState referring to?  This is defined in the BotFramework as
 
 //    public List<DialogInstance> DialogStack { get; }
 //}
-
+```
 Now via dependency injection, this accessor from Startup.cs is handed off to the Bot class which is recreated each turn
  -- this is how persistence is possible across turns.
 
@@ -195,7 +195,7 @@ USING PERSISTANCE + ACCESSORS:
 Now that we've defined and created them, let's look at how they are used -- go to file Bots > DialogueBotWithAccessor.cs
 
 i. The constructor of the Bot takes as a parameter an object of type DialogueBotConversationStateAccessor.  
-
+```
     {
         private readonly DialogSet _dialogSet;
         private readonly DialogueBotConversationStateAccessor _accessors;
@@ -206,23 +206,22 @@ i. The constructor of the Bot takes as a parameter an object of type DialogueBot
             _dialogSet = new DialogSet(_accessors.ConversationDialogState);
             _dialogSet.Add(new TextPrompt("name"));
         }
-
+```
 This is the accessor we were setting up in Startup.cs.  The dependency injection will make sure the bot gets this each time it is instanced on each turn.
 
 Notice there is a dialogSet that is instantiated --> **notice it is taking as parameter a property from the accessor**.   
-As an exercise, please right click on each of the classes/properties in the constructor to familiarize yourself with the specific definitions 
-but the main point is that it needs a persistent list of Dialog instances.
+As an exercise, please right click on each of the classes/properties in the constructor to familiarize yourself with the specific definitions but the main point is that it needs a persistent list of Dialog instances.
 
-Later within the OnTurn method --> 
-from that dialogSet, we create a dialogContext
-
+Later within the OnTurn method --> from that dialogSet, we create a dialogContext
+```
                 var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
                 var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
-
+```
 And from the dialogContext --> we run ContinueDialog (ie. go to the next step if it can)
 
 If that dialogStatus is Empty --> we know there wasn't a dialog called to begin with so we need to begin a new one.
 We'll define one and call one directly off that dialogContext:
+```
 	dialogContext.PromptAsync(
                         "name",
                         new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: PLEASE ENTER YOUR NAME.") },
@@ -238,18 +237,19 @@ We'll define one and call one directly off that dialogContext:
         	await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{dialogTurnResult.Result}'."));
          	}
         }
-
+```
 The final piece to the puzzle, is this last call to save changes to the Conversation State which Handles persistence of a conversation state object using the conversation ID
-
+```
                 // Save changes if any into the conversation state.
                 await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
-
+```
 6) 06 WelcomeMessageWithAccessorBotV4
 
 At this point - you've gotten a feel of how the Middleware works.  
 The messages from the Middleware have now been commented out: 
+```
 //await turnContext.SendActivityAsync($"STEP 1: MIDDLEWARE - BEFORE ");
-
+```
 If at any point through the next projects you want to see those messages and how they interact with the Bot - you can uncomment them.
 
 In this project, you can see specifically how you can send two different types of welcome messages.  
@@ -260,31 +260,36 @@ These are two different events and you can use them accordingly in the bot as ne
 
 WHEN THE USER JOINS THE CHANNEL (YOU'VE SEEN THIS ALREADY)
 In WelcomeMessageWithAccessorBot.cs, there is a section underneath:
+```
 	else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
+```
 devoted to sending a welcome message.  
 You've seen this before -- this will send a message to the user as soon as the user joins the conversation.   
 
 It also sends a message when the bot joins the conversation -- to turn that off, uncomment this:
+```
  //if (member.Id != turnContext.Activity.Recipient.Id) //IE. DON'T SEND THIS TO THE BOT
-
+```
 AFTER THE USER TYPES FIRST MESSAGE (THIS IS NEW)
+```
 var didBotWelcomeUser = await _dialogBotConversationStateAndUserStateAccessor.WelcomeUserState.GetAsync(turnContext, () => new WelcomeUserState());
-
+```
 As opposed to a bool flag that lives in the bot (which we tried and showed that it didn't work) - 
 here the check is against the bool contained in property "WelcomeUserState" in the accessor.
 
 Because it is part of the accessor, it is persistent.
 
 Here is where the accessor is passed into the bot: 
+```
         public WelcomeMessageWithAccessorBot(DialogBotConversationStateAndUserStateAccessor accessor)
         {
             _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
             _dialogSet.Add(new TextPrompt("name"));
         }
-
+```
 And it is setup to be passed in each time to the Bot via dependency injection -- you set it up here in the Startup.cs file: 
-
+```
 ....
             services.AddSingleton(sp =>
             {
@@ -299,7 +304,7 @@ And it is setup to be passed in each time to the Bot via dependency injection --
                 };
                 return accessors;
             });
-
+```
 Exercise:
 * Go back to the project WelcomeMessageWithoutAccessorBot > Bots > WelcomeMessageWithoutAccessorBot.cs - 
 take a look at how we the welcome messages with the bool flag.  
@@ -315,10 +320,9 @@ Then within the dialogSet that declares which dialogs you'll be using in your bo
 you add the WaterfallDialog named with a string of your choice and the waterfall steps array.  
 
 In addition, you add any additional dialogs that you want in your conversation.  
-
+```
             _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
             _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
-
 
             // This array defines how the Waterfall will execute.
             var waterfallSteps = new WaterfallStep[]
@@ -335,7 +339,7 @@ In addition, you add any additional dialogs that you want in your conversation.
             _dialogSet.Add(new TextPrompt("name"));
             _dialogSet.Add(new NumberPrompt<int>("age"));
             _dialogSet.Add(new ConfirmPrompt("confirm"));
-
+```
 Exercises: 
 * Look through the steps, look at how dialogs are interspersed throughout to create prompts and to gather user input. 
 * Look at how input is extracted from one step of the waterfall to the next. 
@@ -349,12 +353,13 @@ WaterfallDialogWithHardcodedCasesBotV4 is similar to the project SimplifiedWater
 it is listening to specific hardcoded phrases.
 
 Look within the Bot for the section:
+```
                 var text = turnContext.Activity.Text.ToLowerInvariant();
                 switch (text)
                 {
 ...
 		}
-
+```
 Exercises:
 * What use cases can you think of that would require the checking of specific phrases?
 
@@ -375,9 +380,7 @@ Look through the code of RootWaterfallDialog, ColorWaterfallDialog, and FoodWate
 * Notice how they are seperate yet still are launched from each other.  (Given that they are now starting to seperate ... how can we pass values from one Dialog to the next?) 
 * Notice how the two dialogs ColorWaterfallDialog and FoodWaterfallDialog end themselves and control is passed back to the RootWaterfallDialog.
 * Notice how Rootwaterfall loops itself and is looped with delay.  How is this achieved? What does the delay add?  Play around with different delays and see how it affects the user experience.
-
-* Middleware has now been commented out - but at the end of this exercise uncomment it to see how the Middleware and Dialogs work together.  
-(Note: At the prompt of "What would you like to talk about?" type out the choice - as an example: Favorite Food).
+* Middleware has now been commented out - but at the end of this exercise uncomment it to see how the Middleware and Dialogs work together.  (Note: At the prompt of "What would you like to talk about?" type out the choice - as an example: Favorite Food).
 
 10) 10 DuelingDialogsUsingAccessorBotV4
 
@@ -393,11 +396,14 @@ from various classes.
 Declaring Accessors in Bot: 
 We'll create a public property instead of the private field we had before:
 OLD:
+```
         //private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
+```
 NEW:
+```
         public DialogBotConversationStateAndUserStateAccessor DialogBotConversationStateAndUserStateAccessor { get; set; } 
 	//notice how it gets assigned in the constructor.
-
+```
 Using Accessor in Bot:
 For example, in ColorWaterfallDialog.cs
         private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
