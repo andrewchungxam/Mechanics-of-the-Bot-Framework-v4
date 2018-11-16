@@ -207,7 +207,7 @@ i. The constructor of the Bot takes as a parameter an object of type DialogueBot
 ```
 This is the accessor we were setting up in Startup.cs.  The dependency injection will make sure the bot gets this each time it is instanced on each turn.
 
-Notice there is a dialogSet that is instantiated --> **notice it is taking as parameter a property from the accessor**.   
+Notice there is a dialogSet that is instantiated --> **notice it is taking as a parameter a property from the accessor**.   
 As an exercise, please right click on each of the classes/properties in the constructor to familiarize yourself with the specific definitions but the main point is that it needs a persistent list of Dialog instances.
 
 Later within the OnTurn method --> from that dialogSet, we create a dialogContext
@@ -802,8 +802,9 @@ NEW:
 
 In my BotConfiguration.bot file - I have the app, the QnA service, the LUIS service with id as "151", "245", "217" respectively.  
 Simply add that to the serviceIds field in your dispatch service.
-```
+
 OLD:
+```
 ...
 {
             
@@ -825,8 +826,9 @@ OLD:
         }
 ...
 ```
-```
 NEW: (You're looking at the values for "serviceIds" in this snippet:)
+
+```
 {
             
 	"type": "dispatch",
@@ -852,17 +854,14 @@ NEW: (You're looking at the values for "serviceIds" in this snippet:)
 
 iii) Configure the Sample to connect to your AI project
 
-1)
-In appsettings.json - make sure your botFilePath is set to the BotConfiguration.bot file:
+1) In appsettings.json - make sure your botFilePath is set to the BotConfiguration.bot file:
 ```
 {
   "botFilePath": "BotConfiguration.bot",
   "botFileSecret": ""
 }
 ```
-In NlpDispatchBot.cs -  
-Near the top of the file, you're going to need to add the name of your Luis app, your Dispatch app, and your QnA app -- you can look
-at your BotConfiguration.bot file to see their names.  (You know how to find this, we covered this when you did the qnamaker init and the luis init in the CLI.)
+In NlpDispatchBot.cs - Near the top of the file, you're going to need to add the name of your Luis app, your Dispatch app, and your QnA app -- you can look at your BotConfiguration.bot file to see their names.  (You know how to find this, we covered this when you did the qnamaker init and the luis init in the CLI.)
 
 REPLACE THIS WITH THE NAME OF YOUR LUIS APPLICATION NAME
 OLD:<br />
