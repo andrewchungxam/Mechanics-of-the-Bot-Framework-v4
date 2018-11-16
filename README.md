@@ -4,9 +4,9 @@ The purposes of this project is to make clear what the different pieces of the B
 /////////
 The Microsoft Bot Framework provides what you need to build and connect intelligent bots that interact naturally wherever your users are talking, from text/sms to Skype, Slack, Office 365 mail and other popular services. http://botframework.com
 
-This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples /////////
+This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples 
 
-The Bot Framework v4 changed significantly from the previous version, v3.
+/////////The Bot Framework v4 changed significantly from the previous version, v3.
 
 Bot Framework v3 was great -- it was clear, easy to set up, and easy to use!
 However, it was pretty opinionated and trying to do custom things sometimes felt like "swimming upstream" or "fighting the framework".
@@ -73,8 +73,8 @@ Start here:  Program.cs --> Startup.cs --> (files or folders that say) Accessors
 
 Also, take quick look at BotConfiguration.Bot which has details of the project in Visual Studio (or open with Notepad).   If you double click on the file, Windows will open the Bot Framework Emulator.
 
-PROJECTS:
-1) 01 SimplifiedEchoBotV4
+### PROJECTS:
+### 1) 01 SimplifiedEchoBotV4
 
 * This bot takes the Echo Bot template and removes all the extraneous parts and simplifies it to the most basic part - the Bot.
 For this project - we're only going to look at the SimplifiedEchoBot.cs -- this is where your Bot "lives".  
@@ -90,7 +90,7 @@ which is how you add the SimplifiedEchoBot to your project.
 Exercise:
 * Go ahead and run the project and open it in your emulator.  Make a small modification of the return message and re-run the sample.
 
-2) 02 SimplifiedMiddlewareEchoBotV4
+### 2) 02 SimplifiedMiddlewareEchoBotV4
 
 This time - we've added Middleware to the bot.
 
@@ -105,8 +105,8 @@ The below diagram shows you generally how turns function:
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
 * In any of the Middleware -- you'll see the await next(cancellationtoken) -- comment out that line of code and see what happens.  Can you think of times that this can be useful?
-			
-3) 03 WelcomeMessageWithoutAccessorBotV4
+
+### 3) 03 WelcomeMessageWithoutAccessorBotV4
 
 The projects are meant to be progressive so you can see how each piece builds on the previous ones.
 Two old things are happening in this Bot and two new things are happening in this Bot.
@@ -123,7 +123,7 @@ Exercises:
 * Notice when the bot opens up, the statement: else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate) is returning true more than once  - can you figure out why?
 * Notice the welcoming message + bool flag system is not functioning correctly - can you figure out why?  We'll see examples of how to do this correctly in subsequent projects.
 
-4) 04 DialogWithoutAccessorBotV4
+### 4) 04 DialogWithoutAccessorBotV4
 
 Dialogs. So far we've talked about how the bot passes control from element to element (ie. middleware --> bot --> back to middleware etc.)
 Now we talk about dialogs which is where the main functionality of Bots live.
@@ -152,7 +152,7 @@ Exercises:
 * Run the sample, do you notice any repeating behavior?  Can you guess why?  An explaination is provided at the bottom of the file DialogsWithoutAccessor.cs. 
 (The explaination has been commented out and folded over at the bottom of the file).  We'll fix the "repeating behavior" problem in the next sample.
 
-5) 05 DialogWithAccessorBotV4
+### 5) 05 DialogWithAccessorBotV4
 
 Simply put -- in the previous project, there was no application level persistance to the DialogSet/DialogContext -- so each time the control flow happened: (ie.
 User input --> middleware --> Bot (--> Dialog)  the Bot would be re-instanced and we would lose any turn-to-turn information. ie. Nothing was persisted.) 
@@ -242,7 +242,7 @@ The final piece to the puzzle, is this last call to save changes to the Conversa
                 // Save changes if any into the conversation state.
                 await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
 ```
-6) 06 WelcomeMessageWithAccessorBotV4
+### 6) 06 WelcomeMessageWithAccessorBotV4
 
 At this point - you've gotten a feel of how the Middleware works.  
 The messages from the Middleware have now been commented out: 
@@ -308,7 +308,7 @@ Exercise:
 * Go back to the project WelcomeMessageWithoutAccessorBot > Bots > WelcomeMessageWithoutAccessorBot.cs - 
 take a look at how we the welcome messages with the bool flag.  
 
-7) 07 SimplifiedWaterfallDialogBotV4
+### 7) 07 SimplifiedWaterfallDialogBotV4
 
 A waterfall dialog is the most common and simplest way to piece together a cohesive conversation.
 
@@ -346,7 +346,7 @@ Exercises:
 await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext, false, cancellationToken)
 ."), cancellationToken);  What, if anything, do you notice?
 
-8) 08 WaterfallDialogWithHardcodedCasesBotV4
+### 8) 08 WaterfallDialogWithHardcodedCasesBotV4
 
 WaterfallDialogWithHardcodedCasesBotV4 is similar to the project SimplifiedWaterfallDialogBotV4 with the exception that within the bot, 
 it is listening to specific hardcoded phrases.
@@ -362,7 +362,7 @@ Look within the Bot for the section:
 Exercises:
 * What use cases can you think of that would require the checking of specific phrases?
 
-9) 09 DuelingDialogsBotV4
+### 9) 09 DuelingDialogsBotV4
 
 We've talked about Bots, Middleware, Accessors, a single Dialog, and a single Waterfall Dialog.
 
@@ -381,7 +381,7 @@ Look through the code of RootWaterfallDialog, ColorWaterfallDialog, and FoodWate
 * Notice how Rootwaterfall loops itself and is looped with delay.  How is this achieved? What does the delay add?  Play around with different delays and see how it affects the user experience.
 * Middleware has now been commented out - but at the end of this exercise uncomment it to see how the Middleware and Dialogs work together.  (Note: At the prompt of "What would you like to talk about?" type out the choice - as an example: Favorite Food).
 
-10) 10 DuelingDialogsUsingAccessorBotV4
+### 10) 10 DuelingDialogsUsingAccessorBotV4
 
 We're dealing with multiple dialogs.  Data needs to pass back and forth between them; how do we do it?  
 
@@ -430,7 +430,7 @@ await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync
 ```
 What do you notice?
 
-11) MultiDialogsWithAccessorBotV4
+### 11) MultiDialogsWithAccessorBotV4
 
 Now you've seen how multiple dialogs can interact with each other.
 
@@ -482,8 +482,8 @@ Else continue whatever dialog is happening.
 Exercise:
 * Notice how the dialogs are canceled (dialogContext.CancelAllDialogsAsync).  There are two other options commented out below it.  
 
-REFERENCE:
-3) Reference03-ReferencesToImportantSamples
+### REFERENCE:
+### 3) Reference03-ReferencesToImportantSamples
 
 If you look in the above project - you'll see one file that references three projects from the official Microsoft samples.
 You now understand the mechanics now of how the dialogs work, these new referenced samples will show to incorporate AI into 
@@ -518,8 +518,8 @@ with the aim of showing how you can take these official samples and make them yo
 
 /////////////////////////////
 
-//SHOW HOW TO INTEGRATE WITH QnA Maker
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
+### SHOW HOW TO INTEGRATE WITH QnA Maker
+### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
 
 For this sample and the below AI samples (LUIS and Dispatch) - we need a couple things:
 
@@ -639,8 +639,8 @@ and change that string to the name of your QnA project:
 Now you're done!  Run your QnA MAker and test it in your emulator!  
 Type a question related to one of your QnA Maker Questions and Answers.
 
-//SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
+### SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
+### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
 
 LUIS uses AI to match an utterance from a user and using AI connects it to an Intent that you define.
 
@@ -701,8 +701,8 @@ Luis.ai / My apps / Click appropriate app > Manage > Application Information > D
 Now you're done!  Run your LUISBot and test it in your emulator!  
 Type an utterance related to one of your intents and the Bot will return the best matching intent along with the Intent.
 
-//SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
+### SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)
+### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
 
 i) an AI Service 
 ii) a BotConfiguration.bot file to tie that service to our Bot
