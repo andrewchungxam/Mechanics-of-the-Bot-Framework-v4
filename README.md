@@ -1,10 +1,11 @@
-# Microsoft-Bot-Framework-v4
+# The Mechanics of the Bot Framework v4
+The purposes of this project is to make clear what the different pieces of the Bot Framework v4 do -- how they operate and how they interact.
+
+/////////
 The Microsoft Bot Framework provides what you need to build and connect intelligent bots that interact naturally wherever your users are talking, from text/sms to Skype, Slack, Office 365 mail and other popular services. http://botframework.com
 
 This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples
-
-The Mechanics of the Bot Framework v4
-/////////////////////////////
+/////////
 
 The Bot Framework v4 changed significantly from the previous version, v3.
 
@@ -16,9 +17,9 @@ the team took what was once simple but blackboxed, and exposed a lot of the movi
 
 However, getting used to having all those pieces can be a lot at first.
 
-The purposes of this project is to make clear what the different pieces of the Bot Framework v4 do -- how they operate and how they interact.
-I try to do this simply and progressively.  The first exercise is to quickly review at the "out of the box" templates and then simplify to just the essential 
-parts -- and then progressively add bits and pieces.
+The purposes of this project is to make clear what the different pieces of the Bot Framework v4 do -- how they operate and how they interact.  I try to do this simply and progressively.  
+
+The first exercise is to quickly review at the "out of the box" templates and then simplify to just the essential parts -- and then progressively add bits and pieces.
 
 I recommend going through the projects in the below order:
 You'll see a list below -- then in the next section, I'll write a short summary of the main ideas presented in each project.
@@ -46,7 +47,7 @@ REFERENCE:
 ///////////////////////////////////////
 
 PREREQUISITES:
-Prerequisite before we run through the above project -- make sure you've setup the installation steps and downloaded the templates and emulator:
+Prerequisite before we run through the above projects -- make sure you've done the installation, and downloaded the templates and emulator:
 https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart?view=azure-bot-service-4.0
 
 Also for the later AI projects (Reference03-ReferencesToImportantSamples) you'll want the Bot Builder CLI tools:
@@ -60,7 +61,6 @@ Once you've got the above prerequesites you can type in your command prompt:
 npm install -g chatdown msbot ludown luis-apis qnamaker botdispatch luisgen
 (if you are having issues try opening your Powershell in Administrator Mode): 
 
-
 REFERENCE:
 1) reference01-Bot Builder Echo Bot V4
 2) reference02-Bot Builder Basic Bot V4
@@ -68,13 +68,12 @@ REFERENCE:
 Exercises:
 * Take a quick glance at these two projects.  They are the template projects that get created from the Microsoft VSIX Bot templates.  
 (You'll have seen them in the installation instructions here: https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart?view=azure-bot-service-4.0)
-You'll notice there are a lot of pieces --> don't worry too much about the details, we'll cover the pieces progressively through the various projects, 
-just take about 10 minutes to look through the projects to get a general idea of the structure.
 
-Start here:  Program.cs --> Startup.cs --> (files or folders that say) Accessors --> (files or folders that say) Bots --> (files or folders that say) Dialogs  
-Also take quick look at BotConfiguration.Bot which has details of the project in Visual Studio (or open with Notepad).   If you double click on the file,
-Windows will open the Bot Framework Emulator.
+You'll notice there are a lot of pieces of the project --> don't worry too much about the details, we'll cover the pieces progressively through the various projects, just take about 10 minutes to look through the projects to get a general idea of the structure.
 
+Start here:  Program.cs --> Startup.cs --> (files or folders that say) Accessors --> (any files or folders that say Bots --> (any files or folders that say Dialogs.
+
+Also, take quick look at BotConfiguration.Bot which has details of the project in Visual Studio (or open with Notepad).   If you double click on the file, Windows will open the Bot Framework Emulator.
 
 PROJECTS:
 1) 01 SimplifiedEchoBotV4
