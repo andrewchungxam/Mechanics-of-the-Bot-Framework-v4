@@ -953,7 +953,7 @@ Exercise:
 * Run the sample and take a look at each card type and the corresponding code.
 
 THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:
-https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore of special further note are the Authentication Bot.
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore of special further note is the Authentication Bot.
 
 
 
