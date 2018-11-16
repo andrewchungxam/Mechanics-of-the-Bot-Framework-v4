@@ -1,7 +1,5 @@
 # The Mechanics of the Bot Framework v4
-__The purposes of this project is to make clear what the different pieces of the Bot Framework v4 do -- how they operate and how they interact.__**
-
-**The Microsoft Bot Framework provides what you need to build and connect intelligent bots that interact naturally wherever your users are talking, from text/sms to Skype, Slack, Office 365 mail and other popular services. http://botframework.com**
+_The purposes of this project is to make clear what the different pieces of the Bot Framework v4 do -- how they operate and how they interact._**
 
 This repository is meant to create an interative, step-by-step, progressive look at the new Bot Framework v4.  Inspiration and credit to Microsoft MVP, James Mann, and his excellent teaching style and tutorials: https://github.com/jamesemann and the Microsoft Documentation Team's official Bot Framework v4 samples: https://github.com/Microsoft/BotBuilder-Samples 
 
