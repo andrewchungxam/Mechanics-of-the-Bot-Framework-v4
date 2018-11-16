@@ -96,8 +96,7 @@ This time - we've added Middleware to the bot.
 What is Middleware?  Think of it as a place in your project where you can add custom code before *and* after your bot processes a message.  It's custom - so it can be anything you'd need but example functionality can include logging messages, 
 listening for specific phrases, and running messages through APIs like sentiment using Azure's Text Analysis.
 
-Timing-wise when does the Middleware get triggered?  
-The below diagram shows you generally how turns function: <br/>
+Timing-wise when does the Middleware get triggered?  The below diagram shows you generally how turns function: <br/>
 (READ LEFT TO RIGHT) <br/>USER SENDS MESSAGE    --> MIDDLEWARE 1 --> MIDDLEWARE 2 --> MIDDLEWARE 3 --> ON TURN IS CALLED<br/>
 (READ RIGHT TO LEFT) <br/>USER RECIEVES MESSAGE <-- MIDDLEWARE 1 <-- MIDDLEWARE 2 <-- MIDDLEWARE 3 <-- ON TURN IS CALLED<br/>	
 		
@@ -159,19 +158,19 @@ The net result was that the bot would repeat the first step in the dialog over a
 
 To fix this, we need to create persistance to the conversation and accessors to access them.
 
-CREATING PERSISTANCE + ACCESSORS:
-You may have seen this in the comments of the previous project. This shows you the "chain" of pieces that are necessary to for persistance and appropriate keeping track of dialog state.
-//IN ORDER TO CREATE THE DIALOG SET --> IT NEEDED A CONVERSATIONAL DIALOG STATE (WHICH KEEPS TRACK OF THE ORDER STACK OF DIALOGS)
-//IN ORDER TO CREATE A DIALOG STATE --> WE NEEDED A CONVERSATION STATE (WHICH PERSISTS ANYTHING AT THE CONVERSATION LEVEL) //FROM THE CONVERSATION STATE --> WE CREATED A PROPERTY OF TYPE DIALOG STATE)
-//IN ORDER TO CREATE A CONVERSATION STATE - WE NEEDED AN OBJECT OF TYPE ISTORAGE
+CREATING PERSISTANCE + ACCESSORS:<br/>
+You may have seen this in the comments of the previous project. This shows you the "chain" of pieces that are necessary to for persistance and appropriate keeping track of dialog state.<br/>
+//IN ORDER TO CREATE THE DIALOG SET --> IT NEEDED A CONVERSATIONAL DIALOG STATE (WHICH KEEPS TRACK OF THE ORDER STACK OF DIALOGS)<br/>
+//IN ORDER TO CREATE A DIALOG STATE --> WE NEEDED A CONVERSATION STATE (WHICH PERSISTS ANYTHING AT THE CONVERSATION LEVEL) <br/>
+//FROM THE CONVERSATION STATE --> WE CREATED A PROPERTY OF TYPE DIALOG STATE)<br/>
+//IN ORDER TO CREATE A CONVERSATION STATE - WE NEEDED AN OBJECT OF TYPE ISTORAGE<br/>
 
-So let's start adding the necessary pieces.  Look at Startup.cs (this is where we'll create persistance and give the bot access to the the accessor).
-We're going to add the following pieces:
-i. new MemoryStorage - this is how persistance is managed at the application level.  
-ii.  new ConversationState(memoryStorage object) added to the options
-iii. Add Singleton --> conversation state from previous step is referenced and then added as a property to the accessor we created.
-iv. The accessor is called DialogBotConversationStateAccessor and if you look at the full definition of the class (DialogBotConversationStateAccessor.cs) 
-it has a property called Conversation Dialog State.
+So let's start adding the necessary pieces.  Look at Startup.cs (this is where we'll create persistance and give the bot access to the the accessor).<br/>
+We're going to add the following pieces:<br/>
+i. new MemoryStorage - this is how persistance is managed at the application level.  <br/>
+ii.  new ConversationState(memoryStorage object) added to the options<br/>
+iii. Add Singleton --> conversation state from previous step is referenced and then added as a property to the accessor we created.<br/>
+iv. The accessor is called DialogBotConversationStateAccessor and if you look at the full definition of the class (DialogBotConversationStateAccessor.cs) it has a property called Conversation Dialog State.<br/>
 ```
 	public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
 ```
@@ -189,7 +188,7 @@ So what is the DialogState referring to?  This is defined in the BotFramework as
 Now via dependency injection, this accessor from Startup.cs is handed off to the Bot class which is recreated each turn
  -- this is how persistence is possible across turns.
 
-USING PERSISTANCE + ACCESSORS:
+USING PERSISTANCE + ACCESSORS:<br/>
 Now that we've defined and created them, let's look at how they are used -- go to file Bots > DialogueBotWithAccessor.cs
 
 i. The constructor of the Bot takes as a parameter an object of type DialogueBotConversationStateAccessor.  
@@ -256,15 +255,14 @@ You've tried this before; we'll do it successfully this time.
 You'll send one message when the user joins the channel and one after the (very) first time the user send a message to the bot.
 These are two different events and you can use them accordingly in the bot as needed.
 
-WHEN THE USER JOINS THE CHANNEL (YOU'VE SEEN THIS ALREADY)
-In WelcomeMessageWithAccessorBot.cs, there is a section underneath:
+WHEN THE USER JOINS THE CHANNEL (YOU'VE SEEN THIS ALREADY)<br/>
+In WelcomeMessageWithAccessorBot.cs, there is a section underneath:<br/>
 ```
 	else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
 ```
-devoted to sending a welcome message.  
-You've seen this before -- this will send a message to the user as soon as the user joins the conversation.   
+which is devoted to sending a welcome message.  
 
-It also sends a message when the bot joins the conversation -- to turn that off, uncomment this:
+You've seen this before -- this will send a message to the user as soon as the user joins the conversation.   It also sends a message when the bot joins the conversation -- to turn that off, uncomment this:
 ```
  //if (member.Id != turnContext.Activity.Recipient.Id) //IE. DON'T SEND THIS TO THE BOT
 ```
@@ -272,8 +270,7 @@ AFTER THE USER TYPES FIRST MESSAGE (THIS IS NEW)
 ```
 var didBotWelcomeUser = await _dialogBotConversationStateAndUserStateAccessor.WelcomeUserState.GetAsync(turnContext, () => new WelcomeUserState());
 ```
-As opposed to a bool flag that lives in the bot (which we tried and showed that it didn't work) - 
-here the check is against the bool contained in property "WelcomeUserState" in the accessor.
+As opposed to a bool flag that lives in the bot (which we tried and showed that it didn't work) - here the check is against the bool contained in property "WelcomeUserState" in the accessor.
 
 Because it is part of the accessor, it is persistent.
 
@@ -341,7 +338,7 @@ In addition, you add any additional dialogs that you want in your conversation.
 Exercises: 
 * Look through the steps, look at how dialogs are interspersed throughout to create prompts and to gather user input. 
 * Look at how input is extracted from one step of the waterfall to the next. 
-*** Comment out the following line in code (in SimplifiedWaterfallDialogBot.cs near the bottom of the OnTurnAsync method).  What issue arises?              
+* Comment out the following line in code (in SimplifiedWaterfallDialogBot.cs near the bottom of the OnTurnAsync method).  What issue arises?              
 await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext, false, cancellationToken)
 ."), cancellationToken);  What, if anything, do you notice?
 
@@ -369,12 +366,11 @@ In this sample, we're going to setup multiple dialogs and see how they interact 
 
 There are three dialogs: RootWaterfallDialog, ColorWaterfallDialog, and the FoodWaterfallDialog.
 
-Exercises:
-Look through the code in DuelingDialogBot.cs
+Exercises look through the code in DuelingDialogBot.cs
 * Notice the large number of dialogs that are used -- remember adding them here to the dialogSet allows them to be kept track of by your application.
 * Look at how the if statement is used to either BeginDialogAsync if there is no active dialog or ContinueDialogAsync to continue a dialog that has already begun.
 
-Look through the code of RootWaterfallDialog, ColorWaterfallDialog, and FoodWaterfallDialog
+Look through the code of RootWaterfallDialog, ColorWaterfallDialog, and FoodWaterfallDialog:
 * Notice how they are seperate yet still are launched from each other.  (Given that they are now starting to seperate ... how can we pass values from one Dialog to the next?) 
 * Notice how the two dialogs ColorWaterfallDialog and FoodWaterfallDialog end themselves and control is passed back to the RootWaterfallDialog.
 * Notice how Rootwaterfall loops itself and is looped with delay.  How is this achieved? What does the delay add?  Play around with different delays and see how it affects the user experience.
@@ -391,8 +387,8 @@ We'll need to use our Accessors - but before we had only one class that needed t
 Now, the bot is growing in complexity; we'll need to set things up slightly differently so we can access them 
 from various classes.
 
-Declaring Accessors in Bot: 
-We'll create a public property instead of the private field we had before:
+Declaring Accessors in Bot: <br/>
+We'll create a public property instead of the private field we had before:<br/>
 OLD:
 ```
         //private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
@@ -475,8 +471,7 @@ Under the OnTurnAsync method:
 ```
 Then you'll see later the following logic:
 If the dialogs are popped off the stack and the dictionary key/value pair exists "didTypeName"/"name" --> Start the NameWaterfallDialog.
-If the dialogs are popped off the stack or didn't exist in the first place and the dictionary key/value pair is not there --> Start the RootWaterfallDialog
-Else continue whatever dialog is happening.
+If the dialogs are popped off the stack or didn't exist in the first place and the dictionary key/value pair is not there --> Start the RootWaterfallDialog else continue whatever dialog is happening.
 
 Exercise:
 * Notice how the dialogs are canceled (dialogContext.CancelAllDialogsAsync).  There are two other options commented out below it.  
@@ -488,45 +483,44 @@ If you look in the above project - you'll see one file that references three pro
 You now understand the mechanics now of how the dialogs work, these new referenced samples will show to incorporate AI into 
 your projects.
 
-I've added instructions that will hopefully make it as easy as possible to go through the samples;
-with the aim of showing how you can take these official samples and make them your own (ie adding your own cognitive services).
+I've added instructions that will hopefully make it as easy as possible to go through the samples; with the aim of showing how you can take these official samples and make them your own (ie adding your own cognitive services).
 
-//IN THE ABOVE PROJECTS, WE'VE GONE THROUGH THE MECHANICS OF THE BOT FRAMEWORK
-//
-//
-//THE OFFICIAL SAMPLES OFFER VARIOUS SPECIFIC USE CASES + IMPORTANT INTEGRATIONS
-//
-//HERE ARE 4 IMPORTANT PROJECTS OF NOTE:
-//
-//SHOW HOW TO INTEGRATE WITH QnA Maker
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
-//
-//SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
-//
-//SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
-//
-//THE NEXT PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT
-//THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
-//
-//
-//THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:
-////https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore
+//IN THE ABOVE PROJECTS, WE'VE GONE THROUGH THE MECHANICS OF THE BOT FRAMEWORK<br/>
+//<br/>
+//<br/>
+//THE OFFICIAL SAMPLES OFFER VARIOUS SPECIFIC USE CASES + IMPORTANT INTEGRATIONS<br/>
+//<br/>
+//HERE ARE 4 IMPORTANT PROJECTS OF NOTE:<br/>
+//<br/>
+//SHOWS HOW TO INTEGRATE WITH QnA Maker<br/>
+//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker<br/>
+//<br/>
+//SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING<br/>
+//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis<br/>
+//<br/>
+//SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)<br/>
+//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch<br/>
+//<br/>
+//THE NEXT PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT<br/>
+//THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER<br/>
+//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards<br/>
+//<br/>
+//<br/>
+//THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:<br/>
+////https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore<br/>
+<br/>
+/////////////////////////////<br/>
 
-/////////////////////////////
-
-### SHOW HOW TO INTEGRATE WITH QnA Maker
-### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
+### //SHOWS HOW TO INTEGRATE WITH QnA Maker
+### //https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
 
 For this sample and the below AI samples (LUIS and Dispatch) - we need a couple things:
 
-i) an AI Service 
-ii) a BotConfiguration.bot file to tie that service to our Bot
-iii) Configure the Sample to connect to your AI project
+i) an AI Service <br/>
+ii) a BotConfiguration.bot file to tie that service to our Bot<br/>
+iii) Configure the Sample to connect to your AI project<br/>
 
-i) an AI Service
+i) an AI Service<br/>
 First we need to set up the AI service - in this case, it will be the QnA Maker which uses AI to help match user queries to 
 answers you've populated.  The population of these question/answer pairs is simple -->
 you can upload a Word document, Excel document, CSV file, PDF, or even point it to a exisiting website 
@@ -535,7 +529,7 @@ with Question and Answer format (like a company's FAQ page).
 Go here for instructions on how to set up an AI service:
 https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure
 
-ii) a BotConfiguration.bot file to tie that service to our Bot
+ii) a BotConfiguration.bot file to tie that service to our Bot<br/>
 Second, we need a BotConfiguration.bot file which includes information on the service we are using 
 plus configuration information for our Bot.
 
@@ -620,26 +614,29 @@ The final step - *within* the text of the BotConfiguration.bot, under services, 
         {
             "type": "endpoint",
    "name": "development",
+```
 // Save this "name" change step until the very end. If you've been following the above steps in order, you should be great!
 If you're looking at with Notepad, I recommend closing it after looking at it.
-```
-* Having trouble?  In the qnamaker.ai portal 
-> did you "Save and Train" your QnA Maker Bot? (reflects changes you made)
-> did you "Test" it? (make sure your utterances matches the intent you want)
-> did you "Publish" it? (makes it accessible)
+
+Having trouble?  In the qnamaker.ai portal:<br/> 
+* did you "Save and Train" your QnA Maker Bot? (reflects changes you made)
+* did you "Test" it? (make sure your utterances matches the intent you want)
+* did you "Publish" it? (makes it accessible)
 
 iii) Configure the Sample to connect to your AI project
 
-In QnABot.cs change this line ~#25:
+In QnABot.cs change this line ~#25:<br />
+```
 //public static readonly string QnAMakerKey = "QnABot";
+```
 and change that string to the name of your QnA project: 
 (ie. it would match the name you used for your project here: https://www.qnamaker.ai/Home/MyServices)
 
 Now you're done!  Run your QnA MAker and test it in your emulator!  
 Type a question related to one of your QnA Maker Questions and Answers.
 
-### SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
-### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
+### //SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
+### //https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
 
 LUIS uses AI to match an utterance from a user and using AI connects it to an Intent that you define.
 
@@ -729,8 +726,7 @@ In order to run this project - you're going to need more than 1 service so I wil
 
 ii) a BotConfiguration.bot file to tie that service to our Bot
 You need to run similar commands to what you've done in the previous project -- the only exception is that you don't need to run the 
-msbot init command twice (this is the step that creates the BotConfiguration.bot file and of course you only need to create it once.  
-Also I changed the "name" value under services to "development" (as you had done in previous samples) at the very end of 
+msbot init command twice (this is the step that creates the BotConfiguration.bot file and of course you only need to create it once.  Also I changed the "name" value under services to "development" (as you had done in previous samples) at the very end of 
 my configuration -- including the dispatch init commands which are explained in the next section, so you can wait until 
 all the CLI commands are run before you do any "by hand" modifications to your BotConfiguration.bot file. ).
 
@@ -745,7 +741,7 @@ luis get application --appId "ef9fasdf-asdf-asdf-asdf-asdfasdf6a83" --msbot | ms
 ^ This you've seen before and again if you're looking at the BotConfiguration.bot file -- make sure to close it so the CLI
 can change it if necessary (CLI will fail silently if it cannot modify your file).
 
-New commands:
+New commands:<br />
 In this command - you'll point to the BotConfiguration.bot file
 ```
 dispatch init -bot C:\Github\Microsoft-Bot-Framework-v4-SupportingDocs\OfficialSample14.nlp-with-dispatch\BotConfiguration.bot --hierarchical false
@@ -868,7 +864,7 @@ Near the top of the file, you're going to need to add the name of your Luis app,
 at your BotConfiguration.bot file to see their names.  (You know how to find this, we covered this when you did the qnamaker init and the luis init in the CLI.)
 
 REPLACE THIS WITH THE NAME OF YOUR LUIS APPLICATION NAME
-OLD:
+OLD:<br />
 ```
 private const string HomeAutomationLuisKey = "Home Automation";
 ```   
@@ -877,21 +873,21 @@ NEW:
 private const string HomeAutomationLuisKey = "BotLuisBotMA7-a7b7";
 ```
 REPLACE THIS WITH THE NAME OF YOUR DISPATCH APPLICATION NAME
-OLD:
+OLD:<br />
 ```
 private const string DispatchKey = "nlp-with-dispatchDispatch";
 ```
         
-NEW:      
+NEW:<br />   
 ```
 private const string DispatchKey = "BotConfigurationDispatch";
 ```
 REPLACE THIS WITH THE NAME OF YOUR QnA APPLICATION NAME
-OLD:
+OLD:<br />
 ```
 private const string QnAMakerKey = "sample-qna";
 ```
-NEW:
+NEW:<br />
 ```
 private const string QnAMakerKey = "RoyaltyInfo2018";
 ```
@@ -909,14 +905,14 @@ Please make corresponding changes based on the names of your *INTENTS* as define
 created for you when you ran dispatch create in the CLI.  (ie. Look in the Luis.ai portal > Go to the new Dispatch project >
 Go to Build > Intents and grab the names of two Intents you care about.)
 
-OLD:
+OLD:<br />
 ```
             const string homeAutomationDispatchKey = "l_Home_Automation";
             const string weatherDispatchKey = "l_Weather";
             const string noneDispatchKey = "None";
             const string qnaDispatchKey = "q_sample-qna";
 ```
-NEW:
+NEW:<br />
 ```
             const string homeAutomationDispatchKey = "VideoGames";
             //const string weatherDispatchKey = "l_Weather"; // I've commented this out as I'm only focused on the Luis intent "VideoGames" and the QnA intent "q_RoyaltyInfo2018" 
@@ -926,15 +922,14 @@ NEW:
 Finally - in the same file: NlpDispatchBot.cs - simply comment out references to the weatherDispatchKey as we will only be
 using two services.  So comment out these sets of lines:
 
-approximately line 73:
+approximately line 73:<br />
 ```
             //if (!_services.LuisServices.ContainsKey(WeatherLuisKey))
             //{
             //    throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a Luis service named '{WeatherLuisKey}'.");
             //}
 ```
-and 
-approximately line 164:
+and approximately line 164:
 ```
                 //case weatherDispatchKey:
                 //    await DispatchToLuisModelAsync(context, WeatherLuisKey);
