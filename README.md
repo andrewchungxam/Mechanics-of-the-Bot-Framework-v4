@@ -936,7 +936,7 @@ Now you are done!  Run your Dispatch Bot and test it!
 Type an utterance related to one of your intents and the Bot will return the best matching intent or if it's from the QnA Maker
 it will return an answer!
 
-### THE NEXT PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER
+### THE NEXT PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT, THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER
 ### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
 
 Exercise:
@@ -961,5 +961,4 @@ https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotne
 
 
 
-/////////////////////////////
 
