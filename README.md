@@ -22,7 +22,7 @@ The first exercise is to quickly review at the "out of the box" templates and th
 I recommend going through the projects in the below order:
 You'll see a list below -- then in the next section, I'll write a short summary of the main ideas presented in each project.
 
-REFERENCE:<br />
+REFERENCE PROJECTS:<br />
 1) reference01-Bot Builder Echo Bot V4<br />
 2) reference02-Bot Builder Basic Bot V4<br />
 <br />
@@ -39,7 +39,7 @@ PROJECTS:<br />
 10) 10 DuelingDialogsWithAccessorBotV4<br />
 11) 11 MultiDialogsWithAccessorBotV4<br />
 <br />
-REFERENCE:<br />
+REFERENCE PROJECTS:<br />
 3) Reference03-ReferencesToImportantSamples<br />
 
 
@@ -59,16 +59,17 @@ Once you've got the above prerequesites you can type in your command prompt:
 ```
 npm install -g chatdown msbot ludown luis-apis qnamaker botdispatch luisgen
 ```
-(if you are having issues try opening your Powershell in Administrator Mode): 
+(If you are having issues try opening your Powershell in Administrator Mode): <br />
+
 ---
-### REFERENCE:
+### REFERENCE PROJECTS:
 ### 1) reference01-Bot Builder Echo Bot V4 & 2) reference02-Bot Builder Basic Bot V4
 
 Take a quick glance at these two projects.  They are the template projects that get created from the Microsoft VSIX Bot templates.  (You'll have seen them in the installation instructions here: https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart?view=azure-bot-service-4.0)
 
 You'll notice there are a lot of pieces of the project --> don't worry too much about the details, we'll cover the pieces progressively through the various projects, just take about 10 minutes to look through the projects to get a general idea of the structure.
 
-Start here:  <br /> Program.cs --> Startup.cs --> (files or folders that say) Accessors --> (any files or folders that say Bots --> (any files or folders that say Dialogs.
+Start here:  <br /> Program.cs --> Startup.cs --> Files or folders that say Accessors --> Files or folders that say Bots --> Files or folders that say Dialogs.
 
 Also, take quick look at BotConfiguration.Bot which has details of the project in Visual Studio (or open with Notepad).   If you double click on the file, Windows will open the Bot Framework Emulator.
 
