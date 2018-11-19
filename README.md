@@ -202,8 +202,7 @@ i. The constructor of the Bot takes as a parameter an object of type DialogueBot
 ```
 This is the accessor we were setting up in Startup.cs.  The dependency injection will make sure the bot gets this each time it is instanced on each turn.
 
-Notice there is a dialogSet that is instantiated --> **notice it is taking as a parameter a property from the accessor**.   
-As an exercise, please right click on each of the classes/properties in the constructor to familiarize yourself with the specific definitions but the main point is that it needs a persistent list of Dialog instances.
+Notice there is a dialogSet that is instantiated and **notice it is taking as a parameter a property from the accessor**.  As an exercise, please right click on each of the classes/properties in the constructor to familiarize yourself with the specific definitions but the main point is that it needs a persistent list of Dialog instances.
 
 Later within the OnTurn method --> from that dialogSet, we create a dialogContext
 ```
@@ -231,7 +230,7 @@ We'll define one and call one directly off that dialogContext:
          	}
         }
 ```
-The final piece to the puzzle, is this last call to save changes to the Conversation State which Handles persistence of a conversation state object using the conversation ID
+The final piece to the puzzle is this last call to save changes to the Conversation State which handles persistence of a conversation state object using the conversation ID
 ```
                 // Save changes if any into the conversation state.
                 await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
