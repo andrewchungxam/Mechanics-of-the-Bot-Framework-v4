@@ -51,7 +51,7 @@ https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk
 Also for the later AI projects (Reference03-ReferencesToImportantSamples) you'll want the Bot Builder CLI tools:
 https://github.com/Microsoft/botbuilder-tools
 
-Look for the word "Pre-requisite" - it will take your here to download the following:
+Look for the word "Pre-requisite" - it will link to these sites:
 https://nodejs.org/en/
 https://www.microsoft.com/net/download
 
@@ -97,7 +97,7 @@ This time - we've added Middleware to the bot.
 What is Middleware?  Think of it as a place in your project where you can add custom code before *and* after your bot processes a message.  It's custom - so it can be anything you'd need but example functionality can include logging messages, 
 listening for specific phrases, and running messages through APIs like sentiment using Azure's Text Analysis.
 
-Timing-wise when does the Middleware get triggered?  The below diagram shows you generally how turns function: <br/>
+Timing-wise when does the Middleware get triggered?  <br />The below diagram shows you generally how turns function: <br/>
 (READ LEFT TO RIGHT) <br/>USER SENDS MESSAGE    --> MIDDLEWARE 1 --> MIDDLEWARE 2 --> MIDDLEWARE 3 --> ON TURN IS CALLED<br/>
 (READ RIGHT TO LEFT) <br/>USER RECIEVES MESSAGE <-- MIDDLEWARE 1 <-- MIDDLEWARE 2 <-- MIDDLEWARE 3 <-- ON TURN IS CALLED<br/>	
 		
@@ -114,9 +114,9 @@ Old things:
 1) Middleware is being triggered and sending messages to the user.  
 2) The Bot is echoing the user.
 
-New things:
-1) In the Bot code -- there is a bool DidBotWelcomeUser flag; this is toggled true/false in the bot code.  If false --> greet the user, then toggle to true.
-2) Also - the bot is checking to see if there is an ActivityType.ConversationUpdate.  This means it will check to see if somebody knew joined the channel.
+New things:<br />
+1) In the Bot code -- there is a bool DidBotWelcomeUser flag; this is toggled true/false in the bot code.  If false --> greet the user, then toggle to true.<br />
+2) Also - the bot is checking to see if there is an ActivityType.ConversationUpdate.  This means it will check to see if somebody knew joined the channel.<br />
 
 Exercises:
 * Notice when the bot opens up, the statement: else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate) is returning true more than once  - can you figure out why?
@@ -135,17 +135,14 @@ clickable choices, or pre-defined series of steps (waterfall).
 
 Sound too rigid? You can define multiple dialogs and appropriately trigger the right dialog.
 
-Dialogs live in a stack.  The top dialog is the one being interacted with and so by changing what is on the stack or which ones is the top dialog is how you control the conversation.  
-(ie. you can pop off all dialogs from the stack or you can replace the top dialog on the stack.)
+Dialogs live in a stack.  The top dialog is the one being interacted with and so by changing what is on the stack or which ones is the top dialog is how you control the conversation. (ie. you can pop off all dialogs from the stack or you can replace the top dialog on the stack.)
 
-Before you use any dialog, you have to let the Bot know which dialogs are available and put them in a set. 
-In the constructor of your Bot, you'll have a DialogSet and you'll add the Dialogs to that DialogSet.
+Before you use any dialog, you have to let the Bot know which dialogs are available and put them in a set. In the constructor of your Bot, you'll have a DialogSet and you'll add the Dialogs to that DialogSet.
 
 Look through the code, with special attention to file: DialogsWithoutAccessor.cs.  
 (Note: Lines 46-62 have been folded/if this is not reflected in your code please highlight those lines, right-click and choose 'Outlinining', and 'Hide Selection'.)
 
-You'll see the DialogSet being defined.  You'll also see a dialogContext being created from that dialog set which helps figure out which dialog is on top of the stack,
-and which dialogs are active etc etc.
+You'll see the DialogSet being defined.  You'll also see a dialogContext being created from that dialog set which helps figure out which dialog is on top of the stack, and which dialogs are active etc etc.
 
 Exercises:
 * Run the sample, do you notice any repeating behavior?  Can you guess why?  An explaination is provided at the bottom of the file DialogsWithoutAccessor.cs. 
@@ -153,9 +150,7 @@ Exercises:
 
 ### 5) 05 DialogWithAccessorBotV4
 
-Simply put -- in the previous project, there was no application level persistance to the DialogSet/DialogContext -- so each time the control flow happened: (ie.
-User input --> middleware --> Bot (--> Dialog)  the Bot would be re-instanced and we would lose any turn-to-turn information. ie. Nothing was persisted.) 
-The net result was that the bot would repeat the first step in the dialog over and over.
+In the previous project, there was no application level persistance to the DialogSet/DialogContext -- so each time the control flow happened: (ie. User input --> middleware --> Bot  --> Dialog) the Bot would be re-instanced and we would lose any turn-to-turn information. ie. Nothing was persisted.) The net result was that the bot would repeat the first step in the dialog over and over.
 
 To fix this, we need to create persistance to the conversation and accessors to access them.
 
