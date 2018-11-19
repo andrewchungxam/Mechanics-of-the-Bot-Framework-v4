@@ -247,7 +247,7 @@ If at any point through the next projects you want to see those messages and how
 In this project, you can see specifically how you can send two different types of welcome messages.  
 You've tried this before; we'll do it successfully this time.
 
-You'll send one message when the user joins the channel and one after the (very) first time the user send a message to the bot.
+You'll send one message when the user joins the channel and one after the very first time the user send a message to the bot.
 These are two different events and you can use them accordingly in the bot as needed.
 
 WHEN THE USER JOINS THE CHANNEL (YOU'VE SEEN THIS ALREADY)<br/>
@@ -296,7 +296,7 @@ And it is setup to be passed in each time to the Bot via dependency injection --
             });
 ```
 Exercise:
-* Go back to the project WelcomeMessageWithoutAccessorBot > Bots > WelcomeMessageWithoutAccessorBot.cs - 
+* Go back to the previous project and file: <br /> WelcomeMessageWithoutAccessorBot > Bots > WelcomeMessageWithoutAccessorBot.cs - 
 take a look at how we the welcome messages with the bool flag.  
 
 ### 7) 07 SimplifiedWaterfallDialogBotV4
@@ -333,14 +333,15 @@ In addition, you add any additional dialogs that you want in your conversation.
 Exercises: 
 * Look through the steps, look at how dialogs are interspersed throughout to create prompts and to gather user input. 
 * Look at how input is extracted from one step of the waterfall to the next. 
-* Comment out the following line in code (in SimplifiedWaterfallDialogBot.cs near the bottom of the OnTurnAsync method).  What issue arises?              
+* Comment out the following line in code (in SimplifiedWaterfallDialogBot.cs near the bottom of the OnTurnAsync method).  What issue arises? What, if anything, do you notice?
+```
 await _dialogBotConversationStateAndUserStateAccessor.UserState.SaveChangesAsync(turnContext, false, cancellationToken)
-."), cancellationToken);  What, if anything, do you notice?
+."), cancellationToken);  
+``` 
 
 ### 8) 08 WaterfallDialogWithHardcodedCasesBotV4
 
-WaterfallDialogWithHardcodedCasesBotV4 is similar to the project SimplifiedWaterfallDialogBotV4 with the exception that within the bot, 
-it is listening to specific hardcoded phrases.
+WaterfallDialogWithHardcodedCasesBotV4 is similar to the project SimplifiedWaterfallDialogBotV4 with the exception that within the bot, it is listening to specific hardcoded phrases.
 
 Look within the Bot for the section:
 ```
@@ -443,9 +444,7 @@ Take a look at the SimplifiedEchoBotMiddleware3.cs
 In the TurnState, we'll add as a dictionary key pair "didTypeName" and didBotWelcomeUser which equals "name".
 We're going to access this in the Bot.
 
-In the bot (MultiDialogWithAccessorBot.cs)
-
-We're checking the TurnState dictionary to see if it contains a key "didTypeName"
+In the bot MultiDialogWithAccessorBot.cs, we're checking the TurnState dictionary to see if it contains a key "didTypeName"
 
 Under the OnTurnAsync method:
 ```
@@ -464,14 +463,14 @@ Under the OnTurnAsync method:
 		
 		}
 ```
-Then you'll see later the following logic:
-If the dialogs are popped off the stack and the dictionary key/value pair exists "didTypeName"/"name" --> Start the NameWaterfallDialog.
-If the dialogs are popped off the stack or didn't exist in the first place and the dictionary key/value pair is not there --> Start the RootWaterfallDialog else continue whatever dialog is happening.
+Then you'll see later the following logic:<br />
+If the dialogs are popped off the stack and the dictionary key/value pair exists "didTypeName"/"name" --> Start the NameWaterfallDialog.<br />
+If the dialogs are popped off the stack or didn't exist in the first place and the dictionary key/value pair is not there --> Start the RootWaterfallDialog else continue whatever dialog is happening. <br />
 
 Exercise:
 * Notice how the dialogs are canceled (dialogContext.CancelAllDialogsAsync).  There are two other options commented out below it.  
 
-### REFERENCE:
+### REFERENCE PROJECTS:
 ### 3) Reference03-ReferencesToImportantSamples
 
 If you look in the above project - you'll see one file that references three projects from the official Microsoft samples.
@@ -506,8 +505,9 @@ I've added instructions that will hopefully make it as easy as possible to go th
 <br/>
 /////////////////////////////<br/>
 
-### //SHOWS HOW TO INTEGRATE WITH QnA Maker
-### //https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
+---
+### SHOWS HOW TO INTEGRATE WITH QnA Maker
+### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
 
 For this sample and the below AI samples (LUIS and Dispatch) - we need a couple things:
 
@@ -610,7 +610,7 @@ The final step - *within* the text of the BotConfiguration.bot, under services, 
             "type": "endpoint",
    "name": "development",
 ```
-// Save this "name" change step until the very end. If you've been following the above steps in order, you should be great!
+Save this "name" change step until the very end. If you've been following the above steps in order, you should be great!
 If you're looking at with Notepad, I recommend closing it after looking at it.
 
 Having trouble?  In the qnamaker.ai portal:<br/> 
@@ -630,18 +630,19 @@ and change that string to the name of your QnA project:
 Now you're done!  Run your QnA MAker and test it in your emulator!  
 Type a question related to one of your QnA Maker Questions and Answers.
 
-### //SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
-### //https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
+---
+### SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
+### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
 
 LUIS uses AI to match an utterance from a user and using AI connects it to an Intent that you define.
 
-For example, you might create an intent "Cancel" and you might create sample utterances (you need at least 5 utterances) like "No!" "Stop!" "Not that!" "Cancel" "Restart" "Please stop"
+For example, you might create an intent "Cancel" and you might create sample utterances (you need at least 5 utterances) like "No!" "Stop!" "Not that!" "Cancel" "Restart" "Please stop".<br />
 Then when a user types, "Please stop doing that" then the AI will match with some level of confidence that utterance to "Cancel".
 
-Similar to the above steps you'll need:
-i) an AI Service 
-ii) a BotConfiguration.bot file to tie that service to our Bot
-iii) Configure the Sample to connect to your AI project
+Similar to the above steps you'll need:<br />
+i) an AI Service <br />
+ii) a BotConfiguration.bot file to tie that service to our Bot<br />
+iii) Configure the Sample to connect to your AI project<br />
 
 
 i) an AI Service 
@@ -695,19 +696,15 @@ Type an utterance related to one of your intents and the Bot will return the bes
 ### SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)
 ### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
 
-i) an AI Service 
-ii) a BotConfiguration.bot file to tie that service to our Bot
-iii) Configure the Sample to connect to your AI project
+i) an AI Service <br />
+ii) a BotConfiguration.bot file to tie that service to our Bot<br />
+iii) Configure the Sample to connect to your AI project<br />
 
 Dispatch is the Bot's way of determining what your user is trying to say vis-a-vis the various AI tools you've setup.  
-Ie. Suppose you have both a LUIS application and a QnAMaker.  
-Let's say you set up your LUIS application to help identify customer support questions,
-and the QnA Maker to answer questions about taxes on purchases.
-
-If your user types "When do I pay my taxes?" you want to the bot to recognize that it is best routed to the QnA Maker.
-
-This is where Dispatch comes in.
-
+For example, suppose you have both a LUIS application and a QnAMaker. <br />
+Let's say you had set up your LUIS application to help identify customer support questions, and the QnA Maker to answer questions about taxes on purchases. <br />
+If your user types "When do I pay my taxes?" you want to the bot to recognize that it is best routed to the QnA Maker.   <br />
+This is where Dispatch comes in. <br />
 Behind the scenes - Dispatch will actually create a new LUIS application -- the CLI will take care of most of it for you,
 you simply need to type in a few values in the prompts.
 
