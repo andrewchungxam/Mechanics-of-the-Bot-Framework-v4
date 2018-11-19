@@ -150,16 +150,16 @@ Exercises:
 
 ### 5) 05 DialogWithAccessorBotV4
 
-In the previous project, there was no application level persistance to the DialogSet/DialogContext -- so each time the control flow happened: (ie. User input --> middleware --> Bot  --> Dialog) the Bot would be re-instanced and we would lose any turn-to-turn information. ie. Nothing was persisted.) The net result was that the bot would repeat the first step in the dialog over and over.
+In the previous project, there was no application level persistance to the DialogSet/DialogContext -- so each time the control flow happened, User input --> middleware --> Bot  --> Dialog, the Bot was be re-instanced and we lost any turn-to-turn information. (ie. Nothing was persisted.) The net result was that the bot would repeat the first step in the dialog over and over.
 
-To fix this, we need to create persistance to the conversation and accessors to access them.
+To fix this, we need to create persistance to the conversation and accessors to access the persisted data.
 
 CREATING PERSISTANCE + ACCESSORS:<br/>
-You may have seen this in the comments of the previous project. This shows you the "chain" of pieces that are necessary to for persistance and appropriate keeping track of dialog state.<br/>
-//IN ORDER TO CREATE THE DIALOG SET --> IT NEEDED A CONVERSATIONAL DIALOG STATE (WHICH KEEPS TRACK OF THE ORDER STACK OF DIALOGS)<br/>
-//IN ORDER TO CREATE A DIALOG STATE --> WE NEEDED A CONVERSATION STATE (WHICH PERSISTS ANYTHING AT THE CONVERSATION LEVEL) <br/>
-//FROM THE CONVERSATION STATE --> WE CREATED A PROPERTY OF TYPE DIALOG STATE)<br/>
-//IN ORDER TO CREATE A CONVERSATION STATE - WE NEEDED AN OBJECT OF TYPE ISTORAGE<br/>
+You may have seen this in the comments of the previous project. This shows you the "chain" of pieces that are necessary to for persistance and appropriately keeping track of dialog state.<br/>
+* IN ORDER TO CREATE THE DIALOG SET --> IT NEEDED A CONVERSATIONAL DIALOG STATE (WHICH KEEPS TRACK OF THE ORDER STACK OF DIALOGS)<br/>
+* IN ORDER TO CREATE A DIALOG STATE --> WE NEEDED A CONVERSATION STATE (WHICH PERSISTS ANYTHING AT THE CONVERSATION LEVEL) <br/>
+* FROM THE CONVERSATION STATE --> WE CREATED A PROPERTY OF TYPE DIALOG STATE)<br/>
+* IN ORDER TO CREATE A CONVERSATION STATE - WE NEEDED AN OBJECT OF TYPE ISTORAGE<br/>
 
 So let's start adding the necessary pieces.  Look at Startup.cs (this is where we'll create persistance and give the bot access to the the accessor).<br/>
 We're going to add the following pieces:<br/>
