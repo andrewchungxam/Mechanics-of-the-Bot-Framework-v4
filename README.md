@@ -108,6 +108,14 @@ User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnA
 | :-------------: | :-------------:| :-----:|:-------------:| :-----:|
 | User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 
+| Read| --->  | 
+| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
+| User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
+
+| Read | <---  | 
+| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
+| User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
+
 
 | Read| Right | to | Left | <-- | 
 | :-------------: | :-------------:| :-----:|:-------------:| :-----:|
