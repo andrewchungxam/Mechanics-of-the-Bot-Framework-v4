@@ -180,13 +180,14 @@ iv. The accessor is called DialogBotConversationStateAccessor and if you look at
 public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
 ```
 So what is the DialogState referring to?  This is defined in the BotFramework as a stack of dialogs.
+
+This is the defintion of the DialogState.  Notice how it has a list of Dialog Instances
 ```
-THIS IS THE DEFINITION OF THE DIALOG STATE --> NOTICE HOW IT HAS A LIST OF A DIALOG INSTANCES
 public class DialogState
-{  
-	public DialogState();
-	public DialogState(List<DialogInstance> stack);
-	public List<DialogInstance> DialogStack { get; }
+{    
+  public DialogState();
+  public DialogState(List<DialogInstance> stack);
+  public List<DialogInstance> DialogStack { get; }
 }
 ```
 Now via dependency injection, this accessor from Startup.cs is handed off to the Bot class which is recreated each turn
@@ -196,17 +197,16 @@ USING PERSISTANCE + ACCESSORS:<br/>
 Now that we've defined and created them, let's look at how they are used -- go to file Bots > DialogueBotWithAccessor.cs
 
 i. The constructor of the Bot takes as a parameter an object of type DialogueBotConversationStateAccessor.  
-```
-    {
-        private readonly DialogSet _dialogSet;
-        private readonly DialogueBotConversationStateAccessor _accessors;
+```  
+private readonly DialogSet _dialogSet;
+private readonly DialogueBotConversationStateAccessor _accessors;
 
-        public DialogueBotWithAccessor(DialogueBotConversationStateAccessor accessors)
-        {
-            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            _dialogSet = new DialogSet(_accessors.ConversationDialogState);
-            _dialogSet.Add(new TextPrompt("name"));
-        }
+public DialogueBotWithAccessor(DialogueBotConversationStateAccessor accessors)
+{
+  _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+  _dialogSet = new DialogSet(_accessors.ConversationDialogState);
+  _dialogSet.Add(new TextPrompt("name"));
+}
 ```
 This is the accessor we were setting up in Startup.cs.  The dependency injection will make sure the bot gets this each time it is instanced on each turn.
 
@@ -214,29 +214,27 @@ Notice there is a dialogSet that is instantiated and **notice it is taking as a 
 
 Later within the OnTurn method --> from that dialogSet, we create a dialogContext
 ```
-                var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
-                var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
+var dialogContext = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
+var dialogTurnResult = await dialogContext.ContinueDialogAsync(cancellationToken);
 ```
 And from the dialogContext --> we run ContinueDialog (ie. go to the next step if it can)
 
 If that dialogStatus is Empty --> we know there wasn't a dialog called to begin with so we need to begin a new one.
 We'll define one and call one directly off that dialogContext:
 ```
-	dialogContext.PromptAsync(
-                        "name",
-                        new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: PLEASE ENTER YOUR NAME.") },
-                        cancellationToken);
+dialogContext.PromptAsync(
+  "name", new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: PLEASE ENTER YOUR NAME.") },cancellationToken);
 
-        // We had a dialog run (it was the prompt) . Now it is Complete.
-        else if (dialogTurnResult.Status == DialogTurnStatus.Complete)
-        {
-        	// Check for a result.
-        	if (dialogTurnResult.Result != null)
-         	{
-         	// Finish by sending a message to the user. Next time ContinueAsync is called it will return DialogTurnStatus.Empty.
-        	await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{dialogTurnResult.Result}'."));
-         	}
-        }
+// We had a dialog run (it was the prompt) . Now it is Complete.
+else if (dialogTurnResult.Status == DialogTurnStatus.Complete)
+{
+  // Check for a result.
+  if (dialogTurnResult.Result != null)
+  {
+  // Finish by sending a message to the user. Next time ContinueAsync is called it will return DialogTurnStatus.Empty.
+  await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{dialogTurnResult.Result}'."));
+  }
+}
 ```
 The final piece to the puzzle is this last call to save changes to the Conversation State which handles persistence of a conversation state object using the conversation ID
 ```
