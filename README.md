@@ -105,14 +105,16 @@ User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsyn
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
 
 | --> | Read | Left | To | Right | 
-| ------------- |-------------| -----|-------------| -----|
+| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
 | User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-| <-- | Read | Right | to | Left | 
+| **<--** | **Read** | **Right** | **to** | **Left** | 
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 
-> Read Left To Right<br />< br />
-User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called<br />
-> Read Right to Left<br />< br />
+> Read Left To Right <br />
+< br />
+User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called <br />
+> Read Right to Left <br />
+<br />
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br />
 
 Exercises:									
