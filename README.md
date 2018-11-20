@@ -484,9 +484,9 @@ your projects.
 
 I've added instructions that will hopefully make it as easy as possible to go through the samples; with the aim of showing how you can take these official samples and make them your own (ie adding your own cognitive services).
 
-
+```
 /*
-
+REFERENCES TO IMPORTANT SAMPLES
 In the above projects, we've gone through the Mechanics of the Bot Framework
 
 The official samples offer various specific use cases and important integrations.
@@ -511,7 +511,7 @@ The full repo of official samples can be found here:
 https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore
 
 */
-
+```
 ---
 #### Reference Projects: 3A) Integration with QnA Maker
 https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
