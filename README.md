@@ -119,9 +119,9 @@ Exercises:
 <br />
 <br />
 
-| Tables        | Are           | Cool  |       | Read Right To Left       |
-| ------------- |:-------------:| -----:| -----:| -----:|
-| User receives message      | Middleware 1 | Middleware 2 | Middleware 3 | OnTurnAsync() called |
+| <--           | <--           | <--   |  <--  | Read Right To Left       |
+| ------------- |---------------|-------|-------|--------------------------|
+| User receives message| Middleware 1 | Middleware 2 | Middleware 3 | OnTurnAsync() called |
 
 
 ### 3) 03 WelcomeMessageWithoutAccessorBotV4
