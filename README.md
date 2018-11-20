@@ -119,6 +119,11 @@ Exercises:
 <br />
 <br />
 
+| Tables        | Are           | Cool  |       |       |
+| ------------- |:-------------:| -----:| -----:| -----:|
+| col 3 is      | right-aligned | $1600 | $1600 | $1600 |
+
+
 ### 3) 03 WelcomeMessageWithoutAccessorBotV4
 
 The projects are meant to be progressive so you can see how each piece builds on the previous ones.
