@@ -105,8 +105,9 @@ Timing-wise when does the Middleware get triggered?  <br />The below diagram sho
 | :-------------: | :-------------:| :-----:|:-------------:| :-----:|
 | User sends message&nbsp; &nbsp;&nbsp;| Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called |
 <br />
+Hi
 <br />
-| <-|<-|<-|<-|Read Right To Left| 
+| <- | <- | <- | <- | Read Right To Left | 
 | :-------------: | :-------------:| :-----:|:-------------:| :-----:|
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called |
 <br />
