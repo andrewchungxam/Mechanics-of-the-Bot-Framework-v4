@@ -24,6 +24,7 @@ The first exercise is to quickly review at the "out of the box" templates and th
 I recommend going through the projects in the below order:
 You'll see a list below -- then in the next section, I'll write a short summary of the main ideas presented in each project.
 
+```
 REFERENCE PROJECTS:<br />
 1) reference01-Bot Builder Echo Bot V4<br />
 2) reference02-Bot Builder Basic Bot V4<br />
@@ -43,7 +44,7 @@ PROJECTS:<br />
 <br />
 REFERENCE PROJECTS:<br />
 3) Reference03-ReferencesToImportantSamples<br />
-
+```
 
 ---
 PREREQUISITES:
