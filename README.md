@@ -170,6 +170,13 @@ You may have seen this in the comments of the previous project. This shows you t
 * FROM THE CONVERSATION STATE --> WE CREATED A PROPERTY OF TYPE DIALOG STATE <br/>
 * IN ORDER TO CREATE A CONVERSATION STATE - WE NEED AN OBJECT OF TYPE ISTORAGE <br/>
 
+Keeping track of the dialog state requires a "chain" of pieces that ultimately starts with an object of type IStorage:
+* Creating a DialogSet requires a Conversational Dialog State (which keeps keeps track of the order in the stack of dialogs)<br/>
+* Creating a DialogState requires a Conversation State (which persists anything at the conversation level) <br/>
+* From the Conversation State, we created a property of Type DialogState <br/>
+* Creating a Conversation State requires an object of Type IStorage <br/>
+
+
 So let's start adding the necessary pieces.  Look at Startup.cs (this is where we'll create persistance and give the bot access to the the accessor).<br/><br />
 We're going to add the following pieces:<br/>
 i. new MemoryStorage - this is how persistance is managed at the application level.  <br/>
@@ -404,18 +411,19 @@ For example, in ColorWaterfallDialog.cs
 private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
 {
 *OLD: In the previous project - we simply pulled values from the step context without saving.*
-//WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
+// WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
 // We can send messages to the user at any point in the WaterfallStep.
-//await stepContext.Context.SendActivityAsync(MessageFactory.Text($"COLOR WATERFALL STEP 3: I like the color {stepContext.Result} too!"), cancellationToken);
-//END-WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
+// await stepContext.Context.SendActivityAsync(MessageFactory.Text($"COLOR WATERFALL STEP 3: I like the color {stepContext.Result} too!"), cancellationToken);
+// END-WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
 
 *NEW: In the current project - we still pull values from the context -- but also access the DialogBotConversationStateAndUserStateAccessor.*
-//WITH SAVING STATE WITH ACCESSOR TO 'THEUSERPROFILE'
+
+// WITH SAVING STATE WITH ACCESSOR TO 'THEUSERPROFILE'
 var botState = await (stepContext.Context.TurnState["DialogBotConversationStateAndUserStateAccessor"] as DialogBotConversationStateAndUserStateAccessor).TheUserProfile.GetAsync(stepContext.Context);
 botState.Color = stepContext.Result.ToString();
 await stepContext.Context.SendActivityAsync(MessageFactory.Text($"FOOD WATERFALL STEP 3: I like {botState.Color} {botState.Food} as well! "), cancellationToken);
+// END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
 
-//END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
 return await stepContext.EndDialogAsync(null, cancellationToken);
 }
 ```
