@@ -513,9 +513,8 @@ https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotne
 */
 ```
 ---
-### Reference Projects
-### 3A) Integration with QnA Maker
-### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
+#### Reference Projects: 3A) Integration with QnA Maker
+##### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
 
 For this sample and the below AI samples (LUIS and Dispatch) - we need a couple things:
 
@@ -639,9 +638,8 @@ Now you're done!  Run your QnA MAker and test it in your emulator!
 Type a question related to one of your QnA Maker Questions and Answers.
 
 ---
-### Reference Projects
-### 3B) Integration with LUIS for Natural Language Processing
-### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
+#### Reference Projects: 3B) Integration with LUIS for Natural Language Processing
+##### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
 
 LUIS uses AI to match an utterance from a user and using AI connects it to an Intent that you define.
 
@@ -702,9 +700,8 @@ Luis.ai / My apps / Click appropriate app > Manage > Application Information > D
 Now you're done!  Run your LUISBot and test it in your emulator!  
 Type an utterance related to one of your intents and the Bot will return the best matching intent along with the Intent.
 
-### Reference Projects
-### 3C) Integration with Dispatch
-### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
+#### Reference Projects: 3C) Integration with Dispatch
+#### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
 ##### Enables integration of Multiple AI Services (e.g. like multiple QnA and LUIS projects)
 
 i) an AI Service <br />
