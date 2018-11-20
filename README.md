@@ -628,9 +628,9 @@ Save this "name" change step until the very end. If you've been following the ab
 If you're looking at with Notepad, I recommend closing it after looking at it.
 
 Having trouble?  In the qnamaker.ai portal:<br/> 
-* did you "Save and Train" your QnA Maker Bot? (reflects changes you made)
-* did you "Test" it? (make sure your utterances matches the intent you want)
-* did you "Publish" it? (makes it accessible)
+* Did you "Save and Train" your QnA Maker Bot? (reflects changes you made)
+* Did you "Test" it? (make sure your utterances matches the intent you want)
+* Did you "Publish" it? (makes it accessible)
 
 iii) Configure the Sample to connect to your AI project
 
@@ -638,7 +638,7 @@ In QnABot.cs change this line ~#25:<br />
 ```
 //public static readonly string QnAMakerKey = "QnABot";
 ```
-and change that string to the name of your QnA project: 
+Change that string to the name of your QnA project: 
 (ie. it would match the name you used for your project here: https://www.qnamaker.ai/Home/MyServices)
 
 Now you're done!  Run your QnA MAker and test it in your emulator!  
