@@ -118,13 +118,13 @@ User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnA
 
 <br /><br />
 
-> Blockquotes are very handy in email to emulate reply text.
+> Read Left To Right 
 
-Quote break.
+User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
 
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
+> Read Right to Left
 
-Quote break.
+User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
 
 
 Exercises:									
