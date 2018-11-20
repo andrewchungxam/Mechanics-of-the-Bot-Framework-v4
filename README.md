@@ -108,59 +108,7 @@ Timing-wise when does the Middleware get triggered?  <br />The below diagram sho
 | <--|<--|<--|<--|Read Right To Left| 
 | :-------------: | :-------------:| :-----:|:-------------:| :-----:|
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
 <br />
-<br />
-
-
-User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
-User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
-
-| Read|--|-- |--| --> | 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
-
-| Read|<--|<--|<--|<--| 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
-| Read|<-----|<-----|<-----| 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
-
-
-| Read| --->  | 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
-| Read | <---  | 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
-
-| Read| Right | to | Left | <-- | 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
-
-> Read Left To Right <br /><br />
-User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called <br /><br />
-
-> Read Right to Left<br /><br />
-User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br /><br />
-
-<br /><br />
-
-> Read Left To Right 
-
-User sends message --> Middleware 1 --> Middleware 2 --> Middleware 3 --> OnTurnAsync() called
-
-> Read Right to Left
-
-User receives message <-- Middleware 1 <-- Middleware 2 <-- Middleware 3 <-- OnTurnAsync() called
-
-
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
 * In any of the Middleware -- you'll see the await next(cancellationtoken) -- comment out that line of code and see what happens.  Can you think of times that this can be useful?
