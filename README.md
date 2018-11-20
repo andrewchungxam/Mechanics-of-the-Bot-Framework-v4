@@ -110,10 +110,10 @@ User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnA
 | **<--** | **Read** | **Right** | **to** | **Left** | 
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 
-> Read Left To Right <br />
+> Read Left To Right <br /><br />
 User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called <br /><br />
 
-> Read Right to Left <br />
+> Read Right to Left<br /><br />
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br /><br />
 
 
