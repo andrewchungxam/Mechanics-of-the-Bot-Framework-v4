@@ -25,25 +25,25 @@ I recommend going through the projects in the below order:
 You'll see a list below -- then in the next section, I'll write a short summary of the main ideas presented in each project.
 
 ```
-REFERENCE PROJECTS:<br />
-1) reference01-Bot Builder Echo Bot V4<br />
-2) reference02-Bot Builder Basic Bot V4<br />
-<br />
-PROJECTS:<br />
-1) 01 SimplifiedEchoBotV4<br />
-2) 02 SimplifiedMiddlewareEchoBotV4<br />
-3) 03 WelcomeMessageWithoutAccessorBotV4<br />
-4) 04 DialogWithoutAccessorBotV4<br />
-5) 05 DialogWithAccessorBotV4<br />
-6) 06 WelcomeMessageWithAccessorBotV4<br />
-7) 07 SimplifiedWaterfallDialogBotV4<br />
-8) 08 WaterfallDialogWithHardcodedCasesBotV4<br />
-9) 09 DuelingDialogsBotV4<br />
-10) 10 DuelingDialogsWithAccessorBotV4<br />
-11) 11 MultiDialogsWithAccessorBotV4<br />
-<br />
-REFERENCE PROJECTS:<br />
-3) Reference03-ReferencesToImportantSamples<br />
+REFERENCE PROJECTS:
+1) reference01-Bot Builder Echo Bot V4
+2) reference02-Bot Builder Basic Bot V4
+
+PROJECTS:
+1) 01 SimplifiedEchoBotV4
+2) 02 SimplifiedMiddlewareEchoBotV4
+3) 03 WelcomeMessageWithoutAccessorBotV4
+4) 04 DialogWithoutAccessorBotV4
+5) 05 DialogWithAccessorBotV4
+6) 06 WelcomeMessageWithAccessorBotV4
+7) 07 SimplifiedWaterfallDialogBotV4
+8) 08 WaterfallDialogWithHardcodedCasesBotV4
+9) 09 DuelingDialogsBotV4
+10) 10 DuelingDialogsWithAccessorBotV4
+11) 11 MultiDialogsWithAccessorBotV4
+
+REFERENCE PROJECTS:
+3) Reference03-ReferencesToImportantSamples
 ```
 
 ---
