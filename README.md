@@ -238,8 +238,8 @@ else if (dialogTurnResult.Status == DialogTurnStatus.Complete)
 ```
 The final piece to the puzzle is this last call to save changes to the Conversation State which handles persistence of a conversation state object using the conversation ID
 ```
-                // Save changes if any into the conversation state.
-                await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+// Save changes if any into the conversation state.
+await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
 ```
 ### 6) 06 WelcomeMessageWithAccessorBotV4
 
@@ -259,7 +259,7 @@ These are two different events and you can use them accordingly in the bot as ne
 WHEN THE USER JOINS THE CHANNEL (YOU'VE SEEN THIS ALREADY)<br/>
 In WelcomeMessageWithAccessorBot.cs, there is a section underneath:<br/>
 ```
-	else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
+else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
 ```
 which is devoted to sending a welcome message.  
 
@@ -277,29 +277,28 @@ Because it is part of the accessor, it is persistent.
 
 Here is where the accessor is passed into the bot: 
 ```
-        public WelcomeMessageWithAccessorBot(DialogBotConversationStateAndUserStateAccessor accessor)
-        {
-            _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
-            _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
-            _dialogSet.Add(new TextPrompt("name"));
-        }
+public WelcomeMessageWithAccessorBot(DialogBotConversationStateAndUserStateAccessor accessor)
+{
+  _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
+  _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
+  _dialogSet.Add(new TextPrompt("name"));
+}
 ```
 And it is setup to be passed in each time to the Bot via dependency injection -- you set it up here in the Startup.cs file: 
 ```
 ....
-            services.AddSingleton(sp =>
-            {
-
-		....
-                // The dialogs will need a state store accessor. Creating it here once (on-demand) allows the dependency injection
-                // to hand it to our IBot class that is create per-request.
-                var accessors = new DialogBotConversationStateAndUserStateAccessor(conversationState, userState)
-                {
-                    ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
-                    WelcomeUserState = userState.CreateProperty<WelcomeUserState>(DialogBotConversationStateAndUserStateAccessor.WelcomeUserName),
-                };
-                return accessors;
-            });
+services.AddSingleton(sp =>
+{
+  ....
+  // The dialogs will need a state store accessor. Creating it here once (on-demand) allows the dependency injection
+  // to hand it to our IBot class that is create per-request.
+  var accessors = new DialogBotConversationStateAndUserStateAccessor(conversationState, userState)
+  {
+    ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
+    WelcomeUserState = userState.CreateProperty<WelcomeUserState (DialogBotConversationStateAndUserStateAccessor.WelcomeUserName),
+  };
+    return accessors;
+ });
 ```
 Exercise:
 * Go back to the previous project and file: <br /> WelcomeMessageWithoutAccessorBot > Bots > WelcomeMessageWithoutAccessorBot.cs - 
@@ -317,24 +316,24 @@ you add the WaterfallDialog named with a string of your choice and the waterfall
 
 In addition, you add any additional dialogs that you want in your conversation.  
 ```
-            _dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
-            _dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
+_dialogBotConversationStateAndUserStateAccessor = accessor ?? throw new ArgumentNullException(nameof(accessor));
+_dialogSet = new DialogSet(_dialogBotConversationStateAndUserStateAccessor.ConversationDialogState);
 
-            // This array defines how the Waterfall will execute.
-            var waterfallSteps = new WaterfallStep[]
-            {
-                FirstStepAsync,
-                NameStepAsync,
-                NameConfirmStepAsync,
-                AgeStepAsync,
-                ConfirmStepAsync,
-                SummaryStepAsync,
-            };
+// This array defines how the Waterfall will execute.
+var waterfallSteps = new WaterfallStep[]
+{
+  FirstStepAsync,
+  NameStepAsync,
+  NameConfirmStepAsync,
+  AgeStepAsync,
+  ConfirmStepAsync,
+  SummaryStepAsync,
+};
 
-            _dialogSet.Add(new WaterfallDialog("details", waterfallSteps));
-            _dialogSet.Add(new TextPrompt("name"));
-            _dialogSet.Add(new NumberPrompt<int>("age"));
-            _dialogSet.Add(new ConfirmPrompt("confirm"));
+_dialogSet.Add(new WaterfallDialog("details", waterfallSteps));
+_dialogSet.Add(new TextPrompt("name"));
+_dialogSet.Add(new NumberPrompt<int>("age"));
+_dialogSet.Add(new ConfirmPrompt("confirm"));
 ```
 Exercises: 
 * Look through the steps, look at how dialogs are interspersed throughout to create prompts and to gather user input. 
@@ -351,11 +350,11 @@ WaterfallDialogWithHardcodedCasesBotV4 is similar to the project SimplifiedWater
 
 Look within the Bot for the section:
 ```
-                var text = turnContext.Activity.Text.ToLowerInvariant();
-                switch (text)
-                {
-...
-		}
+var text = turnContext.Activity.Text.ToLowerInvariant();
+switch (text)
+{
+  ...
+}
 ```
 Exercises:
 * What use cases can you think of that would require the checking of specific phrases?
@@ -393,32 +392,33 @@ Declaring Accessors in Bot: <br/>
 We'll create a public property instead of the private field we had before:<br/>
 OLD:
 ```
-        //private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
+//private readonly DialogBotConversationStateAndUserStateAccessor _dialogBotConversationStateAndUserStateAccessor;
 ```
 NEW:
 ```
-        public DialogBotConversationStateAndUserStateAccessor DialogBotConversationStateAndUserStateAccessor { get; set; } 
-	//notice how it gets assigned in the constructor.
+public DialogBotConversationStateAndUserStateAccessor DialogBotConversationStateAndUserStateAccessor { get; set; } 
+//notice how it gets assigned in the constructor.
 ```
 Using Accessor in Bot:
 For example, in ColorWaterfallDialog.cs
 ```
-        private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {
-OLD: In the previous project - we simply pulled values from the step context without saving.
-            //WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
-            // We can send messages to the user at any point in the WaterfallStep.
-            //await stepContext.Context.SendActivityAsync(MessageFactory.Text($"COLOR WATERFALL STEP 3: I like the color {stepContext.Result} too!"), cancellationToken);
-            //END-WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
-NEW: In the current project - we still pull values from the context -- but also access the DialogBotConversationStateAndUserStateAccessor.
-            //WITH SAVING STATE WITH ACCESSOR TO 'THEUSERPROFILE'
-            var botState = await (stepContext.Context.TurnState["DialogBotConversationStateAndUserStateAccessor"] as DialogBotConversationStateAndUserStateAccessor).TheUserProfile.GetAsync(stepContext.Context);
-            botState.Color = stepContext.Result.ToString();
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"FOOD WATERFALL STEP 3: I like {botState.Color} {botState.Food} as well! "), cancellationToken);
+private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+*OLD: In the previous project - we simply pulled values from the step context without saving.*
+//WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
+// We can send messages to the user at any point in the WaterfallStep.
+//await stepContext.Context.SendActivityAsync(MessageFactory.Text($"COLOR WATERFALL STEP 3: I like the color {stepContext.Result} too!"), cancellationToken);
+//END-WITHOUT SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
 
-            //END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
-            return await stepContext.EndDialogAsync(null, cancellationToken);
-        }
+*NEW: In the current project - we still pull values from the context -- but also access the DialogBotConversationStateAndUserStateAccessor.*
+//WITH SAVING STATE WITH ACCESSOR TO 'THEUSERPROFILE'
+var botState = await (stepContext.Context.TurnState["DialogBotConversationStateAndUserStateAccessor"] as DialogBotConversationStateAndUserStateAccessor).TheUserProfile.GetAsync(stepContext.Context);
+botState.Color = stepContext.Result.ToString();
+await stepContext.Context.SendActivityAsync(MessageFactory.Text($"FOOD WATERFALL STEP 3: I like {botState.Color} {botState.Food} as well! "), cancellationToken);
+
+//END-WITH SAVING STATE WITH ACCESSOR TO 'THEUSERSTATE'
+return await stepContext.EndDialogAsync(null, cancellationToken);
+}
 ```
 Exercise:
 * In the MultiDialogWithAccessorBot.cs file try commenting out this:
@@ -438,14 +438,15 @@ If the user types that key phrase, then we'll want to see the bot kickoff a diff
 
 Take a look at the SimplifiedEchoBotMiddleware3.cs
 ```
-        if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text == "name")
-        {
-                var didTypeNameString = "name";
-
-                // Update user state flag to reflect bot was given a specific prompt
-                turnContext.TurnState.Add("didTypeName", didTypeNameString);
-                await next(cancellationToken);
-	} ...
+if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text == "name")
+{
+  var didTypeNameString = "name";
+  
+  // Update user state flag to reflect bot was given a specific prompt
+  turnContext.TurnState.Add("didTypeName", didTypeNameString);
+  await next(cancellationToken);
+} 
+...
 ```
 In the TurnState, we'll add as a dictionary key pair "didTypeName" and didBotWelcomeUser which equals "name".
 We're going to access this in the Bot.
@@ -455,19 +456,18 @@ In the bot MultiDialogWithAccessorBot.cs, we're checking the TurnState dictionar
 Under the OnTurnAsync method:
 ```
 ....
-                //POP OFF ANY DIALOG FROM THE STACK IF THE "FLAG" IS SWITCHED 
-                string didTypeNamestring = "";
-                if (turnContext.TurnState.ContainsKey("didTypeName"))
-                {
-                    didTypeNamestring = turnContext.TurnState["didTypeName"] as string;
-                }
+  //POP OFF ANY DIALOG FROM THE STACK IF THE "FLAG" IS SWITCHED 
+  string didTypeNamestring = "";
+  if (turnContext.TurnState.ContainsKey("didTypeName"))
+  {
+    didTypeNamestring = turnContext.TurnState["didTypeName"] as string;
+  }
 
-                if (didTypeNamestring == "name")
-                {
-                    //OPTION 1:
-                    await dialogContext.CancelAllDialogsAsync();
-		
-		}
+  if (didTypeNamestring == "name")
+  {
+    //OPTION 1:
+    await dialogContext.CancelAllDialogsAsync();
+  }
 ```
 Then you'll see later the following logic:<br />
 If the dialogs are popped off the stack and the dictionary key/value pair exists "didTypeName"/"name" --> Start the NameWaterfallDialog.<br />
