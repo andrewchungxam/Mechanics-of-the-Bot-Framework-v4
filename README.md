@@ -104,15 +104,16 @@ Timing-wise when does the Middleware get triggered?  <br />The below diagram sho
 User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
 
-| Read | Left | -->| --> | --> | 
+| Read | Left | To | Right | --> | 
 | ------------- |-------------| -----|-------------| -----|
 | User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
+| <-- | Read | Right | to | Left | 
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 
 > Read Left To Right<br />
-User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
+User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called<br />
 > Read Right to Left<br />
-User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
+User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br />
 
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
