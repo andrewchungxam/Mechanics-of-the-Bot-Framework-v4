@@ -84,9 +84,9 @@ For this project - we're only going to look at the SimplifiedEchoBot.cs -- this 
 This SimplifiedEchoBot subclasses IBot and has the important OnTurnAsync method which is what your Bot is going to do each time it receives an activity like a message from a user.  OnTurn async is a transient object that gets created each time an activity is received (activity being a person or a bot joins the convo or the person sends a message.)
 
 Take a quick look look at Startup.cs --> the only thing to notice for now is this line:
-   ```
-            services.AddBot<SimplifiedEchoBot>(options =>    
-   ```
+```
+services.AddBot<SimplifiedEchoBot>(options =>    
+```
 which is how you add the SimplifiedEchoBot to your project.
 
 Exercise:
@@ -177,18 +177,17 @@ ii.  new ConversationState(memoryStorage object) added to the options<br/>
 iii. Add Singleton --> conversation state from previous step is referenced and then added as a property to the accessor we created.<br/>
 iv. The accessor is called DialogBotConversationStateAccessor and if you look at the full definition of the class DialogBotConversationStateAccessor.cs it has a property called Conversation Dialog State.<br/>
 ```
-	public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
+public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
 ```
 So what is the DialogState referring to?  This is defined in the BotFramework as a stack of dialogs.
 ```
-//THIS IS THE DEFINITION OF THE DIALOG STATE --> NOTICE HOW IT HAS A LIST OF A DIALOG INSTANCES
-//public class DialogState
-//{
-//    public DialogState();
-//    public DialogState(List<DialogInstance> stack);
-
-//    public List<DialogInstance> DialogStack { get; }
-//}
+THIS IS THE DEFINITION OF THE DIALOG STATE --> NOTICE HOW IT HAS A LIST OF A DIALOG INSTANCES
+public class DialogState
+{  
+	public DialogState();
+	public DialogState(List<DialogInstance> stack);
+	public List<DialogInstance> DialogStack { get; }
+}
 ```
 Now via dependency injection, this accessor from Startup.cs is handed off to the Bot class which is recreated each turn
  -- this is how persistence is possible across turns.<br/><br/>
