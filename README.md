@@ -172,16 +172,16 @@ CREATING PERSISTANCE + ACCESSORS:<br/>
 Keeping track of the dialog state requires a "chain" of pieces that ultimately starts with an object of type IStorage:
 > Creating a DialogSet requires a Conversational Dialog State (which keeps keeps track of the order in the stack of dialogs).
 
-<br/>
+
 > Creating a DialogState requires a Conversation State (which persists anything at the conversation level). 
 
-<br/>
+
 > From the Conversation State, we created a property of Type DialogState. 
 
-<br/>
+
 > Creating a Conversation State requires an object of Type IStorage. 
 
-<br/>
+
 
 
 So let's start adding the necessary pieces.  Look at Startup.cs (this is where we'll create persistance and give the bot access to the the accessor).<br/><br />
