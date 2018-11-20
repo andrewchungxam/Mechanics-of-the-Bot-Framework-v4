@@ -101,12 +101,16 @@ listening for specific phrases, and running messages through APIs like sentiment
 
 Timing-wise when does the Middleware get triggered?  <br />The below diagram shows you generally how turns function: <br/>
 
-| Read Left to Right|->|->|->|-> | 
+| Read Left to Right|-->|-->|-->|--> | 
 | :-------------: | :-------------:| :-----:|:-------------:| :-----:|
 | User sends message&nbsp; &nbsp;&nbsp;| Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called |
-<br />
-Hi
-<br />
+
+
+
+| <--           | <--           | <--   |  <--  | Read Right To Left       |
+| :-------------: |:---------------:|:-------:|:-------:|:--------------------------:|
+| User receives message| Middleware 1 | Middleware 2 | Middleware 3 | OnTurnAsync() called |
+
 
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
