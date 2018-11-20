@@ -286,7 +286,6 @@ public WelcomeMessageWithAccessorBot(DialogBotConversationStateAndUserStateAcces
 ```
 And it is setup to be passed in each time to the Bot via dependency injection -- you set it up here in the Startup.cs file: 
 ```
-....
 services.AddSingleton(sp =>
 {
   ....
@@ -484,6 +483,10 @@ You now understand the mechanics now of how the dialogs work, these new referenc
 your projects.
 
 I've added instructions that will hopefully make it as easy as possible to go through the samples; with the aim of showing how you can take these official samples and make them your own (ie adding your own cognitive services).
+
+/*
+Comment block
+*/
 
 //IN THE ABOVE PROJECTS, WE'VE GONE THROUGH THE MECHANICS OF THE BOT FRAMEWORK<br/>
 //<br/>
