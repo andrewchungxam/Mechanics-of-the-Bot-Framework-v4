@@ -129,7 +129,10 @@ New things:<br />
 2) Also - the bot is checking to see if there is an ActivityType.ConversationUpdate.  This means it will check to see if somebody knew joined the channel.<br />
 
 Exercises:
-* Notice when the bot opens up, the statement: else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate) is returning true more than once  - can you figure out why?
+* Notice when the bot opens up, the statement: 
+```else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
+```
+is returning true more than once  - can you figure out why?
 * Notice the welcoming message + bool flag system is not functioning correctly - can you figure out why?  We'll see examples of how to do this correctly in subsequent projects.
 
 ### 4) 04 DialogWithoutAccessorBotV4
