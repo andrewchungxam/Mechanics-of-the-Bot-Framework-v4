@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reference01-Bot Builder Echo Bot V4", "Bot1\Bot Builder Echo Bot V4\reference01-Bot Builder Echo Bot V4.csproj", "{6891EBCA-5E94-42FC-B9D8-BCE38F91331B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reference01-Bot Builder Echo Bot V4", "Bot1\Bot Builder Echo Bot V4\Reference01-Bot Builder Echo Bot V4.csproj", "{6891EBCA-5E94-42FC-B9D8-BCE38F91331B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reference02-Bot Builder Basic Bot V4", "Bot1\Bot Builder Basic Bot V4\reference02-Bot Builder Basic Bot V4.csproj", "{F38FB696-7D04-41DF-A17E-EE7376ACDCF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reference02-Bot Builder Basic Bot V4", "Bot1\Bot Builder Basic Bot V4\Reference02-Bot Builder Basic Bot V4.csproj", "{F38FB696-7D04-41DF-A17E-EE7376ACDCF3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01 SimplifiedEchoBotV4", "Bot Builder Simplified Echo Bot V4\01 SimplifiedEchoBotV4.csproj", "{1A2BDADD-B4A1-4938-A154-1E744271746D}"
 EndProject

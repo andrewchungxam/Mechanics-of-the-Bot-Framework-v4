@@ -1,24 +1,26 @@
-﻿//IN THE ABOVE PROJECTS, WE'VE GONE THROUGH THE MECHANICS OF THE BOT FRAMEWORK
-//
-//
-//THE OFFICIAL SAMPLES OFFER VARIOUS SPECIFIC USE CASES + IMPORTANT INTEGRATIONS
-//
-//HERE ARE 4 IMPORTANT PROJECTS OF NOTE:
-//
-//SHOW HOW TO INTEGRATE WITH QnA Maker
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
-//
-//SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
-//
-//SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
-//
-//THIS PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT
-//THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
-//
-//
-//THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:
-////https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore
+﻿/*
+REFERENCES TO IMPORTANT SAMPLES
+In the above projects, we've gone through the Mechanics of the Bot Framework
 
+The official samples offer various specific use cases and important integrations.
+
+Here are 4 important projects of note:
+
+A) Integration with QnA MAker
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
+
+B) Integration with LUIS for Natural Language Processing
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis<br/>
+
+C) Integration with Dispatch
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch<br/>
+Enables integration of Multiple AI Services (e.g. like multiple QnA and LUIS projects)*
+
+D) Cards UI Project
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards<br/>
+As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer.
+
+The full repo of official samples can be found here:
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore
+
+*/
