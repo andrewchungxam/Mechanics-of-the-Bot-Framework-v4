@@ -170,18 +170,11 @@ To fix this, we need to create persistance to the conversation and accessors to 
 
 CREATING PERSISTANCE + ACCESSORS:<br/>
 Keeping track of the dialog state requires a "chain" of pieces that ultimately starts with an object of type IStorage:
-> Creating a DialogSet requires a Conversational Dialog State (which keeps keeps track of the order in the stack of dialogs).
+> Creating a DialogSet requires a Conversational Dialog State which keeps keeps track of the order in the stack of dialogs.
 
-
-> Creating a DialogState requires a Conversation State (which persists anything at the conversation level). 
-
-
-> From the Conversation State, we created a property of Type DialogState. 
-
+> Creating a DialogState requires a Conversation State which persists anything at the conversation level. (From the Conversation State, we created a property of Type DialogState.) 
 
 > Creating a Conversation State requires an object of Type IStorage. 
-
-
 
 
 So let's start adding the necessary pieces.  Look at Startup.cs (this is where we'll create persistance and give the bot access to the the accessor).<br/><br />
