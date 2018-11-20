@@ -774,26 +774,19 @@ You'll need to make the following changes:
 OLD:
 ```
 ....
-"services": [
-        
+"services": [       
 {
- 
-	"type": "endpoint",
-            
-	"name": "BotConfiguration",
-            
+  "type": "endpoint",  
+  "name": "BotConfiguration",          
 ....
 ```
 NEW:
 ```
 ....
-"services": [
-        
+"services": [  
 {
- 
-	"type": "endpoint",
-            
-	"name": "development",             
+  "type": "endpoint",           
+  "name": "development",             
 ....
 ```
 
@@ -806,49 +799,30 @@ OLD:
 ```
 ...
 {
-            
-	"type": "dispatch",
-            
-	"name": "BotConfigurationDispatch",
-            
-	"appId": "your-app-id-asdf",
-            
-	"authoringKey": "8c5basdfasdfasdfasdfasdfasdf6f95",
-            
-	"version": "Dispatch",
-            
-	"region": "westus",
-            
-	"serviceIds": [],
-            
-	"id": "250"
-        }
+  "type": "dispatch",
+  "name": "BotConfigurationDispatch",
+  "appId": "your-app-id-asdf",
+  "authoringKey": "8c5basdfasdfasdfasdfasdfasdf6f95",
+  "version": "Dispatch",
+  "region": "westus",
+  "serviceIds": [],
+  "id": "250"
+}
 ...
 ```
 NEW: (You're looking at the values for "serviceIds" in this snippet:)
 
 ```
 {
-            
-	"type": "dispatch",
-            
-	"name": "BotConfigurationDispatch",
-            
-	"appId": "your-app-id-asdf",
-            
-	"authoringKey": "8c5basdfasdfasdfasdfasdfasdf6f95",
-            
-	"version": "Dispatch",
-            
-	"region": "westus",
-            
-	"serviceIds": [ "151"
-,"245", "217"
- 
-			],
-            
-	"id": "250"
-        }
+  "type": "dispatch",
+  "name": "BotConfigurationDispatch",
+  "appId": "your-app-id-asdf",
+  "authoringKey": "8c5basdfasdfasdfasdfasdfasdf6f95",
+  "version": "Dispatch",
+  "region": "westus",
+  "serviceIds": [ "151", "245", "217"],
+  "id": "250"
+}
 ```
 
 iii) Configure the Sample to connect to your AI project
@@ -906,43 +880,42 @@ Go to Build > Intents and grab the names of two Intents you care about.)
 
 OLD:<br />
 ```
-            const string homeAutomationDispatchKey = "l_Home_Automation";
-            const string weatherDispatchKey = "l_Weather";
-            const string noneDispatchKey = "None";
-            const string qnaDispatchKey = "q_sample-qna";
+const string homeAutomationDispatchKey = "l_Home_Automation";
+const string weatherDispatchKey = "l_Weather";
+const string noneDispatchKey = "None";
+const string qnaDispatchKey = "q_sample-qna";
 ```
 NEW:<br />
 ```
-            const string homeAutomationDispatchKey = "VideoGames";
-            //const string weatherDispatchKey = "l_Weather"; // I've commented this out as I'm only focused on the Luis intent "VideoGames" and the QnA intent "q_RoyaltyInfo2018" 
-            const string noneDispatchKey = "None";
-            const string qnaDispatchKey = "q_RoyaltyInfo2018";
+const string homeAutomationDispatchKey = "VideoGames";
+//const string weatherDispatchKey = "l_Weather"; // I've commented this out as I'm only focused on the Luis intent "VideoGames" and the QnA intent "q_RoyaltyInfo2018" 
+const string noneDispatchKey = "None";
+const string qnaDispatchKey = "q_RoyaltyInfo2018";
 ```
 Finally - in the same file: NlpDispatchBot.cs - simply comment out references to the weatherDispatchKey as we will only be
 using two services.  So comment out these sets of lines:
 
 approximately line 73:<br />
 ```
-            //if (!_services.LuisServices.ContainsKey(WeatherLuisKey))
-            //{
-            //    throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a Luis service named '{WeatherLuisKey}'.");
-            //}
+//if (!_services.LuisServices.ContainsKey(WeatherLuisKey))
+//{
+//    throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a Luis service named '{WeatherLuisKey}'.");
+//}
 ```
 and approximately line 164:
 ```
-                //case weatherDispatchKey:
-                //    await DispatchToLuisModelAsync(context, WeatherLuisKey);
+//case weatherDispatchKey:
+//    await DispatchToLuisModelAsync(context, WeatherLuisKey);
 
-                //    // Here, you can add code for calling the hypothetical weather service,
-                //    // passing in any entity information that you need
-                //    break;
+//    // Here, you can add code for calling the hypothetical weather service,
+//    // passing in any entity information that you need
+//    break;
 ```
 As reference, the official doc for the Dispatch project is here: https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csharp
 (it does not take you through using your own Luis / Dispatch models which we've done above)
 
 Now you are done!  Run your Dispatch Bot and test it!  
-Type an utterance related to one of your intents and the Bot will return the best matching intent or if it's from the QnA Maker
-it will return an answer!
+Type an utterance related to one of your intents and the Bot will return the best matching intent or if it's from the QnA Maker it will return an answer!
 
 #### REFERENCE PROJECTS: 3D) Cards UI Project
 *As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer:* <br />
