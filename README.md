@@ -116,6 +116,15 @@ User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsyn
 > Read Right to Left<br /><br />
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br /><br />
 
+<br /><br />
+> Blockquotes are very handy in email to emulate reply text.
+> This line is part of the same quote.
+
+Quote break.
+
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
+
+
 
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
