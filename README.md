@@ -486,38 +486,35 @@ I've added instructions that will hopefully make it as easy as possible to go th
 
 ```
 /*
-Comment block
+
+In the above projects, we've gone through the Mechanics of the Bot Framework
+
+The official samples offer various specific use cases and important integrations.
+
+Here are 4 important projects of note:
+
+A) Integration with QnA MAker
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
+
+B) Integration with LUIS for Natural Language Processing
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis<br/>
+
+C) Integration with Dispatch
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch<br/>
+Enables integration of Multiple AI Services (e.g. like multiple QnA and LUIS projects)*
+
+D) Cards UI Project
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards<br/>
+As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer.
+
+The full repo of official samples can be found here:
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore
+
 */
 ```
-
-//IN THE ABOVE PROJECTS, WE'VE GONE THROUGH THE MECHANICS OF THE BOT FRAMEWORK<br/>
-//<br/>
-//<br/>
-//THE OFFICIAL SAMPLES OFFER VARIOUS SPECIFIC USE CASES + IMPORTANT INTEGRATIONS<br/>
-//<br/>
-//HERE ARE 4 IMPORTANT PROJECTS OF NOTE:<br/>
-//<br/>
-//SHOWS HOW TO INTEGRATE WITH QnA Maker<br/>
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker<br/>
-//<br/>
-//SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING<br/>
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis<br/>
-//<br/>
-//SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)<br/>
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch<br/>
-//<br/>
-//THE NEXT PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT<br/>
-//THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER<br/>
-//https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards<br/>
-//<br/>
-//<br/>
-//THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:<br/>
-////https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore<br/>
-<br/>
-/////////////////////////////<br/>
-
 ---
-### SHOWS HOW TO INTEGRATE WITH QnA Maker
+### Reference Projects
+### 3A) Integration with QnA Maker
 ### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker
 
 For this sample and the below AI samples (LUIS and Dispatch) - we need a couple things:
@@ -642,7 +639,8 @@ Now you're done!  Run your QnA MAker and test it in your emulator!
 Type a question related to one of your QnA Maker Questions and Answers.
 
 ---
-### SHOWS HOW TO INTEGRATE WITH LUIS FOR NATURAL LANGUAGE PROCESSING
+### Reference Projects
+### 3B) Integration with LUIS for Natural Language Processing
 ### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/12.nlp-with-luis
 
 LUIS uses AI to match an utterance from a user and using AI connects it to an Intent that you define.
@@ -704,8 +702,10 @@ Luis.ai / My apps / Click appropriate app > Manage > Application Information > D
 Now you're done!  Run your LUISBot and test it in your emulator!  
 Type an utterance related to one of your intents and the Bot will return the best matching intent along with the Intent.
 
-### SHOWS HOW TO INTEGRATE WITH DISPATCH WHICH ALLOWS INTEGRATION OF MULTIPLE AI SERVICES (LIKE MULTIPLE QNA AND LUIS PROJECTS)
+### Reference Projects
+### 3C) Integration with Dispatch
 ### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
+##### Enables integration of Multiple AI Services (e.g. like multiple QnA and LUIS projects)
 
 i) an AI Service <br />
 ii) a BotConfiguration.bot file to tie that service to our Bot<br />
@@ -947,13 +947,15 @@ Now you are done!  Run your Dispatch Bot and test it!
 Type an utterance related to one of your intents and the Bot will return the best matching intent or if it's from the QnA Maker
 it will return an answer!
 
-### THE NEXT PROJECT IS VERY DIFFERENT -- AS YOU BUILD OUT YOUR UI AND PRESENTATION FOR YOUR BOT, THIS PROJECT WILL SHOW YOU VARIOUS WAYS YOU CAN PRESENT INFO TO YOUR CUSTOMER
+### REFERENCE PROJECTS
+### 3D) Cards UI Project
 ### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
+##### As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer.
 
 Exercise:
 * Run the sample and take a look at each card type and the corresponding code.
 
-THE FULL REPO OF OFFICIAL SAMPLES CAN BE FOUND HERE:
+The full repo of official samples can be found here:
 https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore of special further note is the Authentication Bot.
 
 
