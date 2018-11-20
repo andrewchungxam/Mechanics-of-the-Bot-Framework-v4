@@ -701,7 +701,7 @@ Now you're done!  Run your LUISBot and test it in your emulator!
 Type an utterance related to one of your intents and the Bot will return the best matching intent along with the Intent.
 
 #### Reference Projects: 3C) Integration with Dispatch
-*Enables integration of Multiple AI Services (e.g. like multiple QnA and LUIS projects):* https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
+*Enables integration of Multiple AI Services (e.g. like multiple QnA and LUIS projects):* <br /> https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/14.nlp-with-dispatch
 
 
 i) an AI Service <br />
@@ -945,7 +945,8 @@ Type an utterance related to one of your intents and the Bot will return the bes
 it will return an answer!
 
 #### REFERENCE PROJECTS: 3D) Cards UI Project
-*As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer:* https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
+*As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer:* <br />
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
 
 Exercise:
 * Run the sample and take a look at each card type and the corresponding code.
