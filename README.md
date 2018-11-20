@@ -104,13 +104,14 @@ Timing-wise when does the Middleware get triggered?  <br />The below diagram sho
 User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
 
+| Read | Left | -->| --> | --> | 
 | ------------- |-------------| -----|-------------| -----|
 | User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 
-> Read Left To Right
+> Read Left To Right<br />
 User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
-> Read Right to Left
+> Read Right to Left<br />
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
 
 Exercises:									
