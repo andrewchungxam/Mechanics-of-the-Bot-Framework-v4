@@ -100,10 +100,18 @@ What is Middleware?  Think of it as a place in your project where you can add cu
 listening for specific phrases, and running messages through APIs like sentiment using Azure's Text Analysis.
 
 Timing-wise when does the Middleware get triggered?  <br />The below diagram shows you generally how turns function: <br/>
-```
+
 User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
 User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
-```
+
+| ------------- |-------------| -----|-------------| -----|
+| User sends message      | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
+| User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
+
+> Read Left To Right
+User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
+> Read Right to Left
+User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
 
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
