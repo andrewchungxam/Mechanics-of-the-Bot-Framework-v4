@@ -120,11 +120,11 @@ User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnA
 
 > Read Left To Right 
 
-User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called
+User sends message --> Middleware 1 --> Middleware 2 --> Middleware 3 --> OnTurnAsync() called
 
 > Read Right to Left
 
-User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called
+User receives message <-- Middleware 1 <-- Middleware 2 <-- Middleware 3 <-- OnTurnAsync() called
 
 
 Exercises:									
