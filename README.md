@@ -111,11 +111,11 @@ User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnA
 | User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called
 
 > Read Left To Right <br />
-< br />
-User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called <br />
+User sends message -> Middleware 1 -> Middleware 2 -> Middleware 3 -> OnTurnAsync() called <br /><br />
+
 > Read Right to Left <br />
-<br />
-User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br />
+User receives message <- Middleware 1 <- Middleware 2 <- Middleware 3 <- OnTurnAsync() called<br /><br />
+
 
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
