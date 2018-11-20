@@ -164,12 +164,6 @@ In the previous project, there was no application level persistance to the Dialo
 To fix this, we need to create persistance to the conversation and accessors to access the persisted data.
 
 CREATING PERSISTANCE + ACCESSORS:<br/>
-You may have seen this in the comments of the previous project. This shows you the "chain" of pieces that are necessary to for persistance and appropriately keeping track of dialog state.<br/>
-* IN ORDER TO CREATE THE DIALOG SET --> WE NEED A CONVERSATIONAL DIALOG STATE (WHICH KEEPS TRACK OF THE ORDER STACK OF DIALOGS)<br/>
-* IN ORDER TO CREATE A DIALOG STATE --> WE NEED A CONVERSATION STATE (WHICH PERSISTS ANYTHING AT THE CONVERSATION LEVEL) <br/>
-* FROM THE CONVERSATION STATE --> WE CREATED A PROPERTY OF TYPE DIALOG STATE <br/>
-* IN ORDER TO CREATE A CONVERSATION STATE - WE NEED AN OBJECT OF TYPE ISTORAGE <br/>
-
 Keeping track of the dialog state requires a "chain" of pieces that ultimately starts with an object of type IStorage:
 * Creating a DialogSet requires a Conversational Dialog State (which keeps keeps track of the order in the stack of dialogs)<br/>
 * Creating a DialogState requires a Conversation State (which persists anything at the conversation level) <br/>
