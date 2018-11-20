@@ -119,9 +119,9 @@ Exercises:
 <br />
 <br />
 
-| Tables        | Are           | Cool  |       |       |
+| Tables        | Are           | Cool  |       | Read Right To Left       |
 | ------------- |:-------------:| -----:| -----:| -----:|
-| col 3 is      | right-aligned | $1600 | $1600 | $1600 |
+| User receives message      | Middleware 1 | Middleware 2 | Middleware 3 | OnTurnAsync() called |
 
 
 ### 3) 03 WelcomeMessageWithoutAccessorBotV4
