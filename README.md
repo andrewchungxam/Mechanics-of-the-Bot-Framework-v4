@@ -115,18 +115,7 @@ Timing-wise when does the Middleware get triggered?  <br />The below diagram sho
 Exercises:									
 * Middleware 3 was designed to listen for a keyword that will trigger a different control flow than the above typical pattern -- look for it and trigger it.
 * In any of the Middleware -- you'll see the await next(cancellationtoken) -- comment out that line of code and see what happens.  Can you think of times that this can be useful?
-
 <br />
-| <-- | <--| <-- | <-- | Read Right To Left | 
-| :-------------: | :-------------:| :-----:|:-------------:| :-----:|
-| User receives message   | Middleware 1 | Middleware 2 | Middleware 3  | OnTurnAsync() called |
-<br />
-<br />
-
-| <--           | <--           | <--   |  <--  | Read Right To Left       |
-| ------------- |---------------|-------|-------|--------------------------|
-| User receives message| Middleware 1 | Middleware 2 | Middleware 3 | OnTurnAsync() called |
-
 
 ### 3) 03 WelcomeMessageWithoutAccessorBotV4
 
