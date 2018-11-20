@@ -945,8 +945,8 @@ Type an utterance related to one of your intents and the Bot will return the bes
 it will return an answer!
 
 #### REFERENCE PROJECTS: 3D) Cards UI Project
-##### https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
 ##### As you build out your UI and presentation for your bot, this project will show you various ways you can present your info to your customer.
+https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/06.using-cards
 
 Exercise:
 * Run the sample and take a look at each card type and the corresponding code.
