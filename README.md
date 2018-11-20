@@ -26,8 +26,8 @@ You'll see a list below -- then in the next section, I'll write a short summary 
 
 ```
 REFERENCE PROJECTS:
-1) reference01-Bot Builder Echo Bot V4
-2) reference02-Bot Builder Basic Bot V4
+1) Reference01-Bot Builder Echo Bot V4
+2) Reference02-Bot Builder Basic Bot V4
 
 PROJECTS:
 1) 01 SimplifiedEchoBotV4
@@ -66,7 +66,7 @@ npm install -g chatdown msbot ludown luis-apis qnamaker botdispatch luisgen
 
 ---
 ### REFERENCE PROJECTS:
-### 1) reference01-Bot Builder Echo Bot V4 & 2) reference02-Bot Builder Basic Bot V4
+### 1) Reference01-Bot Builder Echo Bot V4 & 2) Reference02-Bot Builder Basic Bot V4
 
 Take a quick glance at these two projects.  They are the template projects that get created from the Microsoft VSIX Bot templates.  (You'll have seen them in the installation instructions here: https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart?view=azure-bot-service-4.0)
 
