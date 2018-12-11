@@ -10,11 +10,11 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
     {
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
         {
-            await turnContext.SendActivityAsync($"STEP 1: MIDDLEWARE - BEFORE ");
+            await turnContext.SendActivityAsync($"STEP 1: Middleware - Before ");
 
             await next(cancellationToken);
 
-            await turnContext.SendActivityAsync($"STEP 7: MIDDLEWARE - AFTER ");
+            await turnContext.SendActivityAsync($"STEP 7: Middleware - After ");
         }
     }
 }

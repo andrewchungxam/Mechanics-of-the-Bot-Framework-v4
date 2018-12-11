@@ -11,7 +11,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            await turnContext.SendActivityAsync($"STEP 2: MIDDLEWARE - BEFORE ");
+            await turnContext.SendActivityAsync($"STEP 2: Middleware - Before ");
 
             //UNCOMMENT CODE WILL ADD A SKIP AVENUE THAT WILL STOP THE PIPELINE (IE. MIDDLEWARE 3 + BOT WILL NOT BE TRIGGERED)
             //if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text != "skip")
@@ -19,7 +19,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 await next(cancellationToken);
             //}
             
-            await turnContext.SendActivityAsync($"STEP 6: MIDDLEWARE - AFTER ");
+            await turnContext.SendActivityAsync($"STEP 6: Middleware - After ");
         }
     }
 }

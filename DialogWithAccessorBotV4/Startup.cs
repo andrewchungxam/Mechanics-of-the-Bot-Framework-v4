@@ -63,8 +63,36 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                 // Memory Storage is for local bot debugging only. When the bot
                 // is restarted, everything stored in memory will be gone.  This is where you'd want to use Cosmos or Blob Storage to have persistance beyond application's life.
                 IStorage dataStore = new MemoryStorage();
-                
+
+                // For production bots use the Azure Blob or
+                // Azure CosmosDB storage providers. For the Azure
+                // based storage providers, add the Microsoft.Bot.Builder.Azure
+                // Nuget package to your solution. That package is found at:
+                // https://www.nuget.org/packages/Microsoft.Bot.Builder.Azure/
+
+                //Look at CosmosDB storage setup here:
+                //https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-storage?view=azure-bot-service-4.0&tabs=csharp#using-cosmos-db
+
+                // Uncomment the following lines to use Azure Blob Storage
+                // //Storage configuration name or ID from the .bot file.
+                // const string StorageConfigurationId = "<STORAGE-NAME-OR-ID-FROM-BOT-FILE>";
+                // var blobConfig = botConfig.FindServiceByNameOrId(StorageConfigurationId);
+                // if (!(blobConfig is BlobStorageService blobStorageConfig))
+                // {
+                //    throw new InvalidOperationException($"The .bot file does not contain an blob storage with name '{StorageConfigurationId}'.");
+                // }
+                // // Default container name.
+                // const string DefaultBotContainer = "<DEFAULT-CONTAINER>";
+                // var storageContainer = string.IsNullOrWhiteSpace(blobStorageConfig.Container) ? DefaultBotContainer : blobStorageConfig.Container;
+                // IStorage dataStore = new Microsoft.Bot.Builder.Azure.AzureBlobStorage(blobStorageConfig.ConnectionString, storageContainer);
+
+
                 // Create and add conversation state.
+                // The Conversation State object is where we persist anything at the conversation-scope.
+
+                //Each state management object automates the reading and writing of associated state information to storage.
+                //The storage layer connects to the backing storage for state, such as in-memory(for testing), or Azure Cosmos DB Storage(for production).
+            
                 var conversationState = new ConversationState(dataStore);
                 options.State.Add(conversationState);
             });

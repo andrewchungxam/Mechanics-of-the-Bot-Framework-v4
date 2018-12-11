@@ -13,18 +13,18 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
 
             if (turnContext.Activity.Type == ActivityTypes.Message && turnContext.Activity.Text != "skip")
             {
-                await turnContext.SendActivityAsync($"STEP 3: MIDDLEWARE - BEFORE ");
+                await turnContext.SendActivityAsync($"STEP 3: Middleware - Before ");
 
                 await next(cancellationToken);
 
-                await turnContext.SendActivityAsync($"STEP 5: MIDDLEWARE - AFTER ");
+                await turnContext.SendActivityAsync($"STEP 5: Middleware - After ");
 
             }
             else
             {
-                await turnContext.SendActivityAsync($"STEP 3: MIDDLEWARE - BEFORE (skip was typed - notice no bot)");
+                await turnContext.SendActivityAsync($"STEP 3: Middleware - Before (either not a message or skip was typed - notice no bot)");
 
-                await turnContext.SendActivityAsync($"STEP 5: MIDDLEWARE - AFTER (skip was typed - notice no bot)");
+                await turnContext.SendActivityAsync($"STEP 5: Middleware - After (either not a message or skip was typed - notice no bot)");
 
             }
 

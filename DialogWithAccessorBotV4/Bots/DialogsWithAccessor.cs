@@ -48,7 +48,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     // A prompt dialog can be started directly on the DialogContext. The prompt text is given in the PromptOptions.
                     await dialogContext.PromptAsync(
                         "name",
-                        new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: PLEASE ENTER YOUR NAME.") },
+                        new PromptOptions { Prompt = MessageFactory.Text("STEP 4: This is the TextPrompt Dialog ::: Please enter your name.") },
                         cancellationToken);
                 }
 
@@ -59,7 +59,7 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
                     if (dialogTurnResult.Result != null)
                     {
                         // Finish by sending a message to the user. Next time ContinueAsync is called it will return DialogTurnStatus.Empty.
-                        await turnContext.SendActivityAsync(MessageFactory.Text($"THANK YOU, I HAVE YOUR NAME AS: '{dialogTurnResult.Result}'."));
+                        await turnContext.SendActivityAsync(MessageFactory.Text($"Thank you, I have your name as: '{dialogTurnResult.Result}'."));
                     }
                 }
 
@@ -69,6 +69,29 @@ namespace Bot_Builder_Simplified_Echo_Bot_V4
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
