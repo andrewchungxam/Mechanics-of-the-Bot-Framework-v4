@@ -82,7 +82,9 @@ Also, take quick look at BotConfiguration.Bot which has details of the project i
 * This bot takes the Echo Bot template and removes all the extraneous parts and simplifies it to the most basic part - the Bot.
 For this project - we're only going to look at the SimplifiedEchoBot.cs -- this is where your Bot "lives".  
 
-This SimplifiedEchoBot subclasses IBot and has the important OnTurnAsync method which is what your Bot is going to do each time it receives an activity like a message from a user.  OnTurn async is a transient object that gets created each time an activity is received (activity being a person or a bot joins the convo or the person sends a message.)
+This SimplifiedEchoBot implements the IBot interface and has the important OnTurnAsync method which is what your Bot is going to do each time it receives an activity like a message from a user.  For each Activity received  (activity being a person or a bot joins the conversation or the person sends a message), a new instance of this class is created. Objects that are expensive to construct, or have a lifetime beyond the single turn, should be carefully managed.
+
+For each user interaction, an instance of this class is created and the OnTurnAsync method is called.  This is a Transient lifetime service.  Transient lifetime services are created each time they're requested.  So the main "control point" of your Bot will be from this OnTurn method.
 
 Take a quick look look at Startup.cs --> the only thing to notice for now is this line:
 ```
