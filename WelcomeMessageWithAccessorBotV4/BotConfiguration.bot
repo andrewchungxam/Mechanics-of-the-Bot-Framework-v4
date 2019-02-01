@@ -8,6 +8,14 @@
       "appId": "",
       "appPassword": "",
       "id": "1"
+    },
+    {
+      "type": "endpoint",
+      "appId": "YOURxAPPxID",
+      "appPassword": "YOURxAPPxPASSWORD",
+      "endpoint": "https://YOURxBOTxURLxHERExFROMxPORTALxREGISTRATION.azurewebsites.net/api/messages",
+      "id": "2",
+      "name": "production"
     }
   ],
   "padlock": "",
